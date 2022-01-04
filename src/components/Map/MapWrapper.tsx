@@ -1,24 +1,39 @@
 import { LatLngExpression } from 'leaflet';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import { useEffect, useState } from 'react';
+
+import './MapWrapper.css';
+import useGeocode from '../../hooks/useGeocode';
 
 import LocationMarker from './LocationMarker';
-import './MapWrapper.css';
+import MinimapControl from './MinimapControl';
 
-const position: LatLngExpression = [51.505, -0.09];
+const MapWrapper = () => {
+	const [position, setPosition] = useState<LatLngExpression>([
+		49.1922443, 16.6113382
+	]);
+	const { location, setAdress } = useGeocode('Karlovarský kraj');
 
-const MapWrapper = () => (
-	<MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-		<TileLayer
-			attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-			url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-		/>
-		<Marker position={position}>
-			<Popup>
-				A pretty CSS3 popup. <br /> Easily customizable.
-			</Popup>
-		</Marker>
-		<LocationMarker />
-	</MapContainer>
-);
+	useEffect(() => {
+		console.log(location);
+
+		setPosition(location);
+	}, [location]);
+
+	// useEffect(() => {
+	// 	setAdress('Brno');
+	// }, []);
+
+	return (
+		<MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+			<TileLayer
+				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+			/>
+			<LocationMarker inputPosition={position} />
+			<MinimapControl position="topright" />
+		</MapContainer>
+	);
+};
 
 export default MapWrapper;

@@ -7,9 +7,7 @@ const Layout: FC = ({ children }) => (
 			height: '100vh'
 		}}
 	>
-		<Box sx={{ m: 5 }} component="main">
-			{children}
-		</Box>
+		<Box component="main">{children}</Box>
 	</Container>
 );
 

@@ -1,13 +1,22 @@
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
-import { latLng, LatLng } from 'leaflet';
+import { latLng, LatLng, LatLngExpression } from 'leaflet';
 import { useState } from 'react';
 import { Marker, Popup, useMapEvents } from 'react-leaflet';
 
-const LocationMarker = () => {
+type Props = {
+	inputPosition?: LatLngExpression | undefined;
+};
+
+const LocationMarker = ({ inputPosition }: Props) => {
 	const [position, setPosition] = useState<LatLng>(latLng(0, 0));
 	const map = useMapEvents({
 		click() {
-			map.locate();
+			if (inputPosition) {
+				setPosition(latLng(inputPosition));
+				map.flyTo(latLng(inputPosition), map.getZoom());
+			} else {
+				map.locate();
+			}
 		},
 		locationfound(e) {
 			setPosition(e.latlng);
