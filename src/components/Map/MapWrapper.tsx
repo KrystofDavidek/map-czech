@@ -1,37 +1,29 @@
-import { LatLngExpression } from 'leaflet';
-import { MapContainer, TileLayer, useMap } from 'react-leaflet';
-import { useEffect, useState } from 'react';
+import { latLng, LatLngExpression } from 'leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import { useState } from 'react';
 
 import './MapWrapper.css';
-import useGeocode from '../../hooks/useGeocode';
 
-import LocationMarker from './LocationMarker';
 import MinimapControl from './MinimapControl';
 import Zoomer from './Zoomer';
+import Features from './Features';
+import ViewerOnClick from './ViewerOnClick';
 
 const MapWrapper = () => {
-	const [position, setPosition] = useState<LatLngExpression>([0, 0]);
-	const { location, setAdress } = useGeocode('Brno');
-
-	useEffect(() => {
-		console.log(location);
-
-		setPosition(location);
-	}, [location]);
-
-	useEffect(() => {
-		setAdress('Budapest');
-	}, []);
+	const [position] = useState<LatLngExpression>(
+		latLng(49.95828842806968, 16.4849853515625)
+	);
 
 	return (
-		<MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+		<MapContainer center={position} zoom={7} scrollWheelZoom={false}>
 			<TileLayer
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
-			<LocationMarker inputPosition={position} />
 			<MinimapControl position="topright" />
+			<Features />
 			<Zoomer />
+			<ViewerOnClick />
 		</MapContainer>
 	);
 };

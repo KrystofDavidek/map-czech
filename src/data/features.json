@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "shape": "Marker",
+        "name": "Unnamed Layer",
+        "category": "default"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.624718,
+          49.208178
+        ]
+      },
+      "id": "963ed227-b155-4e96-ae4c-7de4f0217479"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "shape": "Circle",
+        "radius": 6111.019087364726,
+        "name": "Example",
+        "category": "default"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.572704,
+          49.203916
+        ]
+      },
+      "id": "0c60ae3e-cbb3-46de-9744-f7ba466af7d9"
+    }
+  ]
+}

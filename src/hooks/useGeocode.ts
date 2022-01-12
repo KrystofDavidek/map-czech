@@ -20,7 +20,7 @@ const useGeocode = (initialLocation?: string) => {
 	);
 
 	useEffect(() => {
-		setLocation(data ? data.results[0].geometry : [0, 0]);
+		if (data && data.results.length > 1) setLocation(data.results[0].geometry);
 	}, [data]);
 
 	return { location, setAdress };
