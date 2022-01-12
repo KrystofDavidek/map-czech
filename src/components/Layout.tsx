@@ -1,14 +1,8 @@
-import { Box, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import { FC } from 'react';
 
 const Layout: FC = ({ children }) => (
-	<Container
-		sx={{
-			height: '100vh'
-		}}
-	>
-		<Box component="main">{children}</Box>
-	</Container>
+	<Container component="main">{children}</Container>
 );
 
 export default Layout;

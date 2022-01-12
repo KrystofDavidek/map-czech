@@ -1,5 +1,5 @@
 import { LatLngExpression } from 'leaflet';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import { useEffect, useState } from 'react';
 
 import './MapWrapper.css';
@@ -7,12 +7,11 @@ import useGeocode from '../../hooks/useGeocode';
 
 import LocationMarker from './LocationMarker';
 import MinimapControl from './MinimapControl';
+import Zoomer from './Zoomer';
 
 const MapWrapper = () => {
-	const [position, setPosition] = useState<LatLngExpression>([
-		49.1922443, 16.6113382
-	]);
-	const { location, setAdress } = useGeocode('Karlovarský kraj');
+	const [position, setPosition] = useState<LatLngExpression>([0, 0]);
+	const { location, setAdress } = useGeocode('Brno');
 
 	useEffect(() => {
 		console.log(location);
@@ -20,9 +19,9 @@ const MapWrapper = () => {
 		setPosition(location);
 	}, [location]);
 
-	// useEffect(() => {
-	// 	setAdress('Brno');
-	// }, []);
+	useEffect(() => {
+		setAdress('Budapest');
+	}, []);
 
 	return (
 		<MapContainer center={position} zoom={13} scrollWheelZoom={false}>
@@ -32,6 +31,7 @@ const MapWrapper = () => {
 			/>
 			<LocationMarker inputPosition={position} />
 			<MinimapControl position="topright" />
+			<Zoomer />
 		</MapContainer>
 	);
 };

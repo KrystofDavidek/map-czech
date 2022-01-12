@@ -1,6 +1,6 @@
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { latLng, LatLng, LatLngExpression } from 'leaflet';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Marker, Popup, useMapEvents } from 'react-leaflet';
 
 type Props = {
@@ -9,25 +9,37 @@ type Props = {
 
 const LocationMarker = ({ inputPosition }: Props) => {
 	const [position, setPosition] = useState<LatLng>(latLng(0, 0));
+	const [isLoaded, setLoaded] = useState<boolean>(false);
+
+	useEffect(() => {
+		if (inputPosition) {
+			setPosition(latLng(inputPosition));
+			setLoaded(true);
+		}
+	}, [inputPosition]);
+
 	const map = useMapEvents({
 		click() {
-			if (inputPosition) {
-				setPosition(latLng(inputPosition));
-				map.flyTo(latLng(inputPosition), map.getZoom());
+			if (position && isLoaded) {
+				map.flyTo(latLng(position), map.getZoom());
 			} else {
 				map.locate();
 			}
 		},
 		locationfound(e) {
-			setPosition(e.latlng);
 			map.flyTo(e.latlng, map.getZoom());
 		}
 	});
 
-	return position === null ? null : (
-		<Marker position={position}>
-			<Popup>You are here</Popup>
-		</Marker>
+	return (
+		// eslint-disable-next-line react/jsx-no-useless-fragment
+		<>
+			{isLoaded && (
+				<Marker position={position}>
+					<Popup>You are here</Popup>
+				</Marker>
+			)}
+		</>
 	);
 };
 
