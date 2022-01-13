@@ -1,8 +1,13 @@
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { FC } from 'react';
 
+import Navbar from './Navbar';
+
 const Layout: FC = ({ children }) => (
-	<Container component="main">{children}</Container>
+	<Box>
+		<Navbar />
+		<Container component="main">{children}</Container>
+	</Box>
 );
 
 export default Layout;
