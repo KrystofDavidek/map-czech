@@ -1,13 +1,16 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useMap } from 'react-leaflet';
 
 import { useSearch } from '../../contexts/SearchContext';
 import useGeocode from '../../hooks/useGeocode';
+import { getZoom } from '../../utils/map';
 
 const Zoomer = () => {
 	const map = useMap();
-	const { location, setAdress } = useGeocode('Brno');
+	const { location, setAdress } = useGeocode('');
 	const { input, isSearching, setSearching } = useSearch();
+
+	const zoom = useCallback(map => getZoom(map), []);
 
 	useEffect(() => {
 		if (input && isSearching) {
@@ -17,7 +20,7 @@ const Zoomer = () => {
 	}, [isSearching]);
 
 	useEffect(() => {
-		map.flyTo(location, map.getZoom() + 1.5);
+		if (location.lat !== 0) map.flyTo(location, zoom(map));
 	}, [location]);
 
 	// eslint-disable-next-line react/jsx-no-useless-fragment

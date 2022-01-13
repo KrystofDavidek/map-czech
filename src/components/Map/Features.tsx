@@ -1,8 +1,9 @@
 import { Button, Typography } from '@mui/material';
-import { useState } from 'react';
-import { FeatureGroup, Popup } from 'react-leaflet';
+import { useCallback, useState } from 'react';
+import { FeatureGroup, Popup, useMap } from 'react-leaflet';
 
 import { featuresJson } from '../../data';
+import { getZoom, getZoomCoords } from '../../utils/map';
 
 import FeatureShape from './FeatureShape';
 import Modal from './Modal';
@@ -10,8 +11,12 @@ import Modal from './Modal';
 const Features = () => {
 	const [modal, setModal] = useState(false);
 	const [selectedFeature, setSelectedFeature] = useState({});
-
-	const toggle = () => setModal(!modal);
+	const map = useMap();
+	const toggle = () => {
+		setModal(!modal);
+	};
+	const zoom = useCallback(map => getZoom(map), []);
+	const zoomCoords = useCallback(coordinates => getZoomCoords(coordinates), []);
 
 	// eslint-disable-next-line react/jsx-no-useless-fragment
 	if (!featuresJson) return <></>;
@@ -19,7 +24,15 @@ const Features = () => {
 	return (
 		<>
 			{(featuresJson as any).features.map((feature: any, index: number) => (
-				<FeatureGroup pathOptions={{ color: 'purple' }} key={index}>
+				<FeatureGroup
+					eventHandlers={{
+						click: () => {
+							map.setView(zoomCoords(feature.geometry.coordinates), zoom(map));
+						}
+					}}
+					key={index}
+					pathOptions={{ color: 'purple' }}
+				>
 					<Popup>
 						<Typography>{feature.properties.name}</Typography>
 						<Button
@@ -27,6 +40,7 @@ const Features = () => {
 							onClick={() => {
 								toggle();
 								setSelectedFeature(feature);
+								map.flyTo(zoomCoords(feature.geometry.coordinates), zoom(map));
 							}}
 						>
 							More Info

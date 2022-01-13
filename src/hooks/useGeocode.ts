@@ -1,11 +1,11 @@
-import { LatLngExpression } from 'leaflet';
+import { LatLng, latLng } from 'leaflet';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 import { fetcher } from '../utils/fetcher';
 
 const useGeocode = (initialLocation?: string) => {
-	const [location, setLocation] = useState<LatLngExpression>([0, 0]);
+	const [location, setLocation] = useState<LatLng>(latLng(0, 0));
 	const [address, setAdress] = useState<string>(
 		initialLocation ? initialLocation : ''
 	);

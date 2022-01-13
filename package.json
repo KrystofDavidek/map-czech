@@ -8,6 +8,8 @@
     "@mui/icons-material": "^5.2.1",
     "@mui/material": "^5.2.3",
     "axios": "^0.24.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "firebase": "^9.6.2",
     "leaflet": "^1.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -34,7 +36,25 @@
     "lint": "eslint --fix \"./src/**/*.{ts,tsx}\" && prettier \"./src/**/*.{ts,tsx}\" --check"
   },
   "eslintConfig": {
-    "extends": "haaxor1689s-config"
+    "extends": [
+      "haaxor1689s-config"
+    ],
+    "plugins": [
+      "unused-imports"
+    ],
+    "rules": {
+      "no-unused-vars": "off",
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "warn",
+        {
+          "vars": "all",
+          "varsIgnorePattern": "^_",
+          "args": "after-used",
+          "argsIgnorePattern": "^_"
+        }
+      ]
+    }
   },
   "prettier": "prettier-config-haaxor1689s-config",
   "browserslist": [
