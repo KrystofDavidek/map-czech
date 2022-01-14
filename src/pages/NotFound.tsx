@@ -2,7 +2,7 @@ import { Stack, Typography } from '@mui/material';
 import WarningIcon from '@mui/icons-material/Warning';
 
 const NotFound = () => (
-	<Stack alignItems="center">
+	<Stack alignItems="center" sx={{ m: 4 }}>
 		<WarningIcon sx={{ typography: 'h1' }} />
 		<Typography variant="h2">Error</Typography>
 		<Typography>Page not found</Typography>

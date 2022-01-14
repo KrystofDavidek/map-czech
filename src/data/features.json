@@ -5,7 +5,7 @@
       "type": "Feature",
       "properties": {
         "shape": "Polygon",
-        "name": "Unnamed Layer",
+        "name": "Example",
         "category": "default"
       },
       "geometry": {
