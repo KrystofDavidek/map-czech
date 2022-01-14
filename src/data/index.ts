@@ -45,7 +45,7 @@ const mockEntry: Entry = {
 	location: {
 		mainLocation: 'Brno',
 		secondaryLocation: 'Czech Republic',
-		introImage: 'brno.jpeq',
+		introImage: 'brno.png',
 		demographic: 'Počet obyvatel:	382 405 (2021)',
 		distanceFromPrag: 186.67
 	},

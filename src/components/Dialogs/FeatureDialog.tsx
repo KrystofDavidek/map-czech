@@ -1,4 +1,5 @@
 import {
+	Box,
 	Button,
 	DialogActions,
 	DialogContent,
@@ -32,38 +33,53 @@ const FeatureDialog = ({ feature, close }: Props) => {
 		setCurrentEntry(undefined);
 	};
 	return (
+		// eslint-disable-next-line react/jsx-no-useless-fragment
 		<>
-			<DialogTitle>
-				{currentEntry?.location?.mainLocation}
-				<IconButton
-					aria-label="close"
-					onClick={handleClose}
-					sx={{
-						position: 'absolute',
-						right: 8,
-						top: 8,
-						color: theme => theme.palette.grey[500]
-					}}
-				>
-					<CloseIcon />
-				</IconButton>
-			</DialogTitle>
-			<DialogContent>
-				<DialogContentText>ID of this feature is:</DialogContentText>
-				<DialogContentText sx={{ fontWeight: 500 }}>
-					{feature.id}
-				</DialogContentText>
-			</DialogContent>
-			<DialogActions>
-				<Button onClick={handleClose}>No</Button>
-				<Button
-					onClick={close}
-					component={Link}
-					to={`/location/${currentEntry?.location?.mainLocation}`}
-				>
-					Go to Location
-				</Button>
-			</DialogActions>
+			{currentEntry && (
+				<>
+					<DialogTitle>
+						{currentEntry?.location?.mainLocation}
+						<IconButton
+							aria-label="close"
+							onClick={handleClose}
+							sx={{
+								position: 'absolute',
+								right: 8,
+								top: 8,
+								color: theme => theme.palette.grey[500]
+							}}
+						>
+							<CloseIcon />
+						</IconButton>
+					</DialogTitle>
+					<DialogContent>
+						{currentEntry?.location?.introImage && (
+							<Box>
+								<img
+									height="200"
+									width="200"
+									alt="Intro"
+									src={`../../assets/images/${currentEntry?.location?.introImage}`}
+								/>
+							</Box>
+						)}
+						<DialogContentText>ID of this feature is:</DialogContentText>
+						<DialogContentText sx={{ fontWeight: 500 }}>
+							{feature.id}
+						</DialogContentText>
+					</DialogContent>
+					<DialogActions>
+						<Button onClick={handleClose}>No</Button>
+						<Button
+							onClick={close}
+							component={Link}
+							to={`/location/${currentEntry?.location?.mainLocation}`}
+						>
+							Go to Location
+						</Button>
+					</DialogActions>
+				</>
+			)}
 		</>
 	);
 };
