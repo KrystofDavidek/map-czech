@@ -1,4 +1,4 @@
-import {
+import React, {
 	createContext,
 	FC,
 	useCallback,
@@ -6,7 +6,8 @@ import {
 	useMemo,
 	useState
 } from 'react';
-import { Dialog } from '@mui/material';
+import { Dialog, Slide } from '@mui/material';
+import { TransitionProps } from '@mui/material/transitions';
 
 export type DialogPropsType<T = unknown> = T & { close: () => void };
 
@@ -57,9 +58,22 @@ export const DialogProvider: FC = ({ children }) => {
 	return (
 		<DialogContext.Provider value={DialogCtx}>
 			{children}
-			<Dialog open={open} onClose={handleClose}>
+			<Dialog
+				open={open}
+				onClose={handleClose}
+				TransitionComponent={Transition}
+			>
 				<Content {...dialog.props} close={handleClose} />
 			</Dialog>
 		</DialogContext.Provider>
 	);
 };
+
+const Transition = React.forwardRef(
+	(
+		props: TransitionProps & {
+			children: React.ReactElement<any, any>;
+		},
+		ref: React.Ref<unknown>
+	) => <Slide direction="up" ref={ref} {...props} />
+);

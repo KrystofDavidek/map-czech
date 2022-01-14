@@ -7,25 +7,37 @@ import {
 	IconButton
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { DialogPropsType } from '../../contexts/DialogContext';
 import { Feature } from '../../models/feature';
+import { useEntries } from '../../contexts/EntriesContext';
+import { mockEntry } from '../../data';
 
 type Props = DialogPropsType<{
 	feature: Feature;
 }>;
 
 const FeatureDialog = ({ feature, close }: Props) => {
-	const handleDelete = () => {
+	const { currentEntry, setCurrentEntry } = useEntries();
+
+	useEffect(() => {
+		// TODO: connect to API
+		if (feature) setCurrentEntry(mockEntry);
+	}, [feature]);
+
+	const handleClose = () => {
 		close();
+		setCurrentEntry(undefined);
 	};
 	return (
 		<>
 			<DialogTitle>
-				{feature?.properties?.name}
+				{currentEntry?.location?.mainLocation}
 				<IconButton
 					aria-label="close"
-					onClick={close}
+					onClick={handleClose}
 					sx={{
 						position: 'absolute',
 						right: 8,
@@ -43,8 +55,14 @@ const FeatureDialog = ({ feature, close }: Props) => {
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>
-				<Button onClick={handleDelete}>Yes</Button>
-				<Button onClick={close}>No</Button>
+				<Button onClick={handleClose}>No</Button>
+				<Button
+					onClick={close}
+					component={Link}
+					to={`/location/${currentEntry?.location?.mainLocation}`}
+				>
+					Go to Location
+				</Button>
 			</DialogActions>
 		</>
 	);

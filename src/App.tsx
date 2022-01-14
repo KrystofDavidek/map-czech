@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout';
 import Paths from './components/Paths';
 import { DialogProvider } from './contexts/DialogContext';
+import { EntriesProvider } from './contexts/EntriesContext';
 import { SearchProvider } from './contexts/SearchContext';
 import theme from './utils/theme';
 
@@ -11,13 +12,15 @@ const App = () => (
 	<ThemeProvider theme={theme}>
 		<BrowserRouter>
 			<CssBaseline />
-			<DialogProvider>
-				<SearchProvider>
-					<Layout>
-						<Paths />
-					</Layout>
-				</SearchProvider>
-			</DialogProvider>
+			<SearchProvider>
+				<EntriesProvider>
+					<DialogProvider>
+						<Layout>
+							<Paths />
+						</Layout>
+					</DialogProvider>
+				</EntriesProvider>
+			</SearchProvider>
 		</BrowserRouter>
 	</ThemeProvider>
 );
