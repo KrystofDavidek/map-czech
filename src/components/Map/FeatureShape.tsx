@@ -1,6 +1,8 @@
 import { Polygon, Circle } from 'react-leaflet';
 import L, { LatLngExpression } from 'leaflet';
 
+import theme from '../../utils/theme';
+
 type GeometryProps = {
 	type: string;
 	coordinates: number[] | number[] | number[][][];
@@ -8,8 +10,8 @@ type GeometryProps = {
 };
 
 const shapeStyles = {
-	fillColor: '#ff7800',
-	color: '#000',
+	fillColor: theme.palette.feature.light,
+	color: theme.palette.feature.main,
 	weight: 1,
 	opacity: 1,
 	fillOpacity: 0.8

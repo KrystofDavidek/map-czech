@@ -4,6 +4,7 @@ import { FeatureGroup, useMap } from 'react-leaflet';
 import { useDialog } from '../../contexts/DialogContext';
 import { featuresJson } from '../../data';
 import { getZoom, getZoomCoords } from '../../utils/map';
+import theme from '../../utils/theme';
 import FeatureDialog from '../Dialogs/FeatureDialog';
 
 import FeatureShape from './FeatureShape';
@@ -36,14 +37,14 @@ const Features = () => {
 							handleOnClick(feature);
 						},
 						mouseover: e => {
-							e.target.setStyle({ fillColor: '#5a3d3d' });
+							e.target.setStyle({ fillColor: theme.palette.feature.main });
 						},
 						mouseout: e => {
-							e.target.setStyle({ fillColor: '#ff7800' });
+							e.target.setStyle({ fillColor: theme.palette.feature.light });
 						}
 					}}
 					key={index}
-					pathOptions={{ color: 'purple' }}
+					pathOptions={{ color: theme.palette.feature.border }}
 				>
 					<FeatureShape
 						type={feature.geometry.type}
