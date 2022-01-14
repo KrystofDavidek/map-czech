@@ -1,5 +1,6 @@
 export type Entry = {
-	id: number;
+	// ? what ID type? -- Check firebase
+	id: string;
 	location: Location;
 	details?: Details;
 	media?: {
@@ -18,7 +19,7 @@ export type Location = {
 	secondaryLocation?: string;
 	introImage?: string;
 	demographic?: string;
-	distanceFromCz?: number;
+	distanceFromPrag?: number;
 };
 
 export type Details = {
@@ -26,11 +27,11 @@ export type Details = {
 		url: string;
 		transcript?: string;
 		comments?: string;
-		urlToNorms?: string;
+		urlToNorm?: string;
 		otherSources?: string[];
 	};
-	history?: { name: string; desc: string }[];
-	current?: string[];
+	history?: { title: string; text: string }[];
+	current?: { title: string; text: string }[];
 };
 
 export type Extra = {
