@@ -9,9 +9,10 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 
 import { DialogPropsType } from '../../contexts/DialogContext';
+import { Feature } from '../../models/feature';
 
 type Props = DialogPropsType<{
-	feature: any;
+	feature: Feature;
 }>;
 
 const FeatureDialog = ({ feature, close }: Props) => {

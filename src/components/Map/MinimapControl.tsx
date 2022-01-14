@@ -7,6 +7,7 @@ import {
 	useMap,
 	useMapEvent
 } from 'react-leaflet';
+import { Map } from 'leaflet';
 
 // Classes used by Leaflet to position controls
 const POSITION_CLASSES = {
@@ -20,7 +21,7 @@ const BOUNDS_STYLE = { weight: 1 };
 
 type MinimapBoundsProps = {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	parentMap: any;
+	parentMap: Map;
 	zoom: number;
 };
 

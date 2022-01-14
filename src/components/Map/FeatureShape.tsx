@@ -2,11 +2,12 @@ import { Polygon, Circle } from 'react-leaflet';
 import L, { LatLngExpression } from 'leaflet';
 
 import theme from '../../utils/theme';
+import { Properties } from '../../models/feature';
 
 type GeometryProps = {
 	type: string;
-	coordinates: number[] | number[] | number[][][];
-	properties: any;
+	coordinates: number[] | number[][][];
+	properties: Properties;
 };
 
 const shapeStyles = {
