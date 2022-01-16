@@ -1,10 +1,10 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+
+import Text from './Text';
 
 const Details = () => (
 	<Box>
-		<Typography variant="h1" color="initial">
-			Details
-		</Typography>{' '}
+		<Text sx={{ mr: 2 }} variant="h3" component="h1" text="Details" />
 	</Box>
 );
 

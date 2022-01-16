@@ -1,5 +1,5 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Box } from '@mui/material';
 
 import SectionNavbar from '../components/Entry/SectionNavbar';
 import Intro from '../components/Entry/Intro';
@@ -7,17 +7,10 @@ import Details from '../components/Entry/Details';
 
 import NotFound from './NotFound';
 
-const Entry = () => {
-	const [entryPath, setEntryPath] = useState('');
-	const location = useLocation();
-
-	useEffect(() => {
-		setEntryPath(location.pathname);
-	}, []);
-
-	return (
-		<>
-			<SectionNavbar entryPath={entryPath} />
+const Entry = () => (
+	<>
+		<SectionNavbar />
+		<Box sx={{ m: 4 }}>
 			<Routes>
 				<Route path="intro" element={<Intro />} />
 				<Route path="details" element={<Details />} />
@@ -25,8 +18,8 @@ const Entry = () => {
 				<Route path="others" element={<Details />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
-		</>
-	);
-};
+		</Box>
+	</>
+);
 
 export default Entry;
