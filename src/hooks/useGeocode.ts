@@ -6,7 +6,7 @@ import { fetcher } from '../utils/fetcher';
 
 const useGeocode = (initialLocation?: string) => {
 	const [location, setLocation] = useState<LatLng>(latLng(0, 0));
-	const [address, setAdress] = useState<string>(
+	const [address, setAddress] = useState<string>(
 		initialLocation ? initialLocation : ''
 	);
 
@@ -23,7 +23,7 @@ const useGeocode = (initialLocation?: string) => {
 		if (data && data.results.length > 1) setLocation(data.results[0].geometry);
 	}, [data]);
 
-	return { location, setAdress };
+	return { location, setAddress };
 };
 
 export default useGeocode;

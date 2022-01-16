@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 
+import { mockEntry } from '../data';
 import { Entry } from '../models/entry';
 
 type EntriesContextType = {
@@ -13,7 +14,7 @@ export const useEntries = () => useContext(EntriesContext);
 
 export const EntriesProvider = ({ children }: { children: JSX.Element }) => {
 	const [currentEntry, setCurrentEntry] = useState<Entry | undefined>(
-		undefined
+		mockEntry
 	);
 
 	return (

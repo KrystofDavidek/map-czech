@@ -28,6 +28,7 @@ const FeatureShape = ({ type, coordinates, properties }: GeometryProps) => {
 		<>
 			{type === 'Polygon' && (
 				<Polygon
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 					positions={L.GeoJSON.coordsToLatLngs(coordinates[0] as any)}
 					{...shapeStyles}
 				/>

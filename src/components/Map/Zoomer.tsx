@@ -7,14 +7,14 @@ import { getZoom } from '../../utils/map';
 
 const Zoomer = () => {
 	const map = useMap();
-	const { location, setAdress } = useGeocode('');
+	const { location, setAddress } = useGeocode('');
 	const { input, isSearching, setSearching } = useSearch();
 
 	const zoom = useCallback(map => getZoom(map), []);
 
 	useEffect(() => {
 		if (input && isSearching) {
-			setAdress(input);
+			setAddress(input);
 			setSearching(false);
 		}
 	}, [isSearching]);
