@@ -1,18 +1,31 @@
-import { Box } from '@mui/material';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-import { useEntries } from '../contexts/EntriesContext';
+import SectionNavbar from '../components/Entry/SectionNavbar';
+import Intro from '../components/Entry/Intro';
+import Details from '../components/Entry/Details';
 
-import Text from './../components/Entry/Text';
+import NotFound from './NotFound';
 
 const Entry = () => {
-	const { currentEntry } = useEntries();
-	console.log(currentEntry);
+	const [entryPath, setEntryPath] = useState('');
+	const location = useLocation();
+
+	useEffect(() => {
+		setEntryPath(location.pathname);
+	}, []);
 
 	return (
-		<Box>
-			<Text variant="h1" text={currentEntry?.location.mainLocation} />
-			<Text text={currentEntry?.details?.record?.transcript} />
-		</Box>
+		<>
+			<SectionNavbar entryPath={entryPath} />
+			<Routes>
+				<Route path="intro" element={<Intro />} />
+				<Route path="details" element={<Details />} />
+				<Route path="media" element={<Details />} />
+				<Route path="others" element={<Details />} />
+				<Route path="*" element={<NotFound />} />
+			</Routes>
+		</>
 	);
 };
 

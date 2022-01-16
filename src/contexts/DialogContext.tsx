@@ -1,6 +1,9 @@
 import React, {
 	createContext,
 	FC,
+	forwardRef,
+	ReactElement,
+	Ref,
 	useCallback,
 	useContext,
 	useMemo,
@@ -69,12 +72,12 @@ export const DialogProvider: FC = ({ children }) => {
 	);
 };
 
-const Transition = React.forwardRef(
+const Transition = forwardRef(
 	(
 		props: TransitionProps & {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			children: React.ReactElement<any, any>;
+			children: ReactElement<any, any>;
 		},
-		ref: React.Ref<unknown>
+		ref: Ref<unknown>
 	) => <Slide direction="up" ref={ref} {...props} />
 );

@@ -1,10 +1,16 @@
-import { createContext, useContext, useState } from 'react';
+import {
+	createContext,
+	Dispatch,
+	SetStateAction,
+	useContext,
+	useState
+} from 'react';
 
 type SearchContextType = {
 	input: string;
-	setInput: React.Dispatch<React.SetStateAction<string>>;
+	setInput: Dispatch<SetStateAction<string>>;
 	isSearching: boolean;
-	setSearching: React.Dispatch<React.SetStateAction<boolean>>;
+	setSearching: Dispatch<SetStateAction<boolean>>;
 };
 
 const SearchContext = createContext<SearchContextType>(undefined as never);

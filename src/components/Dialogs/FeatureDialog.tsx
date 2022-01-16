@@ -5,7 +5,8 @@ import {
 	DialogContent,
 	DialogContentText,
 	DialogTitle,
-	IconButton
+	IconButton,
+	Grid
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useEffect } from 'react';
@@ -53,20 +54,24 @@ const FeatureDialog = ({ feature, close }: Props) => {
 						</IconButton>
 					</DialogTitle>
 					<DialogContent>
-						{currentEntry?.location?.introImage && (
-							<Box>
-								<img
-									height="200"
-									width="200"
-									alt="Intro"
-									src={`../../assets/images/${currentEntry?.location?.introImage}`}
-								/>
-							</Box>
-						)}
-						<DialogContentText>ID of this feature is:</DialogContentText>
-						<DialogContentText sx={{ fontWeight: 500 }}>
-							{feature.id}
-						</DialogContentText>
+						<Grid container>
+							{currentEntry?.location?.introImage && (
+								<Grid item xs={12} md={6}>
+									<Box
+										component="img"
+										alt="Intro"
+										src={`../../assets/images/${currentEntry?.location?.introImage}`}
+										sx={{ height: 200, width: 200 }}
+									/>
+								</Grid>
+							)}
+							<Grid item xs={12} md={6}>
+								<DialogContentText>ID of this feature is:</DialogContentText>
+								<DialogContentText sx={{ fontWeight: 500 }}>
+									{feature.id}
+								</DialogContentText>
+							</Grid>
+						</Grid>
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={handleClose}>No</Button>
