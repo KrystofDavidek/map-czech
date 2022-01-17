@@ -67,6 +67,20 @@ const mockEntry: Entry = {
 			{
 				name: 'Nářečí',
 				url: 'brno.mp3'
+			},
+			{
+				name: 'Nářečí',
+				url: 'brno.mp3'
+			},
+			{
+				name: 'Nářečí',
+				url: 'brno.mp3'
+			}
+		],
+		others: [
+			{
+				name: 'Paměť národa – Anastasie Vondra',
+				url: 'https://www.pametnaroda.cz/cs/vondra-anastasie-1937'
 			}
 		]
 	},

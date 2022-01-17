@@ -17,7 +17,7 @@ const Gallery = ({ images }: GalleryProps) => {
 	return (
 		<>
 			<Text variant="h3" component="h1" text="Obrázky" />
-			<Box sx={{ overflowY: 'scroll', height: '80vh' }}>
+			<Box sx={{ overflowY: 'scroll', maxHeight: '80vh' }}>
 				<ImageList variant="masonry" cols={2} gap={24}>
 					{images.map(item => (
 						<Zoom key={item.url} zoomMargin={24}>
