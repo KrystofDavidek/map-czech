@@ -14,7 +14,7 @@ const SectionNavbar = () => {
 	);
 
 	useEffect(() => {
-		if (entryPath) navigate(`${entryPath}/intro`);
+		if (entryPath) navigate(`${entryPath}/details`);
 	}, []);
 
 	const handleChange = (_event: SyntheticEvent, newValue: number) => {

@@ -22,14 +22,16 @@ export type Location = {
 	distanceFromPrag?: number;
 };
 
+export type Record = {
+	url: string;
+	transcript?: string;
+	comments?: string;
+	urlToNorm?: string;
+	otherSources?: string[];
+};
+
 export type Details = {
-	record?: {
-		url: string;
-		transcript?: string;
-		comments?: string;
-		urlToNorm?: string;
-		otherSources?: string[];
-	};
+	record?: Record;
 	history?: { title: string; text: string }[];
 	current?: { title: string; text: string }[];
 };
