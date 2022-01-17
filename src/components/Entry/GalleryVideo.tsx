@@ -20,18 +20,20 @@ type GalleryProps = {
 const GalleryVideo = ({ videos }: GalleryProps) => {
 	// eslint-disable-next-line react/jsx-no-useless-fragment
 	if (!videos?.[0]) return <></>;
-	const matches = useMediaQuery('(max-width:1150px)');
+	const matchesMax = useMediaQuery('(max-width:1150px)');
+	const matchesMin = useMediaQuery('(max-width:650px)');
 
 	return (
 		<>
 			<Text variant="h3" component="h1" text="Videa" />
 			<Box sx={{ overflowY: 'scroll', maxHeight: '80vh' }}>
-				<ImageList variant="masonry" cols={matches ? 1 : 2} gap={24}>
+				<ImageList variant="masonry" cols={matchesMax ? 1 : 2} gap={24}>
 					{videos.map(item => (
 						<ImageListItem key={item.url}>
 							<ReactPlayer
 								url={item.url}
-								width={520}
+								width={matchesMin ? '100%' : 520}
+								height={matchesMin ? '100%' : 320}
 								style={{ margin: '1rem' }}
 							/>
 							<ImageListItemBar

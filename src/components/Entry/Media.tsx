@@ -20,7 +20,6 @@ const Media = () => {
 			<GalleryVideo videos={media?.videos} />
 			<Divider />
 			<GalleryAudio audios={media?.audios} />
-
 			{media?.others && (
 				<>
 					<Divider />
