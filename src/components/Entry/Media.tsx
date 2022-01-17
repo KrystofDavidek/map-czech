@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { useEntries } from '../../contexts/EntriesContext';
 
 import Gallery from './Gallery';
+import GalleryVideo from './GalleryVideo';
 
 const Media = () => {
 	const { currentEntry } = useEntries();
@@ -12,6 +13,7 @@ const Media = () => {
 	return (
 		<Stack spacing={2}>
 			<Gallery images={media?.images} />
+			<GalleryVideo videos={media?.videos} />
 		</Stack>
 	);
 };

@@ -17,6 +17,7 @@
     "react-hook-form": "^7.23.0",
     "react-leaflet": "^3.2.2",
     "react-medium-image-zoom": "^4.3.5",
+    "react-player": "^2.9.0",
     "react-router-dom": "^6.1.1",
     "react-scripts": "4.0.3",
     "swr": "^1.1.2"

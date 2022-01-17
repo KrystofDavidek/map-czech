@@ -12,7 +12,7 @@ type GalleryProps = {
 
 const Gallery = ({ images }: GalleryProps) => {
 	// eslint-disable-next-line react/jsx-no-useless-fragment
-	if (!images) return <></>;
+	if (!images?.[0]) return <></>;
 
 	return (
 		<>
