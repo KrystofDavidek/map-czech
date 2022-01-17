@@ -52,8 +52,10 @@ const mockEntry: Entry = {
 	details: mockDetails,
 	media: {
 		images: [
-			{ name: 'Náměstí Svobody', url: 'svobodak.jpeg' },
-			{ name: 'Zelný trh', url: 'zelny-trh.jpeg' }
+			{ name: 'Mapa Brna', url: 'brno.png' },
+			{ name: 'Zelný trh', url: 'zelny-trh.jpeg' },
+			{ name: 'Petrov', url: 'petrov.png' },
+			{ name: 'Hrad Špilberg', url: 'spilas.jpeg' }
 		],
 		videos: [
 			{
