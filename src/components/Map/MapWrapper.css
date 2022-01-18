@@ -1,4 +1,10 @@
 .leaflet-container {
 	width: 99vw;
-	height: 84vh;
+	height: 81.5vh;
+	margin: 1rem 0 0 0 !important;
+	border: 1.5px solid #cd5c5c;
+}
+
+.minimap {
+	margin: 0 !important;
 }

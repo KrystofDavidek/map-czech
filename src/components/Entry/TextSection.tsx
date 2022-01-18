@@ -3,7 +3,7 @@ import { Link } from '@mui/material';
 import Text from './Text';
 
 type TextSectionProps = {
-	title: string;
+	title?: string;
 	texts: (string | undefined)[] | undefined;
 	includeLinks?: boolean;
 };
@@ -13,7 +13,7 @@ const TextSection = ({ title, texts, includeLinks }: TextSectionProps) => (
 	<>
 		{texts?.[0] && (
 			<>
-				<Text variant="h6" component="h4" text={title} />
+				{title && <Text variant="h6" component="h4" text={title} />}
 				{texts.map((text, i) =>
 					includeLinks ? (
 						<Link sx={{ wordWrap: 'break-word' }} href={text} key={i}>

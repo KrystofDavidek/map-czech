@@ -4,7 +4,6 @@ import {
 	DialogActions,
 	DialogContent,
 	DialogContentText,
-	DialogTitle,
 	IconButton,
 	Grid
 } from '@mui/material';
@@ -38,38 +37,38 @@ const FeatureDialog = ({ feature, close }: Props) => {
 		<>
 			{currentEntry && (
 				<>
-					<DialogTitle>
-						{currentEntry?.location?.mainLocation}
-						<IconButton
-							aria-label="close"
-							onClick={handleClose}
-							sx={{
-								position: 'absolute',
-								right: 8,
-								top: 8,
-								color: theme => theme.palette.grey[500]
-							}}
-						>
-							<CloseIcon />
-						</IconButton>
-					</DialogTitle>
+					<IconButton
+						aria-label="close"
+						onClick={handleClose}
+						sx={{
+							position: 'absolute',
+							right: 8,
+							top: 8,
+							color: theme => theme.palette.grey[500]
+						}}
+					>
+						<CloseIcon />
+					</IconButton>
+
 					<DialogContent>
-						<Grid container>
-							{currentEntry?.location?.introImage && (
-								<Grid item xs={12} md={6}>
+						<Grid container spacing={2} sx={{ m: 2 }}>
+							<Grid item xs={12}>
+								<DialogContentText variant="h3" sx={{ fontWeight: 500 }}>
+									{currentEntry?.location?.mainLocation}
+								</DialogContentText>
+								<DialogContentText>
+									{currentEntry?.location?.secondaryLocation}
+								</DialogContentText>
+							</Grid>
+							<Grid item xs={12}>
+								{currentEntry?.location?.introImage && (
 									<Box
 										component="img"
 										alt="Intro"
 										src={`../../assets/images/${currentEntry?.location?.introImage}`}
-										sx={{ height: 200, width: 200 }}
+										sx={{ maxWidth: '100%', pr: '3.5rem' }}
 									/>
-								</Grid>
-							)}
-							<Grid item xs={12} md={6}>
-								<DialogContentText>ID of this feature is:</DialogContentText>
-								<DialogContentText sx={{ fontWeight: 500 }}>
-									{feature.id}
-								</DialogContentText>
+								)}
 							</Grid>
 						</Grid>
 					</DialogContent>

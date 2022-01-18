@@ -1,12 +1,22 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { useState, SyntheticEvent, useMemo, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useEntries } from '../../contexts/EntriesContext';
+
+const options = {
+	intro: 0,
+	details: 1,
+	media: 2,
+	extra: 3
+};
+
+type OptionType = 'intro' | 'details' | 'media' | 'extra';
 
 const SectionNavbar = () => {
 	const [value, setValue] = useState(0);
 	const navigate = useNavigate();
+	const location = useLocation();
 	const { currentEntry } = useEntries();
 	const entryPath = useMemo(
 		() => `/location/${currentEntry?.location.mainLocation}`,
@@ -14,8 +24,15 @@ const SectionNavbar = () => {
 	);
 
 	useEffect(() => {
-		if (entryPath) navigate(`${entryPath}/media`);
+		if (entryPath) navigate(`${entryPath}/intro`);
 	}, []);
+
+	useEffect(() => {
+		for (const endpoint in options) {
+			if (location.pathname.endsWith(endpoint))
+				setValue(options[endpoint as OptionType]);
+		}
+	}, [location]);
 
 	const handleChange = (_event: SyntheticEvent, newValue: number) => {
 		setValue(newValue);
@@ -31,7 +48,7 @@ const SectionNavbar = () => {
 					label="Multimediální obsah"
 					to={`${entryPath}/media`}
 				/>
-				<Tab component={Link} label="Ostatní" to={`${entryPath}/others`} />
+				<Tab component={Link} label="Ostatní" to={`${entryPath}/extra`} />
 			</Tabs>
 		</Box>
 	);

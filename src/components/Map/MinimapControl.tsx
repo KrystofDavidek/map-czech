@@ -8,6 +8,7 @@ import {
 	useMapEvent
 } from 'react-leaflet';
 import { Map } from 'leaflet';
+import './MapWrapper.css';
 
 // Classes used by Leaflet to position controls
 const POSITION_CLASSES = {
@@ -65,7 +66,12 @@ const MinimapControl = ({ position, zoom }: MinimapProps) => {
 	const minimap = useMemo(
 		() => (
 			<MapContainer
-				style={{ height: 80, width: 80 }}
+				className="minimap"
+				style={{
+					height: 80,
+					width: 80,
+					border: 0
+				}}
 				center={parentMap.getCenter()}
 				zoom={mapZoom}
 				dragging={false}

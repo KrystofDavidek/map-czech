@@ -5,6 +5,7 @@ import SectionNavbar from '../components/Entry/SectionNavbar';
 import Intro from '../components/Entry/Intro';
 import Details from '../components/Entry/Details';
 import Media from '../components/Entry/Media';
+import Extra from '../components/Entry/Extra';
 
 import NotFound from './NotFound';
 
@@ -16,7 +17,8 @@ const Entry = () => (
 				<Route path="intro" element={<Intro />} />
 				<Route path="details" element={<Details />} />
 				<Route path="media" element={<Media />} />
-				<Route path="others" element={<Details />} />
+				<Route path="extra" element={<Extra />} />
+				<Route path="/" element={<Intro />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</Box>
