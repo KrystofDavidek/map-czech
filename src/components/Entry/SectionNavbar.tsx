@@ -1,6 +1,7 @@
-import { Box, Tab, Tabs } from '@mui/material';
+import { Box, IconButton, Tab, Tabs } from '@mui/material';
 import { useState, SyntheticEvent, useMemo, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
 
 import { useEntries } from '../../contexts/EntriesContext';
 
@@ -40,6 +41,13 @@ const SectionNavbar = () => {
 
 	return (
 		<Box sx={{ width: '100%', mt: 4 }}>
+			<IconButton
+				onClick={() => {
+					navigate(`/`);
+				}}
+			>
+				<ArrowBackSharpIcon sx={{ color: 'primary.main' }} />
+			</IconButton>
 			<Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
 				<Tab component={Link} label="Úvod" to={`${entryPath}/intro`} />
 				<Tab component={Link} label="Informace" to={`${entryPath}/details`} />
