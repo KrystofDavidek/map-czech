@@ -19,8 +19,8 @@ const GalleryAudio = ({ audios }: GalleryProps) => {
 		<>
 			<Text variant="h3" component="h1" text="Nahrávky" />
 			<Stack sx={{ overflowY: 'scroll', maxHeight: '80vh' }} spacing={4}>
-				{audios.map(item => (
-					<Box key={item.url}>
+				{audios.map((item, i) => (
+					<Box key={i}>
 						<AudioPlayer
 							src={`../../assets/audio/${item.url}`}
 							customAdditionalControls={[]}

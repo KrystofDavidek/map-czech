@@ -19,8 +19,8 @@ const Gallery = ({ images }: GalleryProps) => {
 			<Text variant="h3" component="h1" text="Obrázky" />
 			<Box sx={{ overflowY: 'scroll', maxHeight: '80vh' }}>
 				<ImageList variant="masonry" cols={2} gap={24}>
-					{images.map(item => (
-						<Zoom key={item.url} zoomMargin={24}>
+					{images.map((item, i) => (
+						<Zoom key={i} zoomMargin={24}>
 							<ImageListItem>
 								<img
 									src={`../../assets/images/${item.url}?w=248&fit=crop&auto=format`}

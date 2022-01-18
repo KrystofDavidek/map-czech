@@ -5,6 +5,7 @@ export type Entry = {
 	details?: Details;
 	media?: {
 		images?: Media[];
+		texts?: { title: string; text: string }[];
 		videos?: Media[];
 		audios?: Media[];
 		others?: Media[];

@@ -28,13 +28,14 @@ const GalleryVideo = ({ videos }: GalleryProps) => {
 			<Text variant="h3" component="h1" text="Videa" />
 			<Box sx={{ overflowY: 'scroll', maxHeight: '80vh' }}>
 				<ImageList variant="masonry" cols={matchesMax ? 1 : 2} gap={24}>
-					{videos.map(item => (
-						<ImageListItem key={item.url}>
+					{videos.map((item, i) => (
+						<ImageListItem key={i}>
 							<ReactPlayer
 								url={item.url}
 								width={matchesMin ? '100%' : 520}
 								height={matchesMin ? '100%' : 320}
 								style={{ margin: '1rem' }}
+								loading="lazy"
 							/>
 							<ImageListItemBar
 								title={item.name}

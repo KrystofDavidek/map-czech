@@ -16,11 +16,20 @@ const Media = () => {
 	return (
 		<Stack spacing={2}>
 			<Gallery images={media?.images} />
+			{media?.texts?.[0] && (
+				<>
+					<Divider />
+					<Text variant="h3" component="h1" text="Texty" />
+					{media?.texts.map((section, i) => (
+						<TextSection key={i} title={section.title} texts={[section.text]} />
+					))}
+				</>
+			)}
 			<Divider />
 			<GalleryVideo videos={media?.videos} />
 			<Divider />
 			<GalleryAudio audios={media?.audios} />
-			{media?.others && (
+			{media?.others?.[0] && (
 				<>
 					<Divider />
 					<Text variant="h3" component="h1" text="Ostatní" />

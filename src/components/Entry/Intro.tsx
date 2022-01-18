@@ -22,7 +22,7 @@ const Intro = () => {
 					/>
 					<Divider />
 					<Text text={location?.demographic} />
-					<Text text={location?.distanceFromPrag} />
+					<Text text={location?.distanceFromPrag?.toString()} />
 				</Stack>
 			</Grid>
 			<Grid item xs={12} md={6}>

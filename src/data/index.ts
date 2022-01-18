@@ -57,6 +57,20 @@ const mockEntry: Entry = {
 			{ name: 'Petrov', url: 'petrov.png' },
 			{ name: 'Hrad Špilberg', url: 'spilas.jpeg' }
 		],
+		texts: [
+			{
+				title: 'Editované dopisy',
+				text: 'In sit in laboris ullamco fugiat deserunt. Fugiat sunt ea sint duis aliqua cupidatat dolore ut pariatur cupidatat cillum sint cillum consectetur. Ut qui id pariatur cupidatat ipsum amet proident deserunt commodo occaecat enim. Veniam nisi incididunt minim minim pariatur excepteur. Eiusmod laborum ea dolore aliquip incididunt.'
+			},
+			{
+				title: 'Kroniky',
+				text: `Mollit adipisicing pariatur exercitation labore nisi. Id nulla minim tempor ipsum et non ex nisi culpa.\nVeniam non qui ipsum qui est voluptate dolor commodo.`
+			},
+			{
+				title: 'Úryvky',
+				text: 'Consectetur Lorem sit eu aliqua.'
+			}
+		],
 		videos: [
 			{
 				name: 'O Brně',
