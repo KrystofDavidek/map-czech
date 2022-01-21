@@ -18,7 +18,7 @@ const GalleryAudio = ({ audios }: GalleryProps) => {
 	return (
 		<>
 			<Text variant="h3" component="h1" text="Nahrávky" />
-			<Stack sx={{ overflowY: 'scroll', maxHeight: '80vh' }} spacing={4}>
+			<Stack sx={{ overflowY: 'scroll', maxHeight: '80vh' }} spacing={2}>
 				{audios.map((item, i) => (
 					<Box key={i}>
 						<AudioPlayer

@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { Box } from '@mui/material';
 
-import SectionNavbar from '../components/Entry/SectionNavbar';
-import Intro from '../components/Entry/Intro';
-import Details from '../components/Entry/Details';
-import Media from '../components/Entry/Media';
-import Extra from '../components/Entry/Extra';
+import SectionNavbar from '../components/entry/SectionNavbar';
+import Intro from '../components/entry/Intro';
+import Details from '../components/entry/Details';
+import Media from '../components/entry/Media';
+import Extra from '../components/entry/Extra';
 
 import NotFound from './NotFound';
 

@@ -6,7 +6,7 @@ import { featuresJson } from '../../data';
 import { Feature, FeatureCollection } from '../../models/feature';
 import { getZoom, getZoomCoords } from '../../utils/map';
 import theme from '../../utils/theme';
-import FeatureDialog from '../Dialogs/FeatureDialog';
+import FeatureDialog from '../dialogs/FeatureDialog';
 
 import FeatureShape from './FeatureShape';
 

@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material';
 
-import MapWrapper from '../components/Map/MapWrapper';
+import MapWrapper from '../components/map/MapWrapper';
 import Search from '../components/Search';
 
 const Map = () => (
