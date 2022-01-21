@@ -27,6 +27,7 @@ export type Record = {
 	url: string;
 	transcript?: string;
 	comments?: string;
+	details: string;
 	urlToNorm?: string;
 	otherSources?: string[];
 };

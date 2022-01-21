@@ -5,11 +5,13 @@ import featuresJson from './mockFeatures.json';
 const mockDetails: Details = {
 	record: {
 		url: 'brno.mp3',
-		transcript: 'α	γ	δ	ε	ζ	θ	κ	λ	μ	ν	ξ	ο	π	ρ	σ	τ	φ	ψ	ω\nag	d	e	z	th k l m n x o	p	r	s	t	f	ps o',
+		transcript: 'Měl jsem velkou žízeň',
 		comments:
 			'Occaecat velit et nulla exercitation enim elit sit eiusmod sunt proident fugiat labore enim minim. Nostrud ut nisi proident do. In laboris enim aliquip fugiat elit eu anim minim mollit quis.',
 		urlToNorm:
 			'https://static1.squarespace.com/static/5c69bfa4f4e531370e74fa44/t/5c7564cdf4e1fc3d9a738bba/1551197556163/CompleteGreek.pdf',
+		details:
+			'Aliquip Lorem enim ad Lorem nulla. Velit veniam minim laboris minim elit incididunt consequat commodo enim quis mollit exercitation esse consectetur. Dolor id exercitation exercitation ad anim cillum aute reprehenderit aliqua dolor veniam commodo laborum. Reprehenderit aute non culpa cupidatat. Id deserunt enim in ut nostrud aliquip deserunt adipisicing et eiusmod pariatur nulla. Laborum ad magna aliquip reprehenderit deserunt aliquip.',
 		otherSources: [
 			'https://cs.wikipedia.org/wiki/Transkripce_(lingvistika)',
 			'https://cs.wikipedia.org/wiki/%C5%98eck%C3%A9_p%C3%ADsmo'
