@@ -34,8 +34,8 @@ export type Record = {
 
 export type Details = {
 	record?: Record;
-	history?: { title: string; text: string }[];
-	current?: { title: string; text: string }[];
+	history?: string;
+	current?: string;
 };
 
 export type Extra = {

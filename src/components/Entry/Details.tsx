@@ -20,18 +20,14 @@ const Details = () => {
 			{details?.history && (
 				<>
 					<Text variant="h4" component="h2" text="Historie" />
-					{details?.history.map((section, i) => (
-						<TextSection key={i} title={section.title} texts={[section.text]} />
-					))}
+					<TextSection texts={[details?.history]} />
 				</>
 			)}
 			<Divider />
 			{details?.current && (
 				<>
 					<Text variant="h4" component="h2" text="Současnost" />
-					{details?.current.map((section, i) => (
-						<TextSection key={i} title={section.title} texts={[section.text]} />
-					))}
+					<TextSection texts={[details?.current]} />
 				</>
 			)}
 		</Stack>

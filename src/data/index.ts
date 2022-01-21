@@ -17,26 +17,8 @@ const mockDetails: Details = {
 			'https://cs.wikipedia.org/wiki/%C5%98eck%C3%A9_p%C3%ADsmo'
 		]
 	},
-	history: [
-		{
-			title: 'Historie',
-			text: 'Anim occaecat mollit nostrud adipisicing deserunt irure sunt laborum officia in velit. Fugiat voluptate ea cupidatat elit id sunt in reprehenderit proident labore qui sit Lorem Lorem. Est laboris sit nulla mollit ea cillum amet quis est cillum nisi exercitation. Laborum sunt laboris ullamco minim ad velit sunt consequat. Dolor sunt eiusmod culpa deserunt minim officia cillum mollit eu excepteur eu deserunt. Velit anim anim ullamco laboris.'
-		},
-		{
-			title: 'Etnologie',
-			text: 'Eu cupidatat mollit sunt nisi nulla adipisicing nulla id.'
-		}
-	],
-	current: [
-		{
-			title: 'Spolky',
-			text: 'Eu cupidatat mollit sunt nisi nulla adipisicing nulla id.'
-		},
-		{
-			title: 'Instituce',
-			text: `Eu cupidatat mollit sunt nisi nulla adipisicing nulla id.`
-		}
-	]
+	history: `<h2>Nadpis</h2><p>Tohle je upravený <strong>text</strong>.</p><p>Tohle je odkaz – odkaz&nbsp;</p><h2>Nadpis 2</h2><p>Aliquip Lorem enim ad Lorem nulla. Velit veniam minim laboris minim elit incididunt consequat commodo enim quis mollit exercitation esse consectetur. Dolor id exercitation exercitation ad anim cillum aute reprehenderit aliqua dolor veniam commodo laborum. Reprehenderit aute non culpa cupidatat. Id deserunt enim in ut nostrud aliquip deserunt adipisicing et eiusmod pariatur nulla. Laborum ad magna aliquip reprehenderit deserunt aliquip.</p><ul><li>prvn9 bod</li><li>dryhu bod&nbsp;</li><li>treti bod</li></ul>`,
+	current: `<h2>Nadpis</h2><p>Tohle je upravený <strong>text</strong>.</p><p>Tohle je odkaz – odkaz&nbsp;</p><h2>Nadpis 2</h2><p>Aliquip Lorem enim ad Lorem nulla. Velit veniam minim laboris minim elit incididunt consequat commodo enim quis mollit exercitation esse consectetur. Dolor id exercitation exercitation ad anim cillum aute reprehenderit aliqua dolor veniam commodo laborum. Reprehenderit aute non culpa cupidatat. Id deserunt enim in ut nostrud aliquip deserunt adipisicing et eiusmod pariatur nulla. Laborum ad magna aliquip reprehenderit deserunt aliquip.</p><ul><li>prvn9 bod</li><li>dryhu bod&nbsp;</li><li>treti bod</li></ul>`
 };
 
 const mockEntry: Entry = {

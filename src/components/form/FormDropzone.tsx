@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 type FileType = 'audio/*' | 'video/*' | 'image/*';
 
-const DropzoneInput = ({ type }: { type: FileType }) => {
+const FormDropzone = ({ type }: { type: FileType }) => {
 	const [files, setFiles] = useState<File[]>([]);
 
 	const useStyles = makeStyles(() =>
@@ -36,4 +36,4 @@ const DropzoneInput = ({ type }: { type: FileType }) => {
 	);
 };
 
-export default DropzoneInput;
+export default FormDropzone;

@@ -1,10 +1,12 @@
 import { Stack } from '@mui/material';
 
-import DropzoneInput from '../components/form/DropzoneInput';
+import FormDropzone from '../components/form/FormDropzone';
+import FormEditor from '../components/form/FormEditor';
 
 const Admin = () => (
 	<Stack alignItems="center" spacing={2} sx={{ m: 2 }}>
-		<DropzoneInput type="image/*" />
+		<FormDropzone type="image/*" />
+		<FormEditor />
 	</Stack>
 );
 

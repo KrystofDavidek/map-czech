@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
 	// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
