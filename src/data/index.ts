@@ -5,10 +5,7 @@ import featuresJson from './mockFeatures.json';
 const mockDetails: Details = {
 	record: {
 		url: 'brno.mp3',
-		transcript: `
-α	γ	δ	ε	ζ	θ	κ	λ	μ	ν	ξ	ο	π	ρ	σ	τ	φ	ψ	ω
-a	g	d	e	z	th	k	l	m	n	x	o	p	r	s	t	f	ps	o
-`,
+		transcript: 'α	γ	δ	ε	ζ	θ	κ	λ	μ	ν	ξ	ο	π	ρ	σ	τ	φ	ψ	ω\nag	d	e	z	th k l m n x o	p	r	s	t	f	ps o',
 		comments:
 			'Occaecat velit et nulla exercitation enim elit sit eiusmod sunt proident fugiat labore enim minim. Nostrud ut nisi proident do. In laboris enim aliquip fugiat elit eu anim minim mollit quis.',
 		urlToNorm:
@@ -35,7 +32,7 @@ a	g	d	e	z	th	k	l	m	n	x	o	p	r	s	t	f	ps	o
 		},
 		{
 			title: 'Instituce',
-			text: 'Eu cupidatat mollit sunt nisi nulla adipisicing nulla id.'
+			text: `Eu cupidatat mollit sunt nisi nulla adipisicing nulla id.`
 		}
 	]
 };

@@ -73,13 +73,13 @@ const FeatureDialog = ({ feature, close }: Props) => {
 						</Grid>
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={handleClose}>No</Button>
+						<Button onClick={handleClose}>Ne</Button>
 						<Button
 							onClick={close}
 							component={Link}
 							to={`/location/${currentEntry?.location?.mainLocation}`}
 						>
-							Go to Location
+							Přejít na lokaci
 						</Button>
 					</DialogActions>
 				</>

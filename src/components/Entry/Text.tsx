@@ -4,6 +4,7 @@ import { Typography } from '@mui/material';
 const Text = (props: any) => {
 	// eslint-disable-next-line react/jsx-no-useless-fragment
 	if (props.text?.length === 0) return <></>;
+	// ! Upravit na základě použitého editoru
 	const parts: string[] = props.text.split(['\n']);
 
 	return (

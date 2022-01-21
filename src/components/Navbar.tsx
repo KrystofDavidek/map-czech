@@ -6,14 +6,14 @@ const Navbar = () => (
 		<AppBar position="static">
 			<Toolbar sx={{ justifyContent: 'space-between' }}>
 				<Button component={Link} to="/welcome" color="inherit">
-					<Typography variant="h6">Czech Map</Typography>
+					<Typography variant="h6">Krajanská mapa</Typography>
 				</Button>
 				<Box>
 					<Button component={Link} to="/" color="inherit">
-						Map
+						Mapa
 					</Button>
 					<Button component={Link} to="/admin" color="inherit">
-						Admin
+						Editor
 					</Button>
 				</Box>
 			</Toolbar>
