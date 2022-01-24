@@ -4,7 +4,13 @@ import { useEffect, useState } from 'react';
 
 type FileType = 'audio/*' | 'video/*' | 'image/*';
 
-const FormDropzone = ({ type }: { type: FileType }) => {
+const FormDropzone = ({
+	type,
+	filesLimit = 10
+}: {
+	type: FileType;
+	filesLimit?: number;
+}) => {
 	const [files, setFiles] = useState<File[]>([]);
 
 	const useStyles = makeStyles(() =>
@@ -32,6 +38,7 @@ const FormDropzone = ({ type }: { type: FileType }) => {
 			dropzoneText="Klikněte, nebo sem přetáhněte soubor"
 			acceptedFiles={[type]}
 			previewText=""
+			filesLimit={filesLimit}
 		/>
 	);
 };

@@ -15,7 +15,7 @@ const FormEditor = () => {
 		const result = draftToHtml(
 			convertToRaw(editorState.getCurrentContent())
 		).replace(/[\r\n]+/gm, '');
-		setValue(result);
+		result === '<p></p>' ? setValue('') : setValue(result);
 	};
 
 	useEffect(() => {

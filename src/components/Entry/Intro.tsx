@@ -2,6 +2,7 @@ import { Stack, Grid, Divider } from '@mui/material';
 import { useMemo } from 'react';
 
 import { useEntries } from '../../contexts/EntriesContext';
+import { IMAGE_URL_PREFIX } from '../../App';
 
 import Text from './Text';
 import Image from './Image';
@@ -28,7 +29,7 @@ const Intro = () => {
 			<Grid item xs={12} md={6}>
 				<Image
 					alt="Intro"
-					src={`../../assets/images/${currentEntry?.location?.introImage}`}
+					src={`${IMAGE_URL_PREFIX}${currentEntry?.location?.introImage}`}
 					sx={{ maxHeight: '20rem', maxWidth: '100%' }}
 				/>
 			</Grid>

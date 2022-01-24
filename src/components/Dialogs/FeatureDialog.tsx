@@ -15,6 +15,7 @@ import { DialogPropsType } from '../../contexts/DialogContext';
 import { Feature } from '../../models/feature';
 import { useEntries } from '../../contexts/EntriesContext';
 import { mockEntry } from '../../data';
+import { IMAGE_URL_PREFIX } from '../../App';
 
 type Props = DialogPropsType<{
 	feature: Feature;
@@ -65,7 +66,7 @@ const FeatureDialog = ({ feature, close }: Props) => {
 									<Box
 										component="img"
 										alt="Intro"
-										src={`../../assets/images/${currentEntry?.location?.introImage}`}
+										src={`${IMAGE_URL_PREFIX}${currentEntry?.location?.introImage}`}
 										sx={{ maxWidth: '100%', pr: '3.5rem' }}
 									/>
 								)}

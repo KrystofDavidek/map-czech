@@ -3,6 +3,7 @@ import { Stack, Grid, Link } from '@mui/material';
 import { useState } from 'react';
 
 import { Record as RecordType } from '../../models/entry';
+import { AUDIO_URL_PREFIX } from '../../App';
 
 import Text from './Text';
 import TextSection from './TextSection';
@@ -29,7 +30,7 @@ const Record = ({ record }: RecordProps) => {
 			<Grid item xs={12} md={6}>
 				<Stack spacing={2}>
 					<AudioPlayer
-						src={`../../assets/audio/${record.url}`}
+						src={`${AUDIO_URL_PREFIX}${record.url}`}
 						customAdditionalControls={[]}
 						style={{
 							maxWidth: '100%'

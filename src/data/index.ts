@@ -36,7 +36,7 @@ const mockEntry: Entry = {
 			{ name: 'Mapa Brna', url: 'brno.png' },
 			{ name: 'Zelný trh', url: 'zelny-trh.jpeg' },
 			{ name: 'Petrov', url: 'petrov.png' },
-			{ name: 'Hrad Špilberg', url: 'spilas.jpeg' }
+			{ name: 'Hrad Špilberg', url: 'https://picsum.photos/seed/1/200' }
 		],
 		texts: [
 			{

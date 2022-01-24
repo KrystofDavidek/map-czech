@@ -52,42 +52,6 @@
         ]
       },
       "id": "391fa1d1-4210-454f-abce-5f67fbda5c22"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "shape": "Polygon",
-        "name": "Unnamed Layer",
-        "category": "default"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              16.690292,
-              49.370302
-            ],
-            [
-              16.618881,
-              49.316171
-            ],
-            [
-              16.809769,
-              49.217149
-            ],
-            [
-              16.853027,
-              49.293785
-            ],
-            [
-              16.690292,
-              49.370302
-            ]
-          ]
-        ]
-      },
-      "id": "1e937ef6-10b0-4f46-896f-f045530a0251"
     }
   ]
 }

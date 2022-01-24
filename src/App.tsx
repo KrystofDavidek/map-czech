@@ -8,6 +8,9 @@ import { EntriesProvider } from './contexts/EntriesContext';
 import { SearchProvider } from './contexts/SearchContext';
 import theme from './utils/theme';
 
+export const IMAGE_URL_PREFIX = '../../assets/images/';
+export const AUDIO_URL_PREFIX = '../../assets/audio/';
+
 const App = () => (
 	<ThemeProvider theme={theme}>
 		<BrowserRouter>

@@ -2,6 +2,7 @@ import { Box, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
 import Zoom from 'react-medium-image-zoom';
 
 import 'react-medium-image-zoom/dist/styles.css';
+import { IMAGE_URL_PREFIX } from '../../App';
 import { Media } from '../../models/entry';
 
 import Text from './Text';
@@ -22,13 +23,22 @@ const Gallery = ({ images }: GalleryProps) => {
 					{images.map((item, i) => (
 						<Zoom key={i} zoomMargin={24}>
 							<ImageListItem>
-								<img
-									src={`../../assets/images/${item.url}?w=248&fit=crop&auto=format`}
-									srcSet={`../../assets/images/${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-									alt={item.name}
-									loading="lazy"
-								/>
-
+								{item.url.startsWith('http') ? (
+									<img
+										src={`${item.url}?w=248&fit=crop&auto=format`}
+										srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+										alt={item.name}
+										loading="lazy"
+									/>
+								) : (
+									<img
+										src={`${IMAGE_URL_PREFIX}${item.url}?w=248&fit=crop&auto=format`}
+										srcSet={`${IMAGE_URL_PREFIX}${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+										alt={item.name}
+										loading="lazy"
+									/>
+								)}
+								;
 								<ImageListItemBar title={item.name} position="below" />
 							</ImageListItem>
 						</Zoom>
