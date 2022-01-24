@@ -54,11 +54,6 @@ const Record = ({ record }: RecordProps) => {
 								title="Detailní informace"
 								texts={[record.details]}
 							/>
-							<TextSection
-								title="Norma"
-								texts={[record.urlToNorm]}
-								includeLinks
-							/>
 						</>
 					)}
 				</Stack>
@@ -67,7 +62,7 @@ const Record = ({ record }: RecordProps) => {
 				<Stack spacing={2}>
 					<TextSection
 						title="Další zdroje"
-						texts={record.otherSources}
+						texts={[record.otherSources]}
 						includeLinks
 					/>
 				</Stack>

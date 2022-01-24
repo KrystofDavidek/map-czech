@@ -8,14 +8,10 @@ const mockDetails: Details = {
 		transcript: 'Měl jsem velkou žízeň',
 		comments:
 			'Occaecat velit et nulla exercitation enim elit sit eiusmod sunt proident fugiat labore enim minim. Nostrud ut nisi proident do. In laboris enim aliquip fugiat elit eu anim minim mollit quis.',
-		urlToNorm:
-			'https://static1.squarespace.com/static/5c69bfa4f4e531370e74fa44/t/5c7564cdf4e1fc3d9a738bba/1551197556163/CompleteGreek.pdf',
 		details:
-			'Aliquip Lorem enim ad Lorem nulla. Velit veniam minim laboris minim elit incididunt consequat commodo enim quis mollit exercitation esse consectetur. Dolor id exercitation exercitation ad anim cillum aute reprehenderit aliqua dolor veniam commodo laborum. Reprehenderit aute non culpa cupidatat. Id deserunt enim in ut nostrud aliquip deserunt adipisicing et eiusmod pariatur nulla. Laborum ad magna aliquip reprehenderit deserunt aliquip.',
-		otherSources: [
-			'https://cs.wikipedia.org/wiki/Transkripce_(lingvistika)',
-			'https://cs.wikipedia.org/wiki/%C5%98eck%C3%A9_p%C3%ADsmo'
-		]
+			'Aliquip Lorem enim ad Lorem nulla. Velit veniam minim laboris minim elit incididunt consequat commodo enim quis mollit exercitation esse consectetur. Dolor id exercitation exercitation ad anim cillum aute reprehenderit aliqua dolor veniam commodo laborum. Reprehenderit aute non culpa cupidatat. Id deserunt enim in ut nostrud aliquip deserunt adipisicing et eiusmod pariatur nulla. Laborum ad magna aliquip reprehenderit deserunt aliquip. https://static1.squarespace.com/static/5c69bfa4f4e531370e74fa44/t/5c7564cdf4e1fc3d9a738bba/1551197556163/CompleteGreek.pdf',
+		otherSources:
+			'https://cs.wikipedia.org/wiki/Transkripce_(lingvistika), https://cs.wikipedia.org/wiki/%C5%98eck%C3%A9_p%C3%ADsmo'
 	},
 	history: `<h2>Nadpis</h2><p>Tohle je upravený <strong>text</strong>.</p><p>Tohle je odkaz – odkaz&nbsp;</p><h2>Nadpis 2</h2><p>Aliquip Lorem enim ad Lorem nulla. Velit veniam minim laboris minim elit incididunt consequat commodo enim quis mollit exercitation esse consectetur. Dolor id exercitation exercitation ad anim cillum aute reprehenderit aliqua dolor veniam commodo laborum. Reprehenderit aute non culpa cupidatat. Id deserunt enim in ut nostrud aliquip deserunt adipisicing et eiusmod pariatur nulla. Laborum ad magna aliquip reprehenderit deserunt aliquip.</p><ul><li>prvn9 bod</li><li>dryhu bod&nbsp;</li><li>treti bod</li></ul>`,
 	current: `<h2>Nadpis</h2><p>Tohle je upravený <strong>text</strong>.</p><p>Tohle je odkaz – odkaz&nbsp;</p><h2>Nadpis 2</h2><p>Aliquip Lorem enim ad Lorem nulla. Velit veniam minim laboris minim elit incididunt consequat commodo enim quis mollit exercitation esse consectetur. Dolor id exercitation exercitation ad anim cillum aute reprehenderit aliqua dolor veniam commodo laborum. Reprehenderit aute non culpa cupidatat. Id deserunt enim in ut nostrud aliquip deserunt adipisicing et eiusmod pariatur nulla. Laborum ad magna aliquip reprehenderit deserunt aliquip.</p><ul><li>prvn9 bod</li><li>dryhu bod&nbsp;</li><li>treti bod</li></ul>`
