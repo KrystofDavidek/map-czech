@@ -2,8 +2,8 @@ import { Divider, Stack } from '@mui/material';
 import { useMemo } from 'react';
 
 import { useEntries } from '../../contexts/EntriesContext';
+import Text from '../Text';
 
-import Text from './Text';
 import TextSection from './TextSection';
 
 const Extra = () => {

@@ -1,13 +1,14 @@
 import { TextField } from '@mui/material';
 
-const FormField = (field: any) => (
-	<TextField
-		{...field}
-		label="Email"
-		variant="outlined"
-		fullWidth
-		margin="dense"
-	/>
+import Text from '../Text';
+
+type Props = { title: string };
+
+const FormField = (field: Props & any) => (
+	<>
+		<Text variant="h5" component="h2" text={field.title} />
+		<TextField {...field} variant="outlined" fullWidth margin="dense" />
+	</>
 );
 
 export default FormField;

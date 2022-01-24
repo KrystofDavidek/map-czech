@@ -20,7 +20,6 @@ export type Location = {
 	secondaryLocation?: string;
 	introImage?: string;
 	demographic?: string;
-	distanceFromPrag?: number;
 };
 
 export type Record = {

@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 import { Record as RecordType } from '../../models/entry';
 import { AUDIO_URL_PREFIX } from '../../App';
+import Text from '../Text';
 
-import Text from './Text';
 import TextSection from './TextSection';
 
 import 'react-h5-audio-player/lib/styles.css';

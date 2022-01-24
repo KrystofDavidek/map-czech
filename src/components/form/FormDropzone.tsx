@@ -1,11 +1,13 @@
 import { DropzoneArea } from 'react-mui-dropzone';
 import { createStyles, makeStyles } from '@mui/styles';
 
+import Text from '../Text';
+
 type FileType = 'audio/*' | 'video/*' | 'image/*';
 
 type Props = { type?: FileType; filesLimit?: number };
 
-const FormDropzone = (props: Props | any) => {
+const FormDropzone = (props: Props & any) => {
 	const onDropzoneStateChange = (loadedFiles: File[]) =>
 		props.onChange(loadedFiles);
 
@@ -20,18 +22,21 @@ const FormDropzone = (props: Props | any) => {
 
 	const classes = useStyles();
 	return (
-		<DropzoneArea
-			showPreviews
-			showPreviewsInDropzone={false}
-			useChipsForPreview
-			previewGridProps={{ container: { spacing: 1, direction: 'row' } }}
-			previewChipProps={{ classes: { root: classes.previewChip } }}
-			onChange={loadedFiles => onDropzoneStateChange(loadedFiles)}
-			dropzoneText="Klikněte, nebo sem přetáhněte soubor"
-			acceptedFiles={[props.type ? props.type : 'image/*']}
-			previewText=""
-			filesLimit={props.filesLimit ? props.filesLimit : 10}
-		/>
+		<>
+			<Text variant="h5" component="h2" text={props.title} />
+			<DropzoneArea
+				showPreviews
+				showPreviewsInDropzone={false}
+				useChipsForPreview
+				previewGridProps={{ container: { spacing: 1, direction: 'row' } }}
+				previewChipProps={{ classes: { root: classes.previewChip } }}
+				onChange={loadedFiles => onDropzoneStateChange(loadedFiles)}
+				dropzoneText="Klikněte, nebo sem přetáhněte soubor"
+				acceptedFiles={[props.type ? props.type : 'image/*']}
+				previewText=""
+				filesLimit={props.filesLimit ? props.filesLimit : 10}
+			/>
+		</>
 	);
 };
 

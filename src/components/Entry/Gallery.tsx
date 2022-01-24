@@ -4,8 +4,7 @@ import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { IMAGE_URL_PREFIX } from '../../App';
 import { Media } from '../../models/entry';
-
-import Text from './Text';
+import Text from '../Text';
 
 type GalleryProps = {
 	images: Media[] | undefined;

@@ -4,8 +4,7 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-medium-image-zoom/dist/styles.css';
 import { AUDIO_URL_PREFIX } from '../../App';
 import { Media } from '../../models/entry';
-
-import Text from './Text';
+import Text from '../Text';
 
 type GalleryProps = {
 	audios: Media[] | undefined;

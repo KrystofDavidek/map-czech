@@ -3,8 +3,8 @@ import 'react-h5-audio-player/lib/styles.css';
 import { Divider, Stack } from '@mui/material';
 
 import { useEntries } from '../../contexts/EntriesContext';
+import Text from '../Text';
 
-import Text from './Text';
 import Record from './Record';
 import TextSection from './TextSection';
 

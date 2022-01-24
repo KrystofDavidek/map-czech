@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 
 import { useEntries } from '../../contexts/EntriesContext';
 import { IMAGE_URL_PREFIX } from '../../App';
+import Text from '../Text';
 
-import Text from './Text';
 import Image from './Image';
 
 const Intro = () => {
@@ -23,7 +23,6 @@ const Intro = () => {
 					/>
 					<Divider />
 					<Text text={location?.demographic} />
-					<Text text={location?.distanceFromPrag?.toString()} />
 				</Stack>
 			</Grid>
 			<Grid item xs={12} md={6}>

@@ -10,8 +10,7 @@ import ReactPlayer from 'react-player';
 import 'react-medium-image-zoom/dist/styles.css';
 
 import { Media } from '../../models/entry';
-
-import Text from './Text';
+import Text from '../Text';
 
 type GalleryProps = {
 	videos: Media[] | undefined;

@@ -1,6 +1,6 @@
 import { Link } from '@mui/material';
 
-import Text from './Text';
+import Text from '../Text';
 
 type TextSectionProps = {
 	title?: string;

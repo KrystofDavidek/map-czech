@@ -27,8 +27,7 @@ const mockEntry: Entry = {
 		mainLocation: 'Brno',
 		secondaryLocation: 'Czech Republic',
 		introImage: 'zelny-trh.jpeg',
-		demographic: 'Počet obyvatel:	382 405 (2021)',
-		distanceFromPrag: 186.67
+		demographic: 'Počet obyvatel:	382 405 (2021)'
 	},
 	details: mockDetails,
 	media: {
