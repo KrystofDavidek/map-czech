@@ -9,51 +9,45 @@ import Text from '../Text';
 
 import FormDropzone from './FormDropzone';
 import FormEditor from './FormEditor';
-import FormField from './FormField';
+import FormFields from './FormFields';
 
-const FirstSection = ({ setPage }: SectionProps) => {
+const ThirdSection = ({ setPage }: SectionProps) => {
 	const methods = useFormContext<Entry>();
-
 	return (
 		<Stack spacing={2} sx={{ mt: 4, mb: 8, width: '100%', maxWidth: '55rem' }}>
-			<Text variant="h3" component="h1" text="Úvod" />
+			<Text variant="h3" component="h1" text="Multimediální obsah" />
 			<Controller
-				rules={{ required: true }}
-				name="location.mainLocation"
+				name="media.images"
 				control={methods.control}
-				defaultValue=""
 				render={({ field: { ref, ...rest } }) => (
-					<FormField {...rest} required title="Název hlavní lokace" />
+					<FormDropzone {...rest} title="Obrázky" type="image/*" />
+				)}
+			/>
+			<FormFields />
+			<Controller
+				name="media.audios"
+				control={methods.control}
+				render={({ field: { ref, ...rest } }) => (
+					<FormDropzone {...rest} title="Audio" type="audio/*" />
 				)}
 			/>
 			<Controller
-				name="location.secondaryLocation"
-				control={methods.control}
-				defaultValue=""
-				render={({ field: { ref, ...rest } }) => (
-					<FormField {...rest} title="Název sekundární lokace" />
-				)}
-			/>
-			<Controller
-				name="location.introImage"
+				name="media.texts"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormDropzone
-						{...rest}
-						title="Úvodní obrázek"
-						type="image/*"
-						filesLimit={1}
-					/>
+					<FormEditor title="Texty" {...rest} />
 				)}
 			/>
-			<Controller
-				name="location.demographic"
-				control={methods.control}
-				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Demografické údaje" {...rest} />
-				)}
-			/>
-			<Stack alignItems="end">
+
+			<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
+				<Button
+					onClick={() => {
+						setPage((prevState: number) => prevState - 1);
+						window.scrollTo(0, 0);
+					}}
+				>
+					Zpět
+				</Button>
 				<Button
 					onClick={() => {
 						setPage((prevState: number) => prevState + 1);
@@ -67,4 +61,4 @@ const FirstSection = ({ setPage }: SectionProps) => {
 	);
 };
 
-export default FirstSection;
+export default ThirdSection;

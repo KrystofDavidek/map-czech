@@ -5,9 +5,9 @@ export type Entry = {
 	details?: Details;
 	media?: {
 		images?: Media[];
-		texts?: { title: string; text: string }[];
 		videos?: Media[];
 		audios?: Media[];
+		texts?: string;
 		others?: Media[];
 	};
 	extra?: Extra;

@@ -20,9 +20,7 @@ const Media = () => {
 				<>
 					<Divider />
 					<Text variant="h3" component="h1" text="Texty" />
-					{media?.texts.map((section, i) => (
-						<TextSection key={i} title={section.title} texts={[section.text]} />
-					))}
+					<TextSection texts={[media?.texts]} />
 				</>
 			)}
 			<Divider />

@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable unused-imports/no-unused-vars */
 import { Stack, Button, Divider } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 
+import { Entry } from '../../models/entry';
 import { SectionProps } from '../../pages/Admin';
 import Text from '../Text';
 
@@ -8,7 +11,7 @@ import FormDropzone from './FormDropzone';
 import FormEditor from './FormEditor';
 
 const SecondSection = ({ setPage }: SectionProps) => {
-	const methods = useFormContext(); // retrieve all hook methods
+	const methods = useFormContext<Entry>();
 
 	return (
 		<Stack spacing={2} sx={{ mt: 4, mb: 8, width: '100%', maxWidth: '55rem' }}>
@@ -61,14 +64,14 @@ const SecondSection = ({ setPage }: SectionProps) => {
 			<Text variant="h4" component="h2" text="Historie a současnost" />
 
 			<Controller
-				name="details.record.history"
+				name="details.history"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
 					<FormEditor title="Historie" {...rest} />
 				)}
 			/>
 			<Controller
-				name="details.record.current"
+				name="details.current"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
 					<FormEditor title="Současnost" {...rest} />
@@ -79,6 +82,7 @@ const SecondSection = ({ setPage }: SectionProps) => {
 				<Button
 					onClick={() => {
 						setPage((prevState: number) => prevState - 1);
+						window.scrollTo(0, 0);
 					}}
 				>
 					Zpět
@@ -86,6 +90,7 @@ const SecondSection = ({ setPage }: SectionProps) => {
 				<Button
 					onClick={() => {
 						setPage((prevState: number) => prevState + 1);
+						window.scrollTo(0, 0);
 					}}
 				>
 					Další
