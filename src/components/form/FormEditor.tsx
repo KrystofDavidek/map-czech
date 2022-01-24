@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Box } from '@mui/material';
@@ -6,21 +6,19 @@ import draftToHtml from 'draftjs-to-html';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-const FormEditor = () => {
+const FormEditor = (props: any) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
-	const [value, setValue] = useState('');
 
 	const onEditorStateChange = (editorState: any) => {
 		setEditorState(editorState);
-		const result = draftToHtml(
-			convertToRaw(editorState.getCurrentContent())
-		).replace(/[\r\n]+/gm, '');
-		result === '<p></p>' ? setValue('') : setValue(result);
-	};
 
-	useEffect(() => {
-		console.log(value);
-	}, [value]);
+		return props.onChange(
+			draftToHtml(convertToRaw(editorState.getCurrentContent())).replace(
+				/[\r\n]+/gm,
+				''
+			)
+		);
+	};
 
 	return (
 		<Box
@@ -53,6 +51,7 @@ const FormEditor = () => {
 					}
 				}}
 				stripPastedStyles
+				editorState={editorState}
 				onEditorStateChange={onEditorStateChange}
 			/>
 		</Box>
