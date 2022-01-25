@@ -15,10 +15,9 @@ const FormEditor = (props: any) => {
 		setEditorState(editorState);
 
 		return props.onChange(
-			draftToHtml(convertToRaw(editorState.getCurrentContent())).replace(
-				/[\r\n]+/gm,
-				''
-			)
+			draftToHtml(convertToRaw(editorState.getCurrentContent()))
+				.replace(/[\r\n]+/gm, '')
+				.replaceAll('<p></p>', '')
 		);
 	};
 

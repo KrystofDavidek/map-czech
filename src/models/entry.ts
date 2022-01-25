@@ -4,13 +4,18 @@ export type Entry = {
 	location: Location;
 	details?: Details;
 	media?: {
-		images?: Media[];
+		images?: DropZone;
+		audios?: DropZone;
 		videos?: Media[];
-		audios?: Media[];
 		texts?: string;
-		others?: Media[];
+		others?: string;
 	};
 	extra?: Extra;
+};
+
+export type DropZone = {
+	files: File[];
+	names: { name: string }[];
 };
 
 export type Media = { name: string; url: string };
@@ -37,9 +42,9 @@ export type Details = {
 };
 
 export type Extra = {
-	projects?: Media[];
-	offers?: string[];
-	attractions?: string[];
-	resources?: string[];
+	projects?: string;
+	offers?: string;
+	attractions?: string;
+	resources?: string;
 	contact?: string;
 };

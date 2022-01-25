@@ -6,15 +6,10 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 import { Entry } from '../../models/entry';
 
 type Props = {
-	controlName:
-		| 'media.images.files'
-		| 'media.videos'
-		| 'media.images.names'
-		| 'media.audios.files'
-		| 'media.audios.names';
+	controlName: 'media.videos';
 };
 
-const FormFields = ({ controlName }: Props) => {
+const FormDoubleFields = ({ controlName }: Props) => {
 	const { control, register } = useFormContext<Entry>();
 	const { fields, append, remove } = useFieldArray({
 		control,
@@ -30,7 +25,15 @@ const FormFields = ({ controlName }: Props) => {
 						variant="outlined"
 						sx={{ mx: 4, width: '100%' }}
 						margin="dense"
-						label={`Jméno / krátký popisek k ${index + 1}. souboru`}
+						label={`Jméno / krátký popisek k ${index + 1}. odkazu`}
+						multiline
+					/>
+					<TextField
+						{...register(`${controlName}.${index}.url` as const)}
+						variant="outlined"
+						sx={{ mx: 4, width: '100%' }}
+						margin="dense"
+						label={`${index + 1}. odkaz`}
 						multiline
 					/>
 					<Button type="button" onClick={() => remove(index)}>
@@ -44,10 +47,10 @@ const FormFields = ({ controlName }: Props) => {
 					append({ name: '' });
 				}}
 			>
-				Přidat názvy/popisky/URL pro soubor
+				Přidat názvy/popisky/URL pro video
 			</Button>
 		</>
 	);
 };
 
-export default FormFields;
+export default FormDoubleFields;

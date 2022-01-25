@@ -16,35 +16,28 @@ const Extra = () => {
 			{extra?.projects && (
 				<>
 					<Text variant="h4" component="h2" text="Projekty" />
-					{extra?.projects.map((section, i) => (
-						<TextSection
-							key={i}
-							title={section.name}
-							texts={[section.url]}
-							includeLinks
-						/>
-					))}
+					<TextSection texts={[extra?.projects]} />
 				</>
 			)}
 			<Divider />
 			{extra?.offers && (
 				<>
 					<Text variant="h4" component="h2" text="Nabídky" />
-					<TextSection texts={extra?.offers} />
+					<TextSection texts={[extra?.offers]} />
 				</>
 			)}
 			<Divider />
 			{extra?.attractions && (
 				<>
 					<Text variant="h4" component="h2" text="Atrakce" />
-					<TextSection texts={extra?.attractions} />
+					<TextSection texts={[extra?.attractions]} />
 				</>
 			)}
 			<Divider />
 			{extra?.resources && (
 				<>
 					<Text variant="h4" component="h2" text="Zdroje" />
-					<TextSection texts={extra?.resources} />
+					<TextSection texts={[extra?.resources]} />
 				</>
 			)}
 			<Divider />

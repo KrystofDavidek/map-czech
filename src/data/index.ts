@@ -27,12 +27,12 @@ const mockEntry: Entry = {
 	},
 	details: mockDetails,
 	media: {
-		images: [
-			{ name: 'Mapa Brna', url: 'brno.png' },
-			{ name: 'Zelný trh', url: 'zelny-trh.jpeg' },
-			{ name: 'Petrov', url: 'petrov.png' },
-			{ name: 'Hrad Špilberg', url: 'https://picsum.photos/seed/1/200' }
-		],
+		// images: [
+		// 	{ name: 'Mapa Brna', url: 'brno.png' },
+		// 	{ name: 'Zelný trh', url: 'zelny-trh.jpeg' },
+		// 	{ name: 'Petrov', url: 'petrov.png' },
+		// 	{ name: 'Hrad Špilberg', url: 'https://picsum.photos/seed/1/200' }
+		// ],
 		texts:
 			'Editované dopisy, In sit in laboris ullamco fugiat deserunt. Fugiat sunt ea sint duis aliqua cupidatat dolore ut pariatur cupidatat cillum sint cillum consectetur. Ut qui id pariatur cupidatat ipsum amet proident deserunt commodo occaecat enim. Veniam nisi incididunt minim minim pariatur excepteur. Eiusmod laborum ea dolore aliquip incididunt.',
 		videos: [
@@ -49,46 +49,33 @@ const mockEntry: Entry = {
 				url: 'https://www.youtube.com/watch?v=mxoJE93DNzg&ab_channel=Lily%27sChannel-Aroundtheworld'
 			}
 		],
-		audios: [
-			{
-				name: 'Nářečí',
-				url: 'brno.mp3'
-			},
-			{
-				name: 'Nářečí',
-				url: 'brno.mp3'
-			},
-			{
-				name: 'Nářečí',
-				url: 'brno.mp3'
-			}
-		],
-		others: [
-			{
-				name: 'Paměť národa – Anastasie Vondra',
-				url: 'https://www.pametnaroda.cz/cs/vondra-anastasie-1937'
-			}
-		]
+		// audios: [
+		// 	{
+		// 		name: 'Nářečí',
+		// 		url: 'brno.mp3'
+		// 	},
+		// 	{
+		// 		name: 'Nářečí',
+		// 		url: 'brno.mp3'
+		// 	},
+		// 	{
+		// 		name: 'Nářečí',
+		// 		url: 'brno.mp3'
+		// 	}
+		// ],
+		others:
+			'Paměť národa – Anastasie Vondra https://www.pametnaroda.cz/cs/vondra-anastasie-1937'
 	},
 	extra: {
-		projects: [
-			{
-				name: 'Paměť národa – Anastasie Vondra',
-				url: 'https://www.pametnaroda.cz/cs/vondra-anastasie-1937'
-			}
-		],
-		offers: [
-			'Minim irure ut voluptate fugiat cillum exercitation enim proident quis laboris est.',
-			'Consectetur sint anim deserunt non irure ex.'
-		],
-		attractions: [
-			'Minim irure ut voluptate fugiat cillum exercitation enim proident quis laboris est.',
-			'Consectetur sint anim deserunt non irure ex.'
-		],
-		resources: [
-			'ECO, Umberto. Jak napsat diplomovou práci. Přeložil Ivan Seidl. Olomouc: Votobia, 1997. Velká řada, sv. 27. ISBN 80-7198-173-7.',
-			'KOTLER, Philip a ARMSTRONG, Gary, 1997. Marketing: an introduction. 4th ed. Upper Saddle River: Prentice-Hall International. ISBN 0-13-263120-2.'
-		],
+		projects:
+			'Paměť národa – Anastasie Vondra https://www.pametnaroda.cz/cs/vondra-anastasie-1937',
+		offers:
+			'Minim irure ut voluptate fugiat cillum exercitation enim proident quis laboris est. Consectetur sint anim deserunt non irure ex.',
+		attractions:
+			'Minim irure ut voluptate fugiat cillum exercitation enim proident quis laboris est. Consectetur sint anim deserunt non irure ex.',
+		resources:
+			'ECO, Umberto. Jak napsat diplomovou práci. Přeložil Ivan Seidl. Olomouc: Votobia, 1997. Velká řada, sv. 27. ISBN 80-7198-173-7 KOTLER, Philip a ARMSTRONG, Gary, 1997. Marketing: an introduction. 4th ed. Upper Saddle River: Prentice-Hall International. ISBN 0-13-263120-2.',
+
 		contact: 'Kryštof Davídek, e-mail: kry.davidek@gmail.com'
 	}
 };
