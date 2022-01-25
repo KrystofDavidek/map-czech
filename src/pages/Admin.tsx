@@ -11,17 +11,19 @@ import FourthSection from '../components/form/FourthSection';
 import FifthSection from '../components/form/FifthSection';
 import { Entry } from '../models/entry';
 import { mockEntry } from '../data';
+import { addNewEntry } from '../utils/firebase';
 
 export type SectionProps = { setPage: Dispatch<SetStateAction<number>> };
 
 const Admin = () => {
-	const [page, setPage] = useState(0);
+	const [page, setPage] = useState(4);
 	const methods = useForm<Entry>({
 		mode: 'onChange',
 		defaultValues: mockEntry
 	});
-	const handleSubmitOnClick = (data: Entry) => {
+	const handleSubmitOnClick = async (data: Entry) => {
 		console.log(data);
+		if (data) await addNewEntry(data);
 	};
 
 	return (

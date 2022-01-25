@@ -14,8 +14,8 @@ import { Link } from 'react-router-dom';
 import { DialogPropsType } from '../../contexts/DialogContext';
 import { Feature } from '../../models/feature';
 import { useEntries } from '../../contexts/EntriesContext';
-import { mockEntry } from '../../data';
 import { IMAGE_URL_PREFIX } from '../../App';
+import { getEntry } from '../../utils/firebase';
 
 type Props = DialogPropsType<{
 	feature: Feature;
@@ -25,8 +25,11 @@ const FeatureDialog = ({ feature, close }: Props) => {
 	const { currentEntry, setCurrentEntry } = useEntries();
 
 	useEffect(() => {
-		// TODO: connect to API
-		if (feature) setCurrentEntry(mockEntry);
+		const getData = async () => {
+			const entry = await getEntry('63ed34d4-58d0-46bf-aa75-f9db0f89bfc5');
+			if (entry) setCurrentEntry(entry);
+		};
+		getData();
 	}, [feature]);
 
 	const handleClose = () => {

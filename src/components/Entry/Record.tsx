@@ -29,16 +29,18 @@ const Record = ({ record }: RecordProps) => {
 			</Grid>
 			<Grid item xs={12} md={6}>
 				<Stack spacing={2}>
-					<AudioPlayer
-						src={`${AUDIO_URL_PREFIX}${record.url}`}
-						customAdditionalControls={[]}
-						style={{
-							maxWidth: '100%'
-						}}
-						onPlay={() => {
-							setShowDetails(true);
-						}}
-					/>
+					{record.url && (
+						<AudioPlayer
+							src={`${AUDIO_URL_PREFIX}${record.url}`}
+							customAdditionalControls={[]}
+							style={{
+								maxWidth: '100%'
+							}}
+							onPlay={() => {
+								setShowDetails(true);
+							}}
+						/>
+					)}
 					<Link
 						sx={{ cursor: 'pointer' }}
 						onClick={() => {

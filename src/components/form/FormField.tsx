@@ -24,12 +24,15 @@ const FormField = ({
 	const onFieldChange = (e: { target: { value: string } }) => {
 		try {
 			const object = JSON.parse(e.target.value.trim());
+
 			if ((object as FeatureCollection).type && object.features.length === 1) {
 				setError('');
 				setValue(
-					JSON.stringify(object.features[0], null, 2).replace(/\\"/g, '"')
+					JSON.stringify(object.features[0], null, 4).replace(/\\"/g, '"')
 				);
 				return field.onChange(JSON.stringify(object.features[0]));
+			} else {
+				throw new Error();
 			}
 		} catch (error) {
 			setValue(e.target.value);

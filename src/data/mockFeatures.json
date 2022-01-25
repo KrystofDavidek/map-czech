@@ -4,19 +4,34 @@
     {
       "type": "Feature",
       "properties": {
-        "shape": "Circle",
-        "radius": 1420.7025989244032,
+        "shape": "Polygon",
         "name": "Unnamed Layer",
         "category": "default"
       },
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
-          16.625748,
-          49.185631
+          [
+            [
+              16.609783,
+              49.201336
+            ],
+            [
+              16.594505,
+              49.175195
+            ],
+            [
+              16.64566,
+              49.183835
+            ],
+            [
+              16.609783,
+              49.201336
+            ]
+          ]
         ]
       },
-      "id": "0889eed8-2a4c-478e-9230-0741ad64a366"
+      "id": "98c245ae-a69c-4df2-882f-b787cde4579b"
     }
   ]
 }
