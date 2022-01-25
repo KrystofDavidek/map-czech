@@ -4,7 +4,7 @@ import featuresJson from './mockFeatures.json';
 
 const mockDetails: Details = {
 	record: {
-		url: 'brno.mp3',
+		url: '',
 		transcript: 'Měl jsem velkou žízeň',
 		comments:
 			'Occaecat velit et nulla exercitation enim elit sit eiusmod sunt proident fugiat labore enim minim. Nostrud ut nisi proident do. In laboris enim aliquip fugiat elit eu anim minim mollit quis.',
@@ -22,17 +22,12 @@ const mockEntry: Entry = {
 	location: {
 		mainLocation: 'Brno',
 		secondaryLocation: 'Czech Republic',
-		introImage: 'zelny-trh.jpeg',
+		introImage: '',
 		demographic: 'Počet obyvatel:	382 405 (2021)'
 	},
 	details: mockDetails,
 	media: {
-		// images: [
-		// 	{ name: 'Mapa Brna', url: 'brno.png' },
-		// 	{ name: 'Zelný trh', url: 'zelny-trh.jpeg' },
-		// 	{ name: 'Petrov', url: 'petrov.png' },
-		// 	{ name: 'Hrad Špilberg', url: 'https://picsum.photos/seed/1/200' }
-		// ],
+		images: { files: [], names: [] },
 		texts:
 			'Editované dopisy, In sit in laboris ullamco fugiat deserunt. Fugiat sunt ea sint duis aliqua cupidatat dolore ut pariatur cupidatat cillum sint cillum consectetur. Ut qui id pariatur cupidatat ipsum amet proident deserunt commodo occaecat enim. Veniam nisi incididunt minim minim pariatur excepteur. Eiusmod laborum ea dolore aliquip incididunt.',
 		videos: [
@@ -49,20 +44,10 @@ const mockEntry: Entry = {
 				url: 'https://www.youtube.com/watch?v=mxoJE93DNzg&ab_channel=Lily%27sChannel-Aroundtheworld'
 			}
 		],
-		// audios: [
-		// 	{
-		// 		name: 'Nářečí',
-		// 		url: 'brno.mp3'
-		// 	},
-		// 	{
-		// 		name: 'Nářečí',
-		// 		url: 'brno.mp3'
-		// 	},
-		// 	{
-		// 		name: 'Nářečí',
-		// 		url: 'brno.mp3'
-		// 	}
-		// ],
+		audios: {
+			files: [],
+			names: []
+		},
 		others:
 			'Paměť národa – Anastasie Vondra https://www.pametnaroda.cz/cs/vondra-anastasie-1937'
 	},

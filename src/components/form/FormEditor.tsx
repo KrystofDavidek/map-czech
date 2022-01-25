@@ -3,13 +3,18 @@ import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Box } from '@mui/material';
 import draftToHtml from 'draftjs-to-html';
+import { stateFromHTML } from 'draft-js-import-html';
 
 import Text from '../Text';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const FormEditor = (props: any) => {
-	const [editorState, setEditorState] = useState(EditorState.createEmpty());
+	const [editorState, setEditorState] = useState(
+		EditorState.createWithContent(
+			props.data ? stateFromHTML(props.data) : stateFromHTML('')
+		)
+	);
 
 	const onEditorStateChange = (editorState: any) => {
 		setEditorState(editorState);

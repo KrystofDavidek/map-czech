@@ -5,7 +5,7 @@ import Text from '../Text';
 
 type FileType = 'audio/*' | 'video/*' | 'image/*';
 
-type Props = { type?: FileType; filesLimit?: number };
+type Props = { type?: FileType; filesLimit?: number; data?: any };
 
 const FormDropzone = (props: Props & any) => {
 	const onDropzoneStateChange = (loadedFiles: File[]) =>
@@ -25,6 +25,9 @@ const FormDropzone = (props: Props & any) => {
 		<>
 			<Text variant="h5" component="h2" text={props.title} />
 			<DropzoneArea
+				initialFiles={
+					props.data ? (props.filesLimit === 1 ? [props.data] : props.data) : []
+				}
 				showPreviews
 				showPreviewsInDropzone={false}
 				useChipsForPreview

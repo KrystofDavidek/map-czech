@@ -18,7 +18,11 @@ const FourthSection = ({ setPage }: SectionProps) => {
 				name="extra.projects"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Projekty" {...rest} />
+					<FormEditor
+						data={methods.watch('extra.projects')}
+						title="Projekty"
+						{...rest}
+					/>
 				)}
 			/>
 			<Divider />
@@ -26,7 +30,11 @@ const FourthSection = ({ setPage }: SectionProps) => {
 				name="extra.offers"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Nabídky" {...rest} />
+					<FormEditor
+						data={methods.watch('extra.offers')}
+						title="Nabídky"
+						{...rest}
+					/>
 				)}
 			/>
 			<Divider />
@@ -34,7 +42,11 @@ const FourthSection = ({ setPage }: SectionProps) => {
 				name="extra.attractions"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Atrakce" {...rest} />
+					<FormEditor
+						data={methods.watch('extra.attractions')}
+						title="Atrakce"
+						{...rest}
+					/>
 				)}
 			/>
 			<Divider />
@@ -42,7 +54,11 @@ const FourthSection = ({ setPage }: SectionProps) => {
 				name="extra.resources"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Zdroje" {...rest} />
+					<FormEditor
+						data={methods.watch('extra.resources')}
+						title="Zdroje"
+						{...rest}
+					/>
 				)}
 			/>
 			<Divider />
@@ -50,7 +66,11 @@ const FourthSection = ({ setPage }: SectionProps) => {
 				name="extra.contact"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Kontakt" {...rest} />
+					<FormEditor
+						data={methods.watch('extra.contact')}
+						title="Kontakt"
+						{...rest}
+					/>
 				)}
 			/>
 			<Stack direction="row" sx={{ justifyContent: 'space-between' }}>

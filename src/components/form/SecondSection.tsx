@@ -21,7 +21,11 @@ const SecondSection = ({ setPage }: SectionProps) => {
 				name="details.record.comments"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Popis/komentář nahrávky" {...rest} />
+					<FormEditor
+						data={methods.watch('details.record.comments')}
+						title="Popis/komentář nahrávky"
+						{...rest}
+					/>
 				)}
 			/>
 			<Controller
@@ -29,6 +33,7 @@ const SecondSection = ({ setPage }: SectionProps) => {
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
 					<FormDropzone
+						data={methods.watch('details.record.url')}
 						{...rest}
 						title="Nahrávka"
 						type="audio/*"
@@ -40,7 +45,11 @@ const SecondSection = ({ setPage }: SectionProps) => {
 				name="details.record.transcript"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Přepis nahrávky" {...rest} />
+					<FormEditor
+						data={methods.watch('details.record.transcript')}
+						title="Přepis nahrávky"
+						{...rest}
+					/>
 				)}
 			/>
 			<Controller
@@ -48,6 +57,7 @@ const SecondSection = ({ setPage }: SectionProps) => {
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
 					<FormEditor
+						data={methods.watch('details.record.details')}
 						title="Detaily, odkaz na jazykovou normu apod."
 						{...rest}
 					/>
@@ -57,7 +67,11 @@ const SecondSection = ({ setPage }: SectionProps) => {
 				name="details.record.otherSources"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Další zdroje" {...rest} />
+					<FormEditor
+						data={methods.watch('details.record.otherSources')}
+						title="Další zdroje"
+						{...rest}
+					/>
 				)}
 			/>
 			<Divider />
@@ -67,14 +81,22 @@ const SecondSection = ({ setPage }: SectionProps) => {
 				name="details.history"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Historie" {...rest} />
+					<FormEditor
+						data={methods.watch('details.history')}
+						title="Historie"
+						{...rest}
+					/>
 				)}
 			/>
 			<Controller
 				name="details.current"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Současnost" {...rest} />
+					<FormEditor
+						data={methods.watch('details.current')}
+						title="Současnost"
+						{...rest}
+					/>
 				)}
 			/>
 

@@ -28,7 +28,12 @@ const FifthSection = ({ setPage }: SectionProps) => {
 				control={methods.control}
 				defaultValue=""
 				render={({ field: { ref, ...rest } }) => (
-					<FormField {...rest} required isGeoJson />
+					<FormField
+						data={methods.watch('feature')}
+						{...rest}
+						required
+						isGeoJson
+					/>
 				)}
 			/>
 			<input type="submit" />

@@ -10,12 +10,16 @@ import ThirdSection from '../components/form/ThirdSection';
 import FourthSection from '../components/form/FourthSection';
 import FifthSection from '../components/form/FifthSection';
 import { Entry } from '../models/entry';
+import { mockEntry } from '../data';
 
 export type SectionProps = { setPage: Dispatch<SetStateAction<number>> };
 
 const Admin = () => {
-	const [page, setPage] = useState(4);
-	const methods = useForm<Entry>();
+	const [page, setPage] = useState(0);
+	const methods = useForm<Entry>({
+		mode: 'onChange',
+		defaultValues: mockEntry
+	});
 	const handleSubmitOnClick = (data: Entry) => {
 		console.log(data);
 	};
@@ -23,7 +27,7 @@ const Admin = () => {
 	return (
 		<>
 			<Box sx={{ mt: 1, width: '100%', round: '100%' }}>
-				<LinearProgress variant="determinate" value={(page + 1) * 25} />
+				<LinearProgress variant="determinate" value={(page + 1) * 20} />
 			</Box>
 			<FormProvider {...methods}>
 				<FormControl

@@ -21,16 +21,26 @@ const ThirdSection = ({ setPage }: SectionProps) => {
 				name="media.images.files"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormDropzone {...rest} title="Obrázky" type="image/*" />
+					<FormDropzone
+						data={methods.watch('media.images.files')}
+						{...rest}
+						title="Obrázky"
+						type="image/*"
+					/>
 				)}
 			/>
 			<FormFields controlName="media.images.names" />
 			<Divider />
 			<Controller
-				name="media.audios"
+				name="media.audios.files"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormDropzone {...rest} title="Audio" type="audio/*" />
+					<FormDropzone
+						data={methods.watch('media.audios.files')}
+						{...rest}
+						title="Audio"
+						type="audio/*"
+					/>
 				)}
 			/>
 			<FormFields controlName="media.audios.names" />
@@ -42,7 +52,11 @@ const ThirdSection = ({ setPage }: SectionProps) => {
 				name="media.texts"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Texty" {...rest} />
+					<FormEditor
+						data={methods.watch('media.texts')}
+						title="Texty"
+						{...rest}
+					/>
 				)}
 			/>
 			<Divider />
@@ -50,7 +64,11 @@ const ThirdSection = ({ setPage }: SectionProps) => {
 				name="media.others"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Ostatní" {...rest} />
+					<FormEditor
+						data={methods.watch('media.others')}
+						title="Ostatní"
+						{...rest}
+					/>
 				)}
 			/>
 			<Stack direction="row" sx={{ justifyContent: 'space-between' }}>

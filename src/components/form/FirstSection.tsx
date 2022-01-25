@@ -39,6 +39,7 @@ const FirstSection = ({ setPage }: SectionProps) => {
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
 					<FormDropzone
+						data={methods.watch('location.introImage')}
 						{...rest}
 						title="Úvodní obrázek"
 						type="image/*"
@@ -49,8 +50,13 @@ const FirstSection = ({ setPage }: SectionProps) => {
 			<Controller
 				name="location.demographic"
 				control={methods.control}
+				defaultValue=""
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Demografické údaje" {...rest} />
+					<FormEditor
+						data={methods.watch('location.demographic')}
+						title="Demografické údaje"
+						{...rest}
+					/>
 				)}
 			/>
 			<Stack alignItems="end">

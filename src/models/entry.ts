@@ -15,7 +15,7 @@ export type Entry = {
 };
 
 export type DropZone = {
-	files: File[];
+	files: (File | string)[];
 	names: { name: string }[];
 };
 
@@ -24,12 +24,12 @@ export type Media = { name: string; url: string };
 export type Location = {
 	mainLocation: string;
 	secondaryLocation?: string;
-	introImage?: string;
+	introImage?: string | File;
 	demographic?: string;
 };
 
 export type Record = {
-	url: string;
+	url: string | File;
 	transcript?: string;
 	comments?: string;
 	details?: string;
