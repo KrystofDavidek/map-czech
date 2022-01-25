@@ -77,7 +77,32 @@ const mockEntry: Entry = {
 			'ECO, Umberto. Jak napsat diplomovou práci. Přeložil Ivan Seidl. Olomouc: Votobia, 1997. Velká řada, sv. 27. ISBN 80-7198-173-7 KOTLER, Philip a ARMSTRONG, Gary, 1997. Marketing: an introduction. 4th ed. Upper Saddle River: Prentice-Hall International. ISBN 0-13-263120-2.',
 
 		contact: 'Kryštof Davídek, e-mail: kry.davidek@gmail.com'
-	}
+	},
+	feature: `{
+		type: 'Feature',
+		properties: {
+			shape: 'Polygon',
+			name: 'Unnamed Layer',
+			category: 'default'
+		},
+		geometry: {
+			type: 'Polygon',
+			coordinates: [
+				[
+					[16.566353, 49.265788],
+					[16.521378, 49.240466],
+					[16.504211, 49.211318],
+					[16.496315, 49.175195],
+					[16.566353, 49.137249],
+					[16.656303, 49.137249],
+					[16.700249, 49.175419],
+					[16.700249, 49.237328],
+					[16.566353, 49.265788]
+				]
+			]
+		},
+		id: '391fa1d1-4210-454f-abce-5f67fbda5c22'
+	}`
 };
 
 export { featuresJson, mockEntry };

@@ -11,6 +11,7 @@ export type Entry = {
 		others?: string;
 	};
 	extra?: Extra;
+	feature: string;
 };
 
 export type DropZone = {

@@ -7,12 +7,14 @@ import { useForm, FormProvider } from 'react-hook-form';
 import FirstSection from '../components/form/FirstSection';
 import SecondSection from '../components/form/SecondSection';
 import ThirdSection from '../components/form/ThirdSection';
+import FourthSection from '../components/form/FourthSection';
+import FifthSection from '../components/form/FifthSection';
 import { Entry } from '../models/entry';
 
 export type SectionProps = { setPage: Dispatch<SetStateAction<number>> };
 
 const Admin = () => {
-	const [page, setPage] = useState(2);
+	const [page, setPage] = useState(4);
 	const methods = useForm<Entry>();
 	const handleSubmitOnClick = (data: Entry) => {
 		console.log(data);
@@ -32,6 +34,8 @@ const Admin = () => {
 					{page === 0 && <FirstSection setPage={setPage} />}
 					{page === 1 && <SecondSection setPage={setPage} />}
 					{page === 2 && <ThirdSection setPage={setPage} />}
+					{page === 3 && <FourthSection setPage={setPage} />}
+					{page === 4 && <FifthSection setPage={setPage} />}
 				</FormControl>
 			</FormProvider>
 		</>

@@ -7,50 +7,50 @@ import { Entry } from '../../models/entry';
 import { SectionProps } from '../../pages/Admin';
 import Text from '../Text';
 
-import FormDoubleFields from './FormDoubleFields';
-import FormDropzone from './FormDropzone';
 import FormEditor from './FormEditor';
-import FormFields from './FormFields';
 
-const ThirdSection = ({ setPage }: SectionProps) => {
+const FourthSection = ({ setPage }: SectionProps) => {
 	const methods = useFormContext<Entry>();
 	return (
 		<Stack spacing={2} sx={{ mt: 4, mb: 8, width: '100%', maxWidth: '55rem' }}>
-			<Text variant="h3" component="h1" text="Multimediální obsah" />
+			<Text variant="h3" component="h1" text="Ostatní" />
 			<Controller
-				name="media.images.files"
+				name="extra.projects"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormDropzone {...rest} title="Obrázky" type="image/*" />
-				)}
-			/>
-			<FormFields controlName="media.images.names" />
-			<Divider />
-			<Controller
-				name="media.audios"
-				control={methods.control}
-				render={({ field: { ref, ...rest } }) => (
-					<FormDropzone {...rest} title="Audio" type="audio/*" />
-				)}
-			/>
-			<FormFields controlName="media.audios.names" />
-			<Divider />
-			<Text variant="h5" component="h2" text="Videa" />
-			<FormDoubleFields controlName="media.videos" />
-			<Divider />
-			<Controller
-				name="media.texts"
-				control={methods.control}
-				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Texty" {...rest} />
+					<FormEditor title="Projekty" {...rest} />
 				)}
 			/>
 			<Divider />
 			<Controller
-				name="media.others"
+				name="extra.offers"
 				control={methods.control}
 				render={({ field: { ref, ...rest } }) => (
-					<FormEditor title="Ostatní" {...rest} />
+					<FormEditor title="Nabídky" {...rest} />
+				)}
+			/>
+			<Divider />
+			<Controller
+				name="extra.attractions"
+				control={methods.control}
+				render={({ field: { ref, ...rest } }) => (
+					<FormEditor title="Atrakce" {...rest} />
+				)}
+			/>
+			<Divider />
+			<Controller
+				name="extra.resources"
+				control={methods.control}
+				render={({ field: { ref, ...rest } }) => (
+					<FormEditor title="Zdroje" {...rest} />
+				)}
+			/>
+			<Divider />
+			<Controller
+				name="extra.contact"
+				control={methods.control}
+				render={({ field: { ref, ...rest } }) => (
+					<FormEditor title="Kontakt" {...rest} />
 				)}
 			/>
 			<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
@@ -75,4 +75,4 @@ const ThirdSection = ({ setPage }: SectionProps) => {
 	);
 };
 
-export default ThirdSection;
+export default FourthSection;
