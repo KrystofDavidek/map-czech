@@ -15,15 +15,21 @@ const Details = () => {
 	return (
 		<Stack spacing={2}>
 			<Text variant="h3" component="h1" text="Detailní informace" />
-			{details?.record && <Record record={details?.record} />}
-			<Divider />
+			{details?.record && (
+				<>
+					<Record record={details?.record} />
+					<Divider />
+				</>
+			)}
+
 			{details?.history && (
 				<>
 					<Text variant="h4" component="h2" text="Historie" />
 					<TextSection texts={[details?.history]} />
+					<Divider />
 				</>
 			)}
-			<Divider />
+
 			{details?.current && (
 				<>
 					<Text variant="h4" component="h2" text="Současnost" />

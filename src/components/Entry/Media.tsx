@@ -16,18 +16,16 @@ const Media = () => {
 			{/* <Gallery images={media?.images} /> */}
 			{media?.texts?.[0] && (
 				<>
-					<Divider />
 					<Text variant="h3" component="h1" text="Texty" />
 					<TextSection texts={[media?.texts]} />
+					<Divider />
 				</>
 			)}
-			<Divider />
+
 			{/* <GalleryAudio audios={media?.audios} /> */}
-			<Divider />
 			<GalleryVideo videos={media?.videos} />
 			{media?.others?.[0] && (
 				<>
-					<Divider />
 					<Text variant="h3" component="h1" text="Ostatní" />
 					<TextSection texts={[media?.others]} />
 				</>

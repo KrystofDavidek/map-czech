@@ -3,7 +3,8 @@ import {
 	ImageList,
 	ImageListItem,
 	ImageListItemBar,
-	useMediaQuery
+	useMediaQuery,
+	Divider
 } from '@mui/material';
 import ReactPlayer from 'react-player';
 
@@ -45,6 +46,7 @@ const GalleryVideo = ({ videos }: GalleryProps) => {
 					))}
 				</ImageList>
 			</Box>
+			<Divider />
 		</>
 	);
 };

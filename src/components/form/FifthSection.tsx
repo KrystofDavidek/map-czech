@@ -36,8 +36,8 @@ const FifthSection = ({ setPage }: SectionProps) => {
 					/>
 				)}
 			/>
-			<Button variant="outlined" size="large" type="submit">
-				Odeslat
+			<Button variant="contained" size="large" type="submit">
+				Odeslat data
 			</Button>
 			<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
 				<Button

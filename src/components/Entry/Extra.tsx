@@ -17,30 +17,30 @@ const Extra = () => {
 				<>
 					<Text variant="h4" component="h2" text="Projekty" />
 					<TextSection texts={[extra?.projects]} />
+					<Divider />
 				</>
 			)}
-			<Divider />
 			{extra?.offers && (
 				<>
 					<Text variant="h4" component="h2" text="Nabídky" />
 					<TextSection texts={[extra?.offers]} />
+					<Divider />
 				</>
 			)}
-			<Divider />
 			{extra?.attractions && (
 				<>
 					<Text variant="h4" component="h2" text="Atrakce" />
 					<TextSection texts={[extra?.attractions]} />
+					<Divider />
 				</>
 			)}
-			<Divider />
 			{extra?.resources && (
 				<>
 					<Text variant="h4" component="h2" text="Zdroje" />
 					<TextSection texts={[extra?.resources]} />
+					<Divider />
 				</>
 			)}
-			<Divider />
 			{extra?.contact && (
 				<>
 					<Text variant="h4" component="h2" text="Kontakt" />

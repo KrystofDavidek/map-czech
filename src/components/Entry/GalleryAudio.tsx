@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Divider } from '@mui/material';
 import AudioPlayer from 'react-h5-audio-player';
 
 import 'react-medium-image-zoom/dist/styles.css';
@@ -32,6 +32,7 @@ const GalleryAudio = ({ audios }: GalleryProps) => {
 					</Box>
 				))}
 			</Stack>
+			<Divider />
 		</>
 	);
 };

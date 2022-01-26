@@ -1,4 +1,10 @@
-import { Box, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
+import {
+	Box,
+	ImageList,
+	ImageListItem,
+	ImageListItemBar,
+	Divider
+} from '@mui/material';
 import Zoom from 'react-medium-image-zoom';
 
 import 'react-medium-image-zoom/dist/styles.css';
@@ -44,6 +50,7 @@ const Gallery = ({ images }: GalleryProps) => {
 					))}
 				</ImageList>
 			</Box>
+			<Divider />
 		</>
 	);
 };
