@@ -2,7 +2,7 @@ import { Details, Entry } from '../models/entry';
 
 const mockDetails: Details = {
 	record: {
-		url: '',
+		url: [''],
 		transcript: 'Měl jsem velkou žízeň',
 		comments:
 			'Occaecat velit et nulla exercitation enim elit sit eiusmod sunt proident fugiat labore enim minim. Nostrud ut nisi proident do. In laboris enim aliquip fugiat elit eu anim minim mollit quis.',
@@ -20,7 +20,7 @@ const mockEntry: Entry = {
 	location: {
 		mainLocation: 'Praha',
 		secondaryLocation: 'Czech Republic',
-		introImage: '',
+		introImage: [''],
 		demographic: 'Počet obyvatel:	382 405 (2021)'
 	},
 	details: mockDetails,
@@ -88,4 +88,46 @@ const mockEntry: Entry = {
 	}`
 };
 
-export { mockEntry };
+const defaultDetails: Details = {
+	record: {
+		url: [''],
+		transcript: '',
+		comments: '',
+		details: '',
+		otherSources: ''
+	},
+	history: ``,
+	current: ``
+};
+
+const defaultEntry: Entry = {
+	id: '',
+	location: {
+		mainLocation: '',
+		secondaryLocation: '',
+		introImage: [''],
+		demographic: ''
+	},
+	details: defaultDetails,
+	media: {
+		images: { files: [], names: [] },
+		texts: '',
+		videos: [],
+		audios: {
+			files: [],
+			names: []
+		},
+		others: ''
+	},
+	extra: {
+		projects: '',
+		offers: '',
+		attractions: '',
+		resources: '',
+
+		contact: ''
+	},
+	feature: ``
+};
+
+export { mockEntry, defaultEntry };

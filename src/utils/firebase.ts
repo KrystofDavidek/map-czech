@@ -11,6 +11,13 @@ import {
 	setDoc,
 	updateDoc
 } from 'firebase/firestore';
+import {
+	deleteObject,
+	getDownloadURL,
+	getStorage,
+	ref,
+	uploadBytes
+} from 'firebase/storage';
 
 import { Entry } from '../models/entry';
 import {
@@ -30,7 +37,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
+const storage = getStorage();
 const db = getFirestore();
 
 const getArrayDepth = (obj: any): number => {
@@ -80,12 +87,55 @@ const deSerialize = (feature: FirestoreFeature): Feature => {
 	}
 };
 
+export const uploadFile = async (file: File) => {
+	try {
+		const storageRef = ref(storage, file.name);
+		await uploadBytes(storageRef, file);
+	} catch (e) {
+		console.error('Error uploading file: ', e);
+	}
+};
+
+export const fileExis = async (file: string) => {
+	try {
+		const url = await getDownloadURL(ref(storage, file));
+		if (url) {
+			return true;
+		} else {
+			return false;
+		}
+		// eslint-disable-next-line no-empty
+	} catch (e) {}
+};
+
+export const deleteFile = async (file: string | File) => {
+	try {
+		let storageRef;
+		if (file instanceof File) {
+			storageRef = ref(storage, file.name);
+		} else {
+			storageRef = ref(storage, file);
+		}
+		await deleteObject(storageRef);
+	} catch (e) {
+		console.error('Error deleting file: ', e);
+	}
+};
+
+export const getImagePath = (name: string | undefined) => {
+	try {
+		return getDownloadURL(ref(storage, name));
+	} catch (e) {
+		console.error('Error deleting file: ', e);
+	}
+};
+
 export const addNewEntry = async (entry: Entry) => {
+	console.log(entry);
+
 	try {
 		const feature: Feature = JSON.parse(entry.feature) as Feature;
 		const firestoreFeature: FirestoreFeature = serialize(feature);
-
-		entry.feature = '';
 		if (entry.id) {
 			firestoreFeature.id = entry.id;
 			await setDoc(doc(db, 'entries', entry.id), entry);

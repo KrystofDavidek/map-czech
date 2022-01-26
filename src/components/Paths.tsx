@@ -9,7 +9,7 @@ import Entry from '../pages/Entry';
 const Paths = () => (
 	<Routes>
 		<Route path="/" element={<Map />} />
-		<Route path="/admin" element={<Admin />} />
+		<Route path="/admin/:query/" element={<Admin />} />
 		<Route path="/welcome" element={<Welcome />} />
 		<Route path="/location/:query/*" element={<Entry />} />
 		<Route path="*" element={<NotFound />} />

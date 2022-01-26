@@ -6,12 +6,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 import { Entry } from '../../models/entry';
 
 type Props = {
-	controlName:
-		| 'media.images.files'
-		| 'media.videos'
-		| 'media.images.names'
-		| 'media.audios.files'
-		| 'media.audios.names';
+	controlName: 'media.videos' | 'media.images.names' | 'media.audios.names';
 };
 
 const FormFields = ({ controlName }: Props) => {

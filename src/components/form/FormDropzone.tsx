@@ -1,15 +1,21 @@
 import { DropzoneArea } from 'react-mui-dropzone';
 import { createStyles, makeStyles } from '@mui/styles';
+import { Button } from '@mui/material';
+import { useState } from 'react';
 
 import Text from '../Text';
+import { deleteFile, fileExis, uploadFile } from '../../utils/firebase';
 
 type FileType = 'audio/*' | 'video/*' | 'image/*';
 
 type Props = { type?: FileType; filesLimit?: number; data?: any };
 
 const FormDropzone = (props: Props & any) => {
-	const onDropzoneStateChange = (loadedFiles: File[]) =>
-		props.onChange(loadedFiles);
+	const [files, setFiles] = useState<File[]>([]);
+
+	const onDropzoneStateChange = (loadedFiles: File[]) => {
+		setFiles(loadedFiles);
+	};
 
 	const useStyles = makeStyles(() =>
 		createStyles({
@@ -20,14 +26,33 @@ const FormDropzone = (props: Props & any) => {
 		})
 	);
 
+	const upload = () => {
+		const names: string[] = [];
+		files.forEach((file: string | File) => {
+			if (file instanceof File) {
+				uploadFile(file);
+				names.push(file.name);
+			}
+		});
+		props.onChange(names);
+	};
+
+	const checkInitFiles = (files: string[]) => {
+		const initFiles: string[] = [];
+		files.forEach(async file => {
+			if (await fileExis(file)) {
+				initFiles.push(file);
+			}
+		});
+		return initFiles;
+	};
+
 	const classes = useStyles();
 	return (
 		<>
 			<Text variant="h5" component="h2" text={props.title} />
 			<DropzoneArea
-				initialFiles={
-					props.data ? (props.filesLimit === 1 ? [props.data] : props.data) : []
-				}
+				initialFiles={props.data ? checkInitFiles(props.data) : []}
 				showPreviews
 				showPreviewsInDropzone={false}
 				useChipsForPreview
@@ -38,7 +63,11 @@ const FormDropzone = (props: Props & any) => {
 				acceptedFiles={[props.type ? props.type : 'image/*']}
 				previewText=""
 				filesLimit={props.filesLimit ? props.filesLimit : 10}
+				onDelete={file => deleteFile(file)}
 			/>
+			{files.length > 0 && (
+				<Button onClick={() => upload()}>Nahrát nové soubory</Button>
+			)}
 		</>
 	);
 };

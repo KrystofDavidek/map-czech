@@ -37,6 +37,7 @@ const FifthSection = ({ setPage }: SectionProps) => {
 				)}
 			/>
 			<input type="submit" />
+
 			<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
 				<Button
 					onClick={() => {
@@ -45,14 +46,6 @@ const FifthSection = ({ setPage }: SectionProps) => {
 					}}
 				>
 					Zpět
-				</Button>
-				<Button
-					onClick={() => {
-						setPage((prevState: number) => prevState + 1);
-						window.scrollTo(0, 0);
-					}}
-				>
-					Další
 				</Button>
 			</Stack>
 		</Stack>

@@ -1,8 +1,8 @@
-import { Stack, Grid, Divider } from '@mui/material';
+import { Stack, Grid, Divider, CircularProgress } from '@mui/material';
 import { useMemo } from 'react';
 
 import { useEntries } from '../../contexts/EntriesContext';
-import { IMAGE_URL_PREFIX } from '../../App';
+import useAsyncFiles from '../../hooks/useAsyncFiles';
 import Text from '../Text';
 
 import Image from './Image';
@@ -10,6 +10,7 @@ import Image from './Image';
 const Intro = () => {
 	const { currentEntry } = useEntries();
 	const location = useMemo(() => currentEntry?.location, [currentEntry]);
+	const { urls } = useAsyncFiles(location?.introImage);
 
 	return (
 		<Grid container spacing={2}>
@@ -25,12 +26,21 @@ const Intro = () => {
 					<Text text={location?.demographic} />
 				</Stack>
 			</Grid>
-			<Grid item xs={12} md={6}>
-				<Image
-					alt="Intro"
-					src={`${IMAGE_URL_PREFIX}${currentEntry?.location?.introImage}`}
-					sx={{ maxHeight: '20rem', maxWidth: '100%' }}
-				/>
+			<Grid
+				item
+				xs={12}
+				md={6}
+				sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+			>
+				{urls?.length === 0 ? (
+					<CircularProgress sx={{ height: '20rem' }} />
+				) : (
+					<Image
+						alt="Intro"
+						src={urls?.[0]}
+						sx={{ maxHeight: '20rem', maxWidth: '100%' }}
+					/>
+				)}
 			</Grid>
 		</Grid>
 	);
