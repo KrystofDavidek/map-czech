@@ -1,16 +1,22 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FeatureGroup, useMap } from 'react-leaflet';
 
 import { useDialog } from '../../contexts/DialogContext';
-import { featuresJson } from '../../data';
 import { Feature, FeatureCollection } from '../../models/feature';
 import { getZoom, getZoomCoords } from '../../utils/map';
 import theme from '../../utils/theme';
 import FeatureDialog from '../dialogs/FeatureDialog';
+import { getAllFeatures } from '../../utils/firebase';
 
 import FeatureShape from './FeatureShape';
 
 const Features = () => {
+	const [featureCollection, setFeatureCollection] = useState<FeatureCollection>(
+		{
+			type: 'FeatureCollection',
+			features: []
+		}
+	);
 	const map = useMap();
 	const zoom = useCallback(map => getZoom(map), []);
 	const zoomCoords = useCallback(coordinates => getZoomCoords(coordinates), []);
@@ -25,12 +31,22 @@ const Features = () => {
 		});
 	};
 
+	useEffect(() => {
+		const getData = async () => {
+			const features = await getAllFeatures();
+			if (features?.length > 0) {
+				setFeatureCollection({ ...featureCollection, features });
+			}
+		};
+		getData();
+	}, []);
+
 	// eslint-disable-next-line react/jsx-no-useless-fragment
-	if (!featuresJson) return <></>;
+	if (featureCollection?.features?.length < 1) return <></>;
 
 	return (
 		<>
-			{(featuresJson as FeatureCollection).features.map(
+			{(featureCollection as FeatureCollection).features.map(
 				(feature: Feature, index: number) => (
 					<FeatureGroup
 						eventHandlers={{

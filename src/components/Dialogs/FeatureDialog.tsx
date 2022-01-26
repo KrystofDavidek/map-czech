@@ -26,7 +26,7 @@ const FeatureDialog = ({ feature, close }: Props) => {
 
 	useEffect(() => {
 		const getData = async () => {
-			const entry = await getEntry('63ed34d4-58d0-46bf-aa75-f9db0f89bfc5');
+			const entry = await getEntry(feature.id);
 			if (entry) setCurrentEntry(entry);
 		};
 		getData();

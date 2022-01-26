@@ -1,7 +1,5 @@
 import { Details, Entry } from '../models/entry';
 
-import featuresJson from './mockFeatures.json';
-
 const mockDetails: Details = {
 	record: {
 		url: '',
@@ -18,9 +16,9 @@ const mockDetails: Details = {
 };
 
 const mockEntry: Entry = {
-	id: '63ed34d4-58d0-46bf-aa75-f9db0f89bfc5',
+	id: '',
 	location: {
-		mainLocation: 'Brno',
+		mainLocation: 'Praha',
 		secondaryLocation: 'Czech Republic',
 		introImage: '',
 		demographic: 'Počet obyvatel:	382 405 (2021)'
@@ -90,4 +88,4 @@ const mockEntry: Entry = {
 	}`
 };
 
-export { featuresJson, mockEntry };
+export { mockEntry };

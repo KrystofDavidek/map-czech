@@ -19,3 +19,19 @@ export type Properties = {
 	name: string;
 	category: string;
 };
+
+export type FirestoreCoords = number[] | FirestorePolygonCoords[];
+
+export type FirestorePolygonCoords = {
+	[key: number]: { [key: number]: number };
+};
+
+export type FirestoreFeature = {
+	type: 'Feature';
+	properties: Properties;
+	geometry: {
+		type: string;
+		coordinates: FirestoreCoords;
+	};
+	id: string;
+};
