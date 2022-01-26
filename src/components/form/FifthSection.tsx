@@ -36,8 +36,9 @@ const FifthSection = ({ setPage }: SectionProps) => {
 					/>
 				)}
 			/>
-			<input type="submit" />
-
+			<Button variant="outlined" size="large" type="submit">
+				Odeslat
+			</Button>
 			<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
 				<Button
 					onClick={() => {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable unused-imports/no-unused-vars */
-import { FormControl, Box, LinearProgress } from '@mui/material';
+import { FormControl, Box, LinearProgress, Stack, Button } from '@mui/material';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 
@@ -17,7 +17,7 @@ import { defaultEntry } from '../data';
 export type SectionProps = { setPage: Dispatch<SetStateAction<number>> };
 
 const Admin = () => {
-	const { currentEntry, setCurrentEntry } = useEntries();
+	const { currentEntry } = useEntries();
 	const [page, setPage] = useState(-1);
 	const methods = useForm<Entry>({
 		mode: 'onChange',
@@ -42,8 +42,24 @@ const Admin = () => {
 		<>
 			{page !== -1 && (
 				<>
-					<Box sx={{ mt: 1, width: '100%', round: '100%' }}>
+					<Box sx={{ mt: 1, width: '100%' }}>
 						<LinearProgress variant="determinate" value={(page + 1) * 20} />
+						<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
+							<Button
+								onClick={() => {
+									setPage(0);
+								}}
+							>
+								Na začátek
+							</Button>
+							<Button
+								onClick={() => {
+									setPage(4);
+								}}
+							>
+								Na konec
+							</Button>
+						</Stack>
 					</Box>
 					<FormProvider {...methods}>
 						<FormControl
