@@ -1,10 +1,10 @@
 import AudioPlayer from 'react-h5-audio-player';
-import { Stack, Grid, Link } from '@mui/material';
+import { Stack, Grid, Link, CircularProgress } from '@mui/material';
 import { useState } from 'react';
 
 import { Record as RecordType } from '../../models/entry';
-import { AUDIO_URL_PREFIX } from '../../App';
 import Text from '../Text';
+import useAsyncFiles from '../../hooks/useAsyncFiles';
 
 import TextSection from './TextSection';
 
@@ -16,6 +16,7 @@ type RecordProps = {
 
 const Record = ({ record }: RecordProps) => {
 	const [showDetails, setShowDetails] = useState(false);
+	const { urls } = useAsyncFiles(record.url);
 
 	return (
 		<Grid container spacing={2}>
@@ -30,16 +31,23 @@ const Record = ({ record }: RecordProps) => {
 			<Grid item xs={12} md={6}>
 				<Stack spacing={2}>
 					{record.url && (
-						<AudioPlayer
-							src={`${AUDIO_URL_PREFIX}${record.url}`}
-							customAdditionalControls={[]}
-							style={{
-								maxWidth: '100%'
-							}}
-							onPlay={() => {
-								setShowDetails(true);
-							}}
-						/>
+						// eslint-disable-next-line react/jsx-no-useless-fragment
+						<>
+							{urls && urls?.length === 0 ? (
+								<CircularProgress sx={{ height: '20rem' }} />
+							) : (
+								<AudioPlayer
+									src={urls?.[0]}
+									customAdditionalControls={[]}
+									style={{
+										maxWidth: '100%'
+									}}
+									onPlay={() => {
+										setShowDetails(true);
+									}}
+								/>
+							)}
+						</>
 					)}
 					<Link
 						sx={{ cursor: 'pointer' }}

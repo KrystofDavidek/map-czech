@@ -96,14 +96,10 @@ export const uploadFile = async (file: File) => {
 	}
 };
 
-export const fileExis = async (file: string) => {
+export const fileExist = async (file: string) => {
 	try {
 		const url = await getDownloadURL(ref(storage, file));
-		if (url) {
-			return true;
-		} else {
-			return false;
-		}
+		return !!url;
 		// eslint-disable-next-line no-empty
 	} catch (e) {}
 };
@@ -122,7 +118,7 @@ export const deleteFile = async (file: string | File) => {
 	}
 };
 
-export const getImagePath = (name: string | undefined) => {
+export const getFilePath = (name: string | undefined) => {
 	try {
 		return getDownloadURL(ref(storage, name));
 	} catch (e) {

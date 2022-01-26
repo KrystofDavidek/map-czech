@@ -26,22 +26,28 @@ const Intro = () => {
 					<Text text={location?.demographic} />
 				</Stack>
 			</Grid>
-			<Grid
-				item
-				xs={12}
-				md={6}
-				sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-			>
-				{urls?.length === 0 ? (
-					<CircularProgress sx={{ height: '20rem' }} />
-				) : (
-					<Image
-						alt="Intro"
-						src={urls?.[0]}
-						sx={{ maxHeight: '20rem', maxWidth: '100%' }}
-					/>
-				)}
-			</Grid>
+			{location?.introImage && (
+				<Grid
+					item
+					xs={12}
+					md={6}
+					sx={{
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center'
+					}}
+				>
+					{urls?.length === 0 ? (
+						<CircularProgress sx={{ height: '20rem' }} />
+					) : (
+						<Image
+							alt="Intro"
+							src={urls?.[0]}
+							sx={{ maxHeight: '20rem', maxWidth: '100%' }}
+						/>
+					)}
+				</Grid>
+			)}
 		</Grid>
 	);
 };

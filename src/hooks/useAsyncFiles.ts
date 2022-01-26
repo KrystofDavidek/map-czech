@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getImagePath } from '../utils/firebase';
+import { getFilePath } from '../utils/firebase';
 
 const useAsyncFiles = (names: string[] | undefined) => {
 	const [urls, setUrls] = useState<(string | undefined)[] | undefined>([]);
@@ -8,16 +8,16 @@ const useAsyncFiles = (names: string[] | undefined) => {
 	useEffect(() => {
 		const fetchFiles = async () => {
 			if (names) {
-				const pathPromise = [getImagePath(names[0])];
+				const pathPromise = [getFilePath(names[0])];
 				return Promise.all(pathPromise);
 			}
 		};
 
-		const loadImages = async () => {
+		const loadFiles = async () => {
 			const urls = await fetchFiles();
 			setUrls(urls);
 		};
-		loadImages();
+		loadFiles();
 	}, [names]);
 
 	return { urls };
