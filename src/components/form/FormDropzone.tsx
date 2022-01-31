@@ -1,24 +1,20 @@
 import { DropzoneArea } from 'react-mui-dropzone';
 import { createStyles, makeStyles } from '@mui/styles';
-import { Button } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 import Text from '../Text';
-import { deleteFile, fileExist, uploadFile } from '../../utils/firebase';
+import { deleteFile, uploadFile } from '../../utils/firebase';
+import { useSnackbar } from '../../contexts/SnackbarContext';
 
 type FileType = 'audio/*' | 'video/*' | 'image/*';
 
 type Props = { type?: FileType; filesLimit?: number; data?: any };
 
 const FormDropzone = (props: Props & any) => {
-	const [files, setFiles] = useState<File[]>([]);
-	const [initFiles, setInitFiles] = useState<any[]>([]);
+	const { showSnackbar } = useSnackbar();
+	const [files, setFiles] = useState<string[]>([]);
+	const [initFiles, setInitFiles] = useState<string[]>([]);
 	const [isLoaded, setIsLoaded] = useState<boolean>(false);
-
-	const onDropzoneStateChange = (loadedFiles: File[]) => {
-		setFiles(loadedFiles);
-	};
-
 	const useStyles = makeStyles(() =>
 		createStyles({
 			previewChip: {
@@ -27,46 +23,60 @@ const FormDropzone = (props: Props & any) => {
 			}
 		})
 	);
+	const classes = useStyles();
 
-	useEffect(() => {
-		if (!props.data) {
-			return props.onChange([]);
-		}
-		const fetchExists = async () => {
-			if (props.data) {
-				return Promise.all(
-					props.data.map(async (file: string) => await fileExist(file))
-				);
+	const onDropzoneStateChange = async (loadedFiles: File[]) => {
+		if (loadedFiles.length > 0 && loadedFiles.length > files.length) {
+			const newFile = loadedFiles[loadedFiles.length - 1];
+			try {
+				await uploadFile(newFile);
+				setFiles(files => [...files, newFile.name]);
+				showSnackbar({
+					text: 'Úspěšně nahráno',
+					variant: 'success'
+				});
+			} catch (e) {
+				console.error('Error uploading file: ', e);
+				showSnackbar({
+					text: 'Nahrávání se nezdařilo',
+					variant: 'error'
+				});
 			}
-		};
-		const loadInits = async () => {
-			const exists = await fetchExists();
-			exists?.forEach((exist, i) => {
-				if (exist) {
-					setIsLoaded(false);
-					setInitFiles(oldArray => [...oldArray, props.data[i]]);
-				}
+		}
+	};
+
+	const removeFile = async (removedFile: File) => {
+		try {
+			await deleteFile(removedFile);
+			setFiles(files.filter(file => file !== removedFile.name));
+			showSnackbar({
+				text: 'Úspěšně smazáno',
+				variant: 'success'
 			});
-		};
-		loadInits();
-	}, [props.data]);
+		} catch (e) {
+			console.error('Error deleting file: ', e);
+			showSnackbar({
+				text: 'Smazání se nezdařilo',
+				variant: 'error'
+			});
+		}
+	};
 
 	useEffect(() => {
 		setIsLoaded(true);
 	}, [initFiles]);
 
-	const upload = () => {
-		const names: string[] = [];
-		files.forEach((file: string | File) => {
-			if (file instanceof File) {
-				uploadFile(file);
-				names.push(file.name);
-			}
-		});
-		props.onChange(names);
-	};
+	useEffect(() => {
+		if (props?.data?.length > 0) {
+			setInitFiles(props.data);
+			setFiles(props.data);
+		}
+	}, []);
 
-	const classes = useStyles();
+	useEffect(() => {
+		props.onChange(files);
+	}, [files]);
+
 	return (
 		// eslint-disable-next-line react/jsx-no-useless-fragment
 		<>
@@ -85,11 +95,9 @@ const FormDropzone = (props: Props & any) => {
 						acceptedFiles={[props.type ? props.type : 'image/*']}
 						previewText=""
 						filesLimit={props.filesLimit ? props.filesLimit : 10}
-						onDelete={file => deleteFile(file)}
+						onDelete={file => removeFile(file)}
+						showAlerts={['error']}
 					/>
-					{files.length > 0 && (
-						<Button onClick={() => upload()}>Nahrát nové soubory</Button>
-					)}
 				</>
 			)}
 		</>

@@ -34,10 +34,10 @@ const Record = ({ record }: RecordProps) => {
 			</Grid>
 			<Grid item xs={12} md={6}>
 				<Stack spacing={2}>
-					{record.url && (
+					{record.url.length > 0 && (
 						// eslint-disable-next-line react/jsx-no-useless-fragment
 						<>
-							{urls && urls?.length === 0 ? (
+							{!urls || !urls[0] ? (
 								<CircularProgress sx={{ height: '20rem' }} />
 							) : (
 								<AudioPlayer

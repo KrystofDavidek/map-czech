@@ -9,12 +9,13 @@ const useAsyncFiles = (isSingle?: boolean) => {
 	useEffect(() => {
 		const fetchFiles = async () => {
 			if (names.length > 0) {
+				const pathPromise: (Promise<string> | undefined)[] = [];
 				if (isSingle) {
-					const pathPromise = [getFilePath(names[0])];
-					return Promise.all(pathPromise);
+					pathPromise.push(getFilePath(names[0]));
 				} else {
-					return Promise.all([]);
+					names.forEach(name => pathPromise.push(getFilePath(name)));
 				}
+				return Promise.all(pathPromise);
 			}
 		};
 

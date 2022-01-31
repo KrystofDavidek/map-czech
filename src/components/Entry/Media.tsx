@@ -4,6 +4,8 @@ import { useMemo } from 'react';
 import { useEntries } from '../../contexts/EntriesContext';
 import Text from '../Text';
 
+import Gallery from './Gallery';
+import GalleryAudio from './GalleryAudio';
 import GalleryVideo from './GalleryVideo';
 import TextSection from './TextSection';
 
@@ -13,7 +15,7 @@ const Media = () => {
 
 	return (
 		<Stack spacing={2}>
-			{/* <Gallery images={media?.images} /> */}
+			<Gallery dropZone={media?.images} />
 			{media?.texts?.[0] && (
 				<>
 					<Text variant="h3" component="h1" text="Texty" />
@@ -21,8 +23,7 @@ const Media = () => {
 					<Divider />
 				</>
 			)}
-
-			{/* <GalleryAudio audios={media?.audios} /> */}
+			<GalleryAudio dropZone={media?.audios} />
 			<GalleryVideo videos={media?.videos} />
 			{media?.others?.[0] && (
 				<>

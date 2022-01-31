@@ -5,7 +5,8 @@ import {
 	DialogContentText,
 	IconButton,
 	Grid,
-	CircularProgress
+	CircularProgress,
+	Box
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useEffect } from 'react';
@@ -71,11 +72,15 @@ const FeatureDialog = ({ feature, close }: Props) => {
 								</DialogContentText>
 							</Grid>
 							<Grid item xs={12}>
-								{currentEntry?.location?.introImage && (
+								{currentEntry?.location?.introImage.length > 0 && (
 									// eslint-disable-next-line react/jsx-no-useless-fragment
 									<>
-										{urls?.length === 0 ? (
-											<CircularProgress sx={{ height: '20rem' }} />
+										{!urls || urls.length === 0 ? (
+											<Box
+												sx={{ width: '70%', textAlign: 'center', pt: '2rem' }}
+											>
+												<CircularProgress />
+											</Box>
 										) : (
 											<Image
 												alt="Intro"

@@ -94,12 +94,8 @@ const deSerialize = (feature: FirestoreFeature): Feature => {
 };
 
 export const uploadFile = async (file: File) => {
-	try {
-		const storageRef = ref(storage, file.name);
-		await uploadBytes(storageRef, file);
-	} catch (e) {
-		console.error('Error uploading file: ', e);
-	}
+	const storageRef = ref(storage, file.name);
+	await uploadBytes(storageRef, file);
 };
 
 export const fileExist = async (file: string) => {
@@ -111,17 +107,13 @@ export const fileExist = async (file: string) => {
 };
 
 export const deleteFile = async (file: string | File) => {
-	try {
-		let storageRef;
-		if (file instanceof File) {
-			storageRef = ref(storage, file.name);
-		} else {
-			storageRef = ref(storage, file);
-		}
-		await deleteObject(storageRef);
-	} catch (e) {
-		console.error('Error deleting file: ', e);
+	let storageRef;
+	if (file instanceof File) {
+		storageRef = ref(storage, file.name);
+	} else {
+		storageRef = ref(storage, file);
 	}
+	await deleteObject(storageRef);
 };
 
 export const getFilePath = (name: string | undefined) => {

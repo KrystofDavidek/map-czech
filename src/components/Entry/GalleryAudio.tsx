@@ -1,37 +1,50 @@
-import { Box, Stack, Divider } from '@mui/material';
+import { Box, Stack, Divider, CircularProgress } from '@mui/material';
+import 'react-medium-image-zoom/dist/styles.css';
+import { useEffect } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 
-import 'react-medium-image-zoom/dist/styles.css';
-import { AUDIO_URL_PREFIX } from '../../App';
-import { Media } from '../../models/entry';
+import { DropZone } from '../../models/entry';
+import useAsyncFiles from '../../hooks/useAsyncFiles';
 import Text from '../Text';
 
 type GalleryProps = {
-	audios: Media[] | undefined;
+	dropZone: DropZone;
 };
 
-const GalleryAudio = ({ audios }: GalleryProps) => {
+const GalleryAudio = ({ dropZone }: GalleryProps) => {
+	const { urls, setNames } = useAsyncFiles();
+
 	// eslint-disable-next-line react/jsx-no-useless-fragment
-	if (!audios?.[0]) return <></>;
+	if (!dropZone.files[0]) return <></>;
+
+	useEffect(() => {
+		if (dropZone.files[0]) {
+			setNames(dropZone.files);
+		}
+	}, [dropZone]);
 
 	return (
 		<>
 			<Text variant="h3" component="h1" text="Nahrávky" />
-			<Stack sx={{ overflowY: 'scroll', maxHeight: '80vh' }} spacing={2}>
-				{audios.map((item, i) => (
-					<Box key={i}>
-						<AudioPlayer
-							src={`${AUDIO_URL_PREFIX}${item.url}`}
-							customAdditionalControls={[]}
-							style={{
-								maxWidth: '90%',
-								margin: '1rem'
-							}}
-						/>
-						<Text sx={{ ml: '1rem' }} text={item.name} />
-					</Box>
-				))}
-			</Stack>
+			{!urls || !urls[0] ? (
+				<CircularProgress sx={{ height: '20rem' }} />
+			) : (
+				<Stack sx={{ overflowY: 'scroll', maxHeight: '80vh' }} spacing={2}>
+					{urls.map((url, i) => (
+						<Box key={i}>
+							<AudioPlayer
+								src={`${url}`}
+								customAdditionalControls={[]}
+								style={{
+									maxWidth: '90%',
+									margin: '1rem'
+								}}
+							/>
+							<Text sx={{ ml: '1rem' }} text={dropZone.names[i]?.name} />
+						</Box>
+					))}
+				</Stack>
+			)}
 			<Divider />
 		</>
 	);

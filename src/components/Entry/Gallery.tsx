@@ -3,53 +3,61 @@ import {
 	ImageList,
 	ImageListItem,
 	ImageListItemBar,
-	Divider
+	Divider,
+	CircularProgress
 } from '@mui/material';
+import { useEffect } from 'react';
 import Zoom from 'react-medium-image-zoom';
 
 import 'react-medium-image-zoom/dist/styles.css';
-import { IMAGE_URL_PREFIX } from '../../App';
-import { Media } from '../../models/entry';
+import useAsyncFiles from '../../hooks/useAsyncFiles';
+import { DropZone } from '../../models/entry';
 import Text from '../Text';
 
 type GalleryProps = {
-	images: Media[] | undefined;
+	dropZone: DropZone;
 };
 
-const Gallery = ({ images }: GalleryProps) => {
+const Gallery = ({ dropZone }: GalleryProps) => {
+	const { urls, setNames } = useAsyncFiles();
+
 	// eslint-disable-next-line react/jsx-no-useless-fragment
-	if (!images?.[0]) return <></>;
+	if (!dropZone.files[0]) return <></>;
+
+	useEffect(() => {
+		if (dropZone.files[0]) {
+			setNames(dropZone.files);
+		}
+	}, [dropZone]);
 
 	return (
 		<>
 			<Text variant="h3" component="h1" text="Obrázky" />
-			<Box sx={{ overflowY: 'scroll', maxHeight: '80vh' }}>
-				<ImageList variant="masonry" cols={2} gap={24}>
-					{images.map((item, i) => (
-						<Zoom key={i} zoomMargin={24}>
-							<ImageListItem>
-								{item.url.startsWith('http') ? (
+			{!urls || !urls[0] ? (
+				<CircularProgress sx={{ height: '20rem' }} />
+			) : (
+				<Box sx={{ overflowY: 'scroll', maxHeight: '80vh' }}>
+					<ImageList variant="masonry" cols={2} gap={24}>
+						{urls.map((url, i) => (
+							<Zoom key={i} zoomMargin={24}>
+								<ImageListItem>
 									<img
-										src={`${item.url}?w=248&fit=crop&auto=format`}
-										srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-										alt={item.name}
+										src={`${url}?w=248&fit=crop&auto=format`}
+										srcSet={`${url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+										alt={dropZone.names[i]?.name}
 										loading="lazy"
 									/>
-								) : (
-									<img
-										src={`${IMAGE_URL_PREFIX}${item.url}?w=248&fit=crop&auto=format`}
-										srcSet={`${IMAGE_URL_PREFIX}${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-										alt={item.name}
-										loading="lazy"
+									;
+									<ImageListItemBar
+										title={dropZone.names[i]?.name}
+										position="below"
 									/>
-								)}
-								;
-								<ImageListItemBar title={item.name} position="below" />
-							</ImageListItem>
-						</Zoom>
-					))}
-				</ImageList>
-			</Box>
+								</ImageListItem>
+							</Zoom>
+						))}
+					</ImageList>
+				</Box>
+			)}
 			<Divider />
 		</>
 	);

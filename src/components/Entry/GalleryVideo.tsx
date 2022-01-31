@@ -27,7 +27,7 @@ const GalleryVideo = ({ videos }: GalleryProps) => {
 		<>
 			<Text variant="h3" component="h1" text="Videa" />
 			<Box sx={{ overflowY: 'scroll', maxHeight: '80vh' }}>
-				<ImageList variant="masonry" cols={matchesMax ? 1 : 2} gap={24}>
+				<ImageList cols={matchesMax ? 1 : 2} gap={24}>
 					{videos.map((item, i) => (
 						<ImageListItem key={i}>
 							<ReactPlayer

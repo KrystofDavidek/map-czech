@@ -31,7 +31,7 @@ const Intro = () => {
 					<Text text={location?.demographic} />
 				</Stack>
 			</Grid>
-			{location?.introImage && (
+			{location?.introImage.length > 0 && (
 				<Grid
 					item
 					xs={12}
@@ -42,7 +42,7 @@ const Intro = () => {
 						alignItems: 'center'
 					}}
 				>
-					{urls?.length === 0 ? (
+					{!urls || !urls[0] ? (
 						<CircularProgress sx={{ height: '20rem' }} />
 					) : (
 						<Image
