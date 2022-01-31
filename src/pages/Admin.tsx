@@ -1,8 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable unused-imports/no-unused-vars */
-import { FormControl, Box, LinearProgress, Stack, Button } from '@mui/material';
+import {
+	FormControl,
+	Box,
+	LinearProgress,
+	Stack,
+	Button,
+	Tooltip,
+	IconButton
+} from '@mui/material';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
+import { Delete } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 import FirstSection from '../components/form/FirstSection';
 import SecondSection from '../components/form/SecondSection';
@@ -13,19 +23,34 @@ import { Entry } from '../models/entry';
 import { useEntries } from '../contexts/EntriesContext';
 import { addNewEntry } from '../utils/firebase';
 import { defaultEntry } from '../data';
+import { DeleteDialog } from '../components/dialogs/DeleteDialog';
+import { useDialog } from '../contexts/DialogContext';
+import { useSnackbar } from '../contexts/SnackbarContext';
 
 export type SectionProps = { setPage: Dispatch<SetStateAction<number>> };
 
 const Admin = () => {
+	const { showSnackbar } = useSnackbar();
+	const navigate = useNavigate();
 	const { currentEntry } = useEntries();
+	const { openDialog } = useDialog();
 	const [page, setPage] = useState(-1);
 	const methods = useForm<Entry>({
 		mode: 'onChange',
 		defaultValues: defaultEntry
 	});
 
+	const handleOnDeleteClick = () => {
+		openDialog({
+			Content: DeleteDialog,
+			props: {
+				entry: currentEntry
+			}
+		});
+	};
+
 	useEffect(() => {
-		if (currentEntry) {
+		if (currentEntry.id) {
 			methods.reset(currentEntry);
 		} else {
 			methods.reset({});
@@ -34,7 +59,21 @@ const Admin = () => {
 	}, [currentEntry]);
 
 	const handleSubmitOnClick = async (data: Entry) => {
-		if (data) await addNewEntry(data);
+		if (data) {
+			try {
+				await addNewEntry(data);
+				showSnackbar({
+					text: 'Lokalita úspěšně nahrána',
+					variant: 'success'
+				});
+			} catch (e) {
+				showSnackbar({
+					text: 'Lokalitu se nepodařilo nahrát',
+					variant: 'error'
+				});
+			}
+			navigate('/');
+		}
 	};
 
 	return (
@@ -60,6 +99,15 @@ const Admin = () => {
 								Na konec
 							</Button>
 						</Stack>
+						{currentEntry.id && (
+							<Stack direction="row" sx={{ justifyContent: 'right' }}>
+								<Tooltip title="Smazat lokalitu" placement="top">
+									<IconButton onClick={handleOnDeleteClick}>
+										<Delete sx={{ color: 'red' }} />
+									</IconButton>
+								</Tooltip>
+							</Stack>
+						)}
 					</Box>
 					<FormProvider {...methods}>
 						<FormControl

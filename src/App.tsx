@@ -6,6 +6,7 @@ import Paths from './components/Paths';
 import { DialogProvider } from './contexts/DialogContext';
 import { EntriesProvider } from './contexts/EntriesContext';
 import { SearchProvider } from './contexts/SearchContext';
+import { SnackbarProvider } from './contexts/SnackbarContext';
 import theme from './utils/theme';
 
 export const IMAGE_URL_PREFIX = '../../assets/images/';
@@ -17,11 +18,13 @@ const App = () => (
 			<CssBaseline />
 			<SearchProvider>
 				<EntriesProvider>
-					<DialogProvider>
-						<Layout>
-							<Paths />
-						</Layout>
-					</DialogProvider>
+					<SnackbarProvider>
+						<DialogProvider>
+							<Layout>
+								<Paths />
+							</Layout>
+						</DialogProvider>
+					</SnackbarProvider>
 				</EntriesProvider>
 			</SearchProvider>
 		</BrowserRouter>

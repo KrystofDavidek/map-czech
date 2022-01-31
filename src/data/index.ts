@@ -105,7 +105,7 @@ const defaultEntry: Entry = {
 	location: {
 		mainLocation: '',
 		secondaryLocation: '',
-		introImage: [''],
+		introImage: [],
 		demographic: ''
 	},
 	details: defaultDetails,

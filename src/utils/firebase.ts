@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import {
 	addDoc,
 	collection,
+	deleteDoc,
 	doc,
 	DocumentSnapshot,
 	getDoc,
@@ -39,6 +40,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage();
 const db = getFirestore();
+
+export const deleteEntry = async (id: string) => {
+	await deleteDoc(doc(db, 'entries', id));
+	await deleteDoc(doc(db, 'features', id));
+};
 
 const getArrayDepth = (obj: any): number => {
 	if (Array.isArray(obj))

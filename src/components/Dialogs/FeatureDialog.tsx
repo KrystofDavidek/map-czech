@@ -16,6 +16,7 @@ import { Feature } from '../../models/feature';
 import { useEntries } from '../../contexts/EntriesContext';
 import { IMAGE_URL_PREFIX } from '../../App';
 import { getEntry } from '../../utils/firebase';
+import { defaultEntry } from '../../data';
 
 type Props = DialogPropsType<{
 	feature: Feature;
@@ -34,12 +35,12 @@ const FeatureDialog = ({ feature, close }: Props) => {
 
 	const handleClose = () => {
 		close();
-		setCurrentEntry(undefined);
+		setCurrentEntry(defaultEntry);
 	};
 	return (
 		// eslint-disable-next-line react/jsx-no-useless-fragment
 		<>
-			{currentEntry && (
+			{currentEntry.id && (
 				<>
 					<IconButton
 						aria-label="close"

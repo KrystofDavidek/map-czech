@@ -29,6 +29,9 @@ const FormDropzone = (props: Props & any) => {
 	);
 
 	useEffect(() => {
+		if (!props.data) {
+			return props.onChange([]);
+		}
 		const fetchExists = async () => {
 			if (props.data) {
 				return Promise.all(

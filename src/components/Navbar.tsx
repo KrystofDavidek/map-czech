@@ -2,6 +2,7 @@ import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { useEntries } from '../contexts/EntriesContext';
+import { defaultEntry } from '../data';
 
 const Navbar = () => {
 	const { setCurrentEntry } = useEntries();
@@ -20,7 +21,7 @@ const Navbar = () => {
 						<Button
 							component={Link}
 							to="/admin/new"
-							onClick={() => setCurrentEntry(undefined)}
+							onClick={() => setCurrentEntry(defaultEntry)}
 							color="inherit"
 						>
 							Editor

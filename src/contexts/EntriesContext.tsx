@@ -6,12 +6,12 @@ import {
 	useState
 } from 'react';
 
-import { mockEntry } from '../data';
+import { defaultEntry } from '../data';
 import { Entry } from '../models/entry';
 
 type EntriesContextType = {
-	currentEntry: Entry | undefined;
-	setCurrentEntry: Dispatch<SetStateAction<Entry | undefined>>;
+	currentEntry: Entry;
+	setCurrentEntry: Dispatch<SetStateAction<Entry>>;
 };
 
 const EntriesContext = createContext<EntriesContextType>(undefined as never);
@@ -19,9 +19,7 @@ const EntriesContext = createContext<EntriesContextType>(undefined as never);
 export const useEntries = () => useContext(EntriesContext);
 
 export const EntriesProvider = ({ children }: { children: JSX.Element }) => {
-	const [currentEntry, setCurrentEntry] = useState<Entry | undefined>(
-		mockEntry
-	);
+	const [currentEntry, setCurrentEntry] = useState<Entry>(defaultEntry);
 
 	return (
 		<EntriesContext.Provider
