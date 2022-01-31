@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Box } from '@mui/material';
@@ -25,6 +25,12 @@ const FormEditor = (props: any) => {
 				.replaceAll('<p></p>', '')
 		);
 	};
+
+	useEffect(() => {
+		if (!props.data) {
+			return props.onChange('');
+		}
+	}, []);
 
 	return (
 		<>

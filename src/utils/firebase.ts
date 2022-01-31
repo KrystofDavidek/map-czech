@@ -125,33 +125,29 @@ export const deleteFile = async (file: string | File) => {
 };
 
 export const getFilePath = (name: string | undefined) => {
-	try {
-		return getDownloadURL(ref(storage, name));
-	} catch (e) {
-		console.error('Error deleting file: ', e);
+	if (name) {
+		try {
+			return getDownloadURL(ref(storage, name));
+		} catch (e) {
+			console.error('Error getting file path: ', e);
+		}
 	}
 };
 
 export const addNewEntry = async (entry: Entry) => {
-	console.log(entry);
-
-	try {
-		const feature: Feature = JSON.parse(entry.feature) as Feature;
-		const firestoreFeature: FirestoreFeature = serialize(feature);
-		if (entry.id) {
-			firestoreFeature.id = entry.id;
-			await setDoc(doc(db, 'entries', entry.id), entry);
-			await setDoc(doc(db, 'features', entry.id), firestoreFeature);
-		} else {
-			const docRef = await addDoc(collection(db, 'entries'), entry);
-			firestoreFeature.id = docRef.id;
-			await updateDoc(docRef, {
-				id: docRef.id
-			});
-			await setDoc(doc(db, 'features', docRef.id), firestoreFeature);
-		}
-	} catch (e) {
-		console.error('Error adding document: ', e);
+	const feature: Feature = JSON.parse(entry.feature) as Feature;
+	const firestoreFeature: FirestoreFeature = serialize(feature);
+	if (entry.id) {
+		firestoreFeature.id = entry.id;
+		await setDoc(doc(db, 'entries', entry.id), entry);
+		await setDoc(doc(db, 'features', entry.id), firestoreFeature);
+	} else {
+		const docRef = await addDoc(collection(db, 'entries'), entry);
+		firestoreFeature.id = docRef.id;
+		await updateDoc(docRef, {
+			id: docRef.id
+		});
+		await setDoc(doc(db, 'features', docRef.id), firestoreFeature);
 	}
 };
 

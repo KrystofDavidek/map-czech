@@ -54,12 +54,15 @@ const Admin = () => {
 			methods.reset(currentEntry);
 		} else {
 			methods.reset({});
+			navigate('/admin/new');
 		}
 		setPage(0);
 	}, [currentEntry]);
 
 	const handleSubmitOnClick = async (data: Entry) => {
 		if (data) {
+			console.log(data);
+
 			try {
 				await addNewEntry(data);
 				showSnackbar({
@@ -71,6 +74,7 @@ const Admin = () => {
 					text: 'Lokalitu se nepodařilo nahrát',
 					variant: 'error'
 				});
+				console.log(`Error when adding/editing${e}`);
 			}
 			navigate('/');
 		}

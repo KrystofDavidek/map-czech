@@ -1,6 +1,6 @@
 import AudioPlayer from 'react-h5-audio-player';
 import { Stack, Grid, Link, CircularProgress } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Record as RecordType } from '../../models/entry';
 import Text from '../Text';
@@ -16,7 +16,11 @@ type RecordProps = {
 
 const Record = ({ record }: RecordProps) => {
 	const [showDetails, setShowDetails] = useState(false);
-	const { urls } = useAsyncFiles(record.url);
+	const { urls, setNames } = useAsyncFiles(true);
+
+	useEffect(() => {
+		setNames(record.url);
+	}, [record]);
 
 	return (
 		<Grid container spacing={2}>
@@ -38,6 +42,7 @@ const Record = ({ record }: RecordProps) => {
 							) : (
 								<AudioPlayer
 									src={urls?.[0]}
+									autoPlayAfterSrcChange={false}
 									customAdditionalControls={[]}
 									style={{
 										maxWidth: '100%'

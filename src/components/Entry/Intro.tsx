@@ -1,5 +1,5 @@
 import { Stack, Grid, Divider, CircularProgress } from '@mui/material';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { useEntries } from '../../contexts/EntriesContext';
 import useAsyncFiles from '../../hooks/useAsyncFiles';
@@ -10,7 +10,12 @@ import Image from './Image';
 const Intro = () => {
 	const { currentEntry } = useEntries();
 	const location = useMemo(() => currentEntry?.location, [currentEntry]);
-	const { urls } = useAsyncFiles(location?.introImage);
+	const { urls, setNames } = useAsyncFiles(true);
+
+	useEffect(() => {
+		if (currentEntry.location?.introImage)
+			setNames(currentEntry.location.introImage);
+	}, [currentEntry]);
 
 	return (
 		<Grid container spacing={2}>

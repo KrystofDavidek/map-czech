@@ -25,7 +25,7 @@ const SectionNavbar = () => {
 	);
 
 	useEffect(() => {
-		if (entryPath) navigate(`${entryPath}/intro`);
+		entryPath === '/location/' ? navigate(`/`) : navigate(`${entryPath}/intro`);
 	}, []);
 
 	useEffect(() => {

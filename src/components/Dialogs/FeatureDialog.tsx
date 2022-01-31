@@ -1,11 +1,11 @@
 import {
-	Box,
 	Button,
 	DialogActions,
 	DialogContent,
 	DialogContentText,
 	IconButton,
-	Grid
+	Grid,
+	CircularProgress
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useEffect } from 'react';
@@ -14,9 +14,10 @@ import { Link } from 'react-router-dom';
 import { DialogPropsType } from '../../contexts/DialogContext';
 import { Feature } from '../../models/feature';
 import { useEntries } from '../../contexts/EntriesContext';
-import { IMAGE_URL_PREFIX } from '../../App';
 import { getEntry } from '../../utils/firebase';
 import { defaultEntry } from '../../data';
+import useAsyncFiles from '../../hooks/useAsyncFiles';
+import Image from '../entry/Image';
 
 type Props = DialogPropsType<{
 	feature: Feature;
@@ -24,11 +25,15 @@ type Props = DialogPropsType<{
 
 const FeatureDialog = ({ feature, close }: Props) => {
 	const { currentEntry, setCurrentEntry } = useEntries();
+	const { urls, setNames } = useAsyncFiles(true);
 
 	useEffect(() => {
 		const getData = async () => {
 			const entry = await getEntry(feature.id);
-			if (entry) setCurrentEntry(entry);
+			if (entry) {
+				setCurrentEntry(entry);
+				if (entry.location?.introImage) setNames(entry.location.introImage);
+			}
 		};
 		getData();
 	}, [feature]);
@@ -67,12 +72,18 @@ const FeatureDialog = ({ feature, close }: Props) => {
 							</Grid>
 							<Grid item xs={12}>
 								{currentEntry?.location?.introImage && (
-									<Box
-										component="img"
-										alt="Intro"
-										src={`${IMAGE_URL_PREFIX}${currentEntry?.location?.introImage}`}
-										sx={{ maxWidth: '100%', pr: '3.5rem' }}
-									/>
+									// eslint-disable-next-line react/jsx-no-useless-fragment
+									<>
+										{urls?.length === 0 ? (
+											<CircularProgress sx={{ height: '20rem' }} />
+										) : (
+											<Image
+												alt="Intro"
+												src={urls?.[0]}
+												sx={{ maxHeight: '20rem', maxWidth: '100%' }}
+											/>
+										)}
+									</>
 								)}
 							</Grid>
 						</Grid>
