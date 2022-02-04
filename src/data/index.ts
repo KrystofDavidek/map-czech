@@ -1,5 +1,7 @@
 import { Details, Entry } from '../models/entry';
 
+import { filters } from './filters';
+
 const mockDetails: Details = {
 	record: {
 		url: [''],
@@ -21,7 +23,19 @@ const mockEntry: Entry = {
 		mainLocation: 'Praha',
 		secondaryLocation: 'Czech Republic',
 		introImage: [''],
-		demographic: 'Počet obyvatel:	382 405 (2021)'
+		demographic: 'Počet obyvatel:	382 405 (2021)',
+		filters: {
+			arrivalTimes: ['1550-1620'],
+			extinctionPeriod: ['před 1620'],
+			communitySize: ['méně než 10'],
+			dialectBase: ['městská mluva'],
+			numOfGenerations: ['1'],
+			motivation: ['náboženská (cca do 1850)'],
+			existMedia: ['ano'],
+			religion: ['protestantská komunita'],
+			reemigration: ['po 1. světové válce'],
+			typeOfEmigration: ['primární']
+		}
 	},
 	details: mockDetails,
 	media: {
@@ -106,7 +120,19 @@ const defaultEntry: Entry = {
 		mainLocation: '',
 		secondaryLocation: '',
 		introImage: [],
-		demographic: ''
+		demographic: '',
+		filters: {
+			arrivalTimes: [],
+			extinctionPeriod: [],
+			communitySize: [],
+			dialectBase: [],
+			numOfGenerations: [],
+			motivation: [],
+			existMedia: [],
+			religion: [],
+			reemigration: [],
+			typeOfEmigration: []
+		}
 	},
 	details: defaultDetails,
 	media: {
@@ -130,4 +156,4 @@ const defaultEntry: Entry = {
 	feature: ``
 };
 
-export { mockEntry, defaultEntry };
+export { mockEntry, defaultEntry, filters };

@@ -25,6 +25,20 @@ export type Location = {
 	secondaryLocation: string;
 	introImage: string[];
 	demographic: string;
+	filters: EntryFilters;
+};
+
+export type EntryFilters = {
+	arrivalTimes: string[];
+	extinctionPeriod: string[];
+	communitySize: string[];
+	dialectBase: string[];
+	numOfGenerations: string[];
+	motivation: string[];
+	existMedia: string[];
+	religion: string[];
+	reemigration: string[];
+	typeOfEmigration: string[];
 };
 
 export type Record = {
