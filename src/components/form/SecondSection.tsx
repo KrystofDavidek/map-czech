@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable unused-imports/no-unused-vars */
-import { Stack, Button, Divider } from '@mui/material';
+import { Stack, Button } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { Entry } from '../../models/entry';
@@ -74,7 +74,6 @@ const SecondSection = ({ setPage }: SectionProps) => {
 					/>
 				)}
 			/>
-			<Divider />
 			<Text variant="h4" component="h2" text="Historie a současnost" />
 
 			<Controller

@@ -6,7 +6,7 @@ import {
 	Select,
 	SelectChangeEvent
 } from '@mui/material';
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Text from '../Text';
 
@@ -22,7 +22,7 @@ const MenuProps = {
 };
 
 const FormSelect = (props: any) => {
-	const [filterValues, setFilterValues] = React.useState<string[]>(
+	const [filterValues, setFilterValues] = useState<string[]>(
 		props.data ? props.data : []
 	);
 

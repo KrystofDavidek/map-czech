@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable unused-imports/no-unused-vars */
-import { Stack, Button, Divider } from '@mui/material';
+import { Stack, Button } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { Entry } from '../../models/entry';
@@ -30,7 +30,6 @@ const ThirdSection = ({ setPage }: SectionProps) => {
 				)}
 			/>
 			<FormFields controlName="media.images.names" />
-			<Divider />
 			<Controller
 				name="media.audios.files"
 				control={methods.control}
@@ -44,10 +43,8 @@ const ThirdSection = ({ setPage }: SectionProps) => {
 				)}
 			/>
 			<FormFields controlName="media.audios.names" />
-			<Divider />
 			<Text variant="h5" component="h2" text="Videa" />
 			<FormDoubleFields controlName="media.videos" />
-			<Divider />
 			<Controller
 				name="media.texts"
 				control={methods.control}
@@ -59,7 +56,6 @@ const ThirdSection = ({ setPage }: SectionProps) => {
 					/>
 				)}
 			/>
-			<Divider />
 			<Controller
 				name="media.others"
 				control={methods.control}

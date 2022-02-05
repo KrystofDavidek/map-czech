@@ -62,7 +62,6 @@ const Admin = () => {
 	const handleSubmitOnClick = async (data: Entry) => {
 		if (data) {
 			console.log(data);
-
 			try {
 				await addNewEntry(data);
 				showSnackbar({

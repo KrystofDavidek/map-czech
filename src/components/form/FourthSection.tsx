@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable unused-imports/no-unused-vars */
-import { Stack, Button, Divider } from '@mui/material';
+import { Stack, Button } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { Entry } from '../../models/entry';
@@ -25,7 +25,6 @@ const FourthSection = ({ setPage }: SectionProps) => {
 					/>
 				)}
 			/>
-			<Divider />
 			<Controller
 				name="extra.offers"
 				control={methods.control}
@@ -37,7 +36,6 @@ const FourthSection = ({ setPage }: SectionProps) => {
 					/>
 				)}
 			/>
-			<Divider />
 			<Controller
 				name="extra.attractions"
 				control={methods.control}
@@ -49,7 +47,6 @@ const FourthSection = ({ setPage }: SectionProps) => {
 					/>
 				)}
 			/>
-			<Divider />
 			<Controller
 				name="extra.resources"
 				control={methods.control}
@@ -61,7 +58,6 @@ const FourthSection = ({ setPage }: SectionProps) => {
 					/>
 				)}
 			/>
-			<Divider />
 			<Controller
 				name="extra.contact"
 				control={methods.control}
