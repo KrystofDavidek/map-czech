@@ -1,3 +1,5 @@
+import { EntryFilters } from './entry';
+
 export type Feature = {
 	type: 'Feature';
 	properties: Properties;
@@ -20,6 +22,7 @@ export type Properties = {
 	secondaryLocation: string;
 	introImage: string[];
 	category: string;
+	filters: EntryFilters;
 };
 
 export type FirestoreCoords = number[] | FirestorePolygonCoords[];

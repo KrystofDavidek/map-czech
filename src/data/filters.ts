@@ -3,6 +3,18 @@ export type Filter = {
 	values: string[];
 };
 
+export type FilterKeys =
+	| 'arrivalTimes'
+	| 'extinctionPeriod'
+	| 'communitySize'
+	| 'dialectBase'
+	| 'numOfGenerations'
+	| 'motivation'
+	| 'existMedia'
+	| 'religion'
+	| 'reemigration'
+	| 'typeOfEmigration';
+
 export type Filters = {
 	arrivalTimes: Filter;
 	extinctionPeriod: Filter;

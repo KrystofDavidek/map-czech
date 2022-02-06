@@ -3,7 +3,7 @@ import { FC, useState } from 'react';
 
 import Navbar from './Navbar';
 
-export const drawerWidth = 350;
+export const drawerWidth = 400;
 
 const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })<{
 	open?: boolean;

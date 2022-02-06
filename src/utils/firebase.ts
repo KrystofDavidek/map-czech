@@ -129,6 +129,7 @@ export const getFilePath = (name: string | undefined) => {
 export const addNewEntry = async (entry: Entry) => {
 	const feature: Feature = JSON.parse(entry.feature) as Feature;
 	feature.properties.mainLocation = entry.location.mainLocation;
+	feature.properties.filters = entry.location.filters;
 
 	feature.properties.secondaryLocation =
 		entry.location.secondaryLocation.length > 0

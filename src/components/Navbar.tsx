@@ -17,13 +17,16 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MapIcon from '@mui/icons-material/Map';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import { useEffect } from 'react';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useEffect, useState } from 'react';
 
 import { useEntries } from '../contexts/EntriesContext';
 import { defaultEntry } from '../data';
+import { useFilter } from '../contexts/FilterContext';
 
 import { drawerWidth } from './Layout';
 import LocationList from './LocationList';
+import FilterList from './FilterList';
 
 type AppBarProps = {
 	open?: boolean;
@@ -58,6 +61,8 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
 const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 	const { setCurrentEntry } = useEntries();
 	const location = useLocation();
+	const [toggleFilter, setToggle] = useState<boolean>(false);
+	const { activeFilters, setActiveFilters } = useFilter();
 
 	useEffect(() => {
 		setOpen(false);
@@ -66,10 +71,12 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 	const theme = useTheme();
 
 	const handleDrawerOpen = () => {
+		setToggle(false);
 		setOpen(true);
 	};
 
 	const handleDrawerClose = () => {
+		setToggle(false);
 		setOpen(false);
 	};
 
@@ -125,21 +132,50 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 				open={open}
 			>
 				<DrawerHeader sx={{ display: 'flex', justifyContent: 'space-between' }}>
-					<Stack
-						direction="row"
-						spacing={2}
-						paddingLeft={2}
-						alignItems="center"
-					>
-						<Typography component="h1" variant="h5">
-							Seznam lokalit
-						</Typography>
-						<Tooltip title="Filtrovat lokality">
-							<IconButton color="inherit">
-								<FilterAltOutlinedIcon />
-							</IconButton>
-						</Tooltip>
-					</Stack>
+					{toggleFilter ? (
+						<Stack
+							direction="row"
+							spacing={2}
+							paddingLeft={2}
+							alignItems="center"
+						>
+							<Typography component="h1" variant="h5">
+								Filtry
+							</Typography>
+
+							<Tooltip title="Zpět na lokality">
+								<IconButton
+									onClick={() => {
+										setToggle(!toggleFilter);
+									}}
+									color="inherit"
+								>
+									<ArrowBackIcon />
+								</IconButton>
+							</Tooltip>
+						</Stack>
+					) : (
+						<Stack
+							direction="row"
+							spacing={2}
+							paddingLeft={2}
+							alignItems="center"
+						>
+							<Typography component="h1" variant="h5">
+								Seznam lokalit
+							</Typography>
+							<Tooltip title="Filtrovat lokality">
+								<IconButton
+									onClick={() => {
+										setToggle(!toggleFilter);
+									}}
+									color="inherit"
+								>
+									<FilterAltOutlinedIcon />
+								</IconButton>
+							</Tooltip>
+						</Stack>
+					)}
 
 					<IconButton onClick={handleDrawerClose}>
 						{theme.direction === 'ltr' ? (
@@ -149,7 +185,7 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 						)}
 					</IconButton>
 				</DrawerHeader>
-				<LocationList />
+				{toggleFilter ? <FilterList /> : <LocationList />}
 			</Drawer>
 		</Box>
 	);

@@ -21,7 +21,7 @@ const Features = () => {
 	const zoom = useCallback(map => getZoom(map), []);
 	const zoomCoords = useCallback(coordinates => getZoomCoords(coordinates), []);
 	const { openDialog } = useDialog();
-	const { allFeatures, setRefresh } = useFeatures();
+	const { features, setRefresh } = useFeatures();
 
 	const handleOnClick = (feature: Feature) => {
 		openDialog({
@@ -37,8 +37,8 @@ const Features = () => {
 	}, []);
 
 	useEffect(() => {
-		setFeatureCollection({ ...featureCollection, features: allFeatures });
-	}, [allFeatures]);
+		setFeatureCollection({ ...featureCollection, features });
+	}, [features]);
 
 	// eslint-disable-next-line react/jsx-no-useless-fragment
 	if (featureCollection?.features?.length < 1) return <></>;

@@ -50,6 +50,7 @@ const Location = ({ feature }: { feature: Feature }) => {
 		if (entry.id) {
 			setLoadEntry(false);
 			setCurrentEntry(entry);
+			setZoomTo(feature.geometry.coordinates);
 			navigate(`/location/${entry.location.mainLocation}`);
 		}
 	}, [entry]);
@@ -104,12 +105,12 @@ const Location = ({ feature }: { feature: Feature }) => {
 };
 
 const LocationList = () => {
-	const { allFeatures } = useFeatures();
+	const { features } = useFeatures();
 
 	return (
 		<List>
 			<Divider />
-			{allFeatures.map((feature: Feature) => (
+			{features.map((feature: Feature) => (
 				<Box key={feature.id}>
 					<Location feature={feature} />
 					<Divider />

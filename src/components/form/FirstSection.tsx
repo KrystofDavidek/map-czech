@@ -23,7 +23,7 @@ const FirstSection = ({ setPage }: SectionProps) => {
 				control={methods.control}
 				defaultValue=""
 				render={({ field: { ref, ...rest } }) => (
-					<FormField {...rest} required title="Název hlavní lokace" />
+					<FormField {...rest} required title="Název hlavní lokality" />
 				)}
 			/>
 			<Controller
@@ -31,7 +31,7 @@ const FirstSection = ({ setPage }: SectionProps) => {
 				control={methods.control}
 				defaultValue=""
 				render={({ field: { ref, ...rest } }) => (
-					<FormField {...rest} title="Název sekundární lokace" />
+					<FormField {...rest} title="Název sekundární lokality" />
 				)}
 			/>
 			<Controller

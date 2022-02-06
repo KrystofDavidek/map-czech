@@ -26,10 +26,12 @@ import { defaultEntry } from '../data';
 import { DeleteDialog } from '../components/dialogs/DeleteDialog';
 import { useDialog } from '../contexts/DialogContext';
 import { useSnackbar } from '../contexts/SnackbarContext';
+import { defaultFilterState, useFilter } from '../contexts/FilterContext';
 
 export type SectionProps = { setPage: Dispatch<SetStateAction<number>> };
 
 const Admin = () => {
+	const { setActiveFilters } = useFilter();
 	const { showSnackbar } = useSnackbar();
 	const navigate = useNavigate();
 	const { currentEntry } = useEntries();
@@ -64,6 +66,7 @@ const Admin = () => {
 			console.log(data);
 			try {
 				await addNewEntry(data);
+				setActiveFilters(defaultFilterState);
 				showSnackbar({
 					text: 'Lokalita úspěšně nahrána',
 					variant: 'success'

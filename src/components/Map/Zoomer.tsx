@@ -12,11 +12,13 @@ const Zoomer = () => {
 	const { input, isSearching, setSearching } = useSearch();
 	const { zoomTo } = useFeatures();
 
+	const duration = 1.5;
+
 	const zoom = useCallback(map => getZoom(map), []);
 
 	useEffect(() => {
 		if (zoomTo.length > 0) {
-			map.flyTo(getZoomCoords(zoomTo as number[]), zoom(map));
+			map.flyTo(getZoomCoords(zoomTo as number[]), zoom(map), { duration });
 		}
 	}, [zoomTo]);
 
@@ -28,7 +30,7 @@ const Zoomer = () => {
 	}, [isSearching]);
 
 	useEffect(() => {
-		if (location.lat !== 0) map.flyTo(location, zoom(map));
+		if (location.lat !== 0) map.flyTo(location, zoom(map), { duration });
 	}, [location]);
 
 	// eslint-disable-next-line react/jsx-no-useless-fragment

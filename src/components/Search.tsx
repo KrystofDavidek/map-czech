@@ -19,7 +19,7 @@ const search = () => {
 
 	return (
 		<TextField
-			label="Lokace"
+			label="Lokalita"
 			onChange={handleChange}
 			onKeyDown={handleKeyDown}
 			value={input}
