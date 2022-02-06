@@ -10,18 +10,49 @@ import {
 	List,
 	Typography
 } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import { useEntries } from '../contexts/EntriesContext';
 import { useFeatures } from '../contexts/FeaturesContext';
+import { defaultEntry } from '../data';
 import useAsyncFiles from '../hooks/useAsyncFiles';
+import { Entry } from '../models/entry';
 import { Feature } from '../models/feature';
+import { getEntry } from '../utils/firebase';
 
 const Location = ({ feature }: { feature: Feature }) => {
+	const { setZoomTo } = useFeatures();
 	const { urls, setNames } = useAsyncFiles(true);
+	const { setCurrentEntry } = useEntries();
+	const [loadEntry, setLoadEntry] = useState(false);
+	const [entry, setEntry] = useState<Entry>(defaultEntry);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		setNames(feature.properties.introImage);
 	}, []);
+
+	useEffect(() => {
+		if (loadEntry) {
+			const getData = async () => {
+				const entry = await getEntry(feature.id);
+				if (entry) {
+					setEntry(entry);
+				}
+			};
+			getData();
+		}
+	}, [loadEntry]);
+
+	useEffect(() => {
+		if (entry.id) {
+			setLoadEntry(false);
+			setCurrentEntry(entry);
+			navigate(`/location/${entry.location.mainLocation}`);
+		}
+	}, [entry]);
 
 	return (
 		<Card sx={{ width: '100%', p: '1rem' }}>
@@ -51,8 +82,22 @@ const Location = ({ feature }: { feature: Feature }) => {
 				</Typography>
 			</CardContent>
 			<CardActions>
-				<Button size="small">Share</Button>
-				<Button size="small">Learn More</Button>
+				<Button
+					onClick={() => {
+						setZoomTo(feature.geometry.coordinates);
+					}}
+					size="small"
+				>
+					Zobrazit na mapě
+				</Button>
+				<Button
+					onClick={() => {
+						setLoadEntry(true);
+					}}
+					size="small"
+				>
+					Zobrazit detaily
+				</Button>
 			</CardActions>
 		</Card>
 	);
@@ -65,10 +110,10 @@ const LocationList = () => {
 		<List>
 			<Divider />
 			{allFeatures.map((feature: Feature) => (
-				<>
-					<Location key={feature.id} feature={feature} />
+				<Box key={feature.id}>
+					<Location feature={feature} />
 					<Divider />
-				</>
+				</Box>
 			))}
 		</List>
 	);

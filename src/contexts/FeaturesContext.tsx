@@ -13,6 +13,8 @@ import { getAllFeatures } from '../utils/firebase';
 type FeaturesContextType = {
 	allFeatures: Feature[];
 	setRefresh: Dispatch<SetStateAction<boolean>>;
+	zoomTo: number[] | number[][][];
+	setZoomTo: Dispatch<SetStateAction<number[] | number[][][]>>;
 };
 
 const FeaturesContext = createContext<FeaturesContextType>(undefined as never);
@@ -22,6 +24,7 @@ export const useFeatures = () => useContext(FeaturesContext);
 export const FeaturesProvider = ({ children }: { children: JSX.Element }) => {
 	const [allFeatures, setAllFeatures] = useState<Feature[]>([]);
 	const [refresh, setRefresh] = useState<boolean>(true);
+	const [zoomTo, setZoomTo] = useState<number[] | number[][][]>([]);
 
 	useEffect(() => {
 		if (refresh) {
@@ -40,7 +43,9 @@ export const FeaturesProvider = ({ children }: { children: JSX.Element }) => {
 		<FeaturesContext.Provider
 			value={{
 				allFeatures,
-				setRefresh
+				setRefresh,
+				zoomTo,
+				setZoomTo
 			}}
 		>
 			{children}
