@@ -5,7 +5,7 @@ import { useDialog } from '../../contexts/DialogContext';
 import { Feature, FeatureCollection } from '../../models/feature';
 import { getZoom, getZoomCoords } from '../../utils/map';
 import theme from '../../utils/theme';
-import FeatureDialog from '../dialogs/FeatureDialog';
+import FeatureDialog from '../Dialogs/FeatureDialog';
 import { useFeatures } from '../../contexts/FeaturesContext';
 
 import FeatureShape from './FeatureShape';

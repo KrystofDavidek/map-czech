@@ -18,7 +18,7 @@ import { useEntries } from '../../contexts/EntriesContext';
 import { getEntry } from '../../utils/firebase';
 import { defaultEntry } from '../../data';
 import useAsyncFiles from '../../hooks/useAsyncFiles';
-import Image from '../entry/Image';
+import Image from '../Entry/Image';
 import useUserContext from '../../contexts/UserContext';
 
 type Props = DialogPropsType<{
