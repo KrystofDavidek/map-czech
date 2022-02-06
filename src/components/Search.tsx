@@ -19,7 +19,7 @@ const search = () => {
 
 	return (
 		<TextField
-			label="Lokalita"
+			label="Vyhledáváč"
 			onChange={handleChange}
 			onKeyDown={handleKeyDown}
 			value={input}

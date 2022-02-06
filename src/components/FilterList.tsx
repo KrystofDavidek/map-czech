@@ -4,12 +4,10 @@ import {
 	Divider,
 	FormControlLabel,
 	FormGroup,
-	IconButton,
 	List,
-	Tooltip,
+	Button,
 	Typography
 } from '@mui/material';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 import { defaultFilterState, useFilter } from '../contexts/FilterContext';
 import { FilterKeys, filters } from '../data/filters';
@@ -34,38 +32,21 @@ const FilterList = () => {
 		}
 	};
 	return (
-		<List sx={{ p: '1rem' }}>
+		<List sx={{ p: '1rem', pt: 0 }}>
+			<Button
+				onClick={() => {
+					setActiveFilters(defaultFilterState);
+				}}
+				size="small"
+			>
+				Restartovat filtry
+			</Button>
 			<Divider />
-
 			{Object.keys(filters).map((item: string, index: number) => (
 				<Box key={index}>
-					{index === 0 ? (
-						<Box
-							sx={{
-								display: 'flex',
-								justifyContent: 'space-between',
-								alignItems: 'flex-start'
-							}}
-						>
-							<Typography sx={{ my: 2 }} variant="h5" component="div">
-								{filters[item as FilterKeys].name}
-							</Typography>
-							<Tooltip title="Restartovat filtry">
-								<IconButton
-									onClick={() => {
-										setActiveFilters(defaultFilterState);
-									}}
-									color="inherit"
-								>
-									<HighlightOffIcon />
-								</IconButton>
-							</Tooltip>
-						</Box>
-					) : (
-						<Typography sx={{ my: 2 }} variant="h5" component="div">
-							{filters[item as FilterKeys].name}
-						</Typography>
-					)}
+					<Typography sx={{ my: 2 }} variant="h5" component="div">
+						{filters[item as FilterKeys].name}
+					</Typography>
 					<FormGroup sx={{ ml: 2 }}>
 						{filters[item as FilterKeys].values.map(
 							(filter: string, index: number) => (
