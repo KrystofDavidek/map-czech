@@ -9,29 +9,32 @@ import { FeaturesProvider } from './contexts/FeaturesContext';
 import { FilterProvider } from './contexts/FilterContext';
 import { SearchProvider } from './contexts/SearchContext';
 import { SnackbarProvider } from './contexts/SnackbarContext';
+import { UserProvider } from './contexts/UserContext';
 import theme from './utils/theme';
 
 const App = () => (
-	<ThemeProvider theme={theme}>
-		<BrowserRouter>
-			<CssBaseline />
-			<FilterProvider>
-				<FeaturesProvider>
-					<SearchProvider>
-						<EntriesProvider>
-							<SnackbarProvider>
-								<DialogProvider>
-									<Layout>
-										<Paths />
-									</Layout>
-								</DialogProvider>
-							</SnackbarProvider>
-						</EntriesProvider>
-					</SearchProvider>
-				</FeaturesProvider>
-			</FilterProvider>
-		</BrowserRouter>
-	</ThemeProvider>
+	<UserProvider>
+		<ThemeProvider theme={theme}>
+			<BrowserRouter>
+				<CssBaseline />
+				<FilterProvider>
+					<FeaturesProvider>
+						<SearchProvider>
+							<EntriesProvider>
+								<SnackbarProvider>
+									<DialogProvider>
+										<Layout>
+											<Paths />
+										</Layout>
+									</DialogProvider>
+								</SnackbarProvider>
+							</EntriesProvider>
+						</SearchProvider>
+					</FeaturesProvider>
+				</FilterProvider>
+			</BrowserRouter>
+		</ThemeProvider>
+	</UserProvider>
 );
 
 export default App;

@@ -12,7 +12,7 @@ import {
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Delete } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import FirstSection from '../components/form/FirstSection';
 import SecondSection from '../components/form/SecondSection';
@@ -31,6 +31,7 @@ import { defaultFilterState, useFilter } from '../contexts/FilterContext';
 export type SectionProps = { setPage: Dispatch<SetStateAction<number>> };
 
 const Admin = () => {
+	const location = useLocation();
 	const { setActiveFilters } = useFilter();
 	const { showSnackbar } = useSnackbar();
 	const navigate = useNavigate();
@@ -98,6 +99,7 @@ const Admin = () => {
 								Na začátek
 							</Button>
 							<Button
+								disabled={location.pathname.endsWith('new')}
 								onClick={() => {
 									setPage(4);
 								}}

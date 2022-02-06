@@ -1,9 +1,18 @@
 import { initializeApp } from 'firebase/app';
 import {
+	getAuth,
+	NextOrObserver,
+	onAuthStateChanged,
+	signInWithEmailAndPassword,
+	User
+} from 'firebase/auth';
+import {
 	addDoc,
 	collection,
+	CollectionReference,
 	deleteDoc,
 	doc,
+	DocumentReference,
 	DocumentSnapshot,
 	getDoc,
 	getDocs,
@@ -40,6 +49,25 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage();
 const db = getFirestore();
+const auth = getAuth();
+
+export type UserData = {
+	userEmail: string;
+};
+
+export const logIn = (email: string, password: string) =>
+	signInWithEmailAndPassword(auth, email, password);
+
+export const onAuthChanged = (callback: NextOrObserver<User>) =>
+	onAuthStateChanged(auth, callback);
+
+export const userDataCollection = collection(
+	db,
+	'userData'
+) as CollectionReference<UserData>;
+
+export const userDataDocument = (email: string) =>
+	doc(db, 'userData', email) as DocumentReference<UserData>;
 
 export const deleteEntry = async (id: string) => {
 	await deleteDoc(doc(db, 'entries', id));

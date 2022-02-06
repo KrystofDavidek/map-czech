@@ -22,7 +22,7 @@ import { useEffect, useState } from 'react';
 
 import { useEntries } from '../contexts/EntriesContext';
 import { defaultEntry } from '../data';
-import { useFilter } from '../contexts/FilterContext';
+import useUserContext from '../contexts/UserContext';
 
 import { drawerWidth } from './Layout';
 import LocationList from './LocationList';
@@ -62,7 +62,7 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 	const { setCurrentEntry } = useEntries();
 	const location = useLocation();
 	const [toggleFilter, setToggle] = useState<boolean>(false);
-	const { activeFilters, setActiveFilters } = useFilter();
+	const { loading, user } = useUserContext();
 
 	useEffect(() => {
 		setOpen(false);
@@ -101,21 +101,31 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 							<Typography variant="h6">Krajanská mapa</Typography>
 						</Button>
 					</Box>
-					<Box>
-						<Tooltip title="Mapa">
-							<IconButton component={Link} to="/" color="inherit">
-								<MapIcon />
-							</IconButton>
-						</Tooltip>
-						<Button
-							component={Link}
-							to="/admin/new"
-							onClick={() => setCurrentEntry(defaultEntry)}
-							color="inherit"
-						>
-							Editor
-						</Button>
-					</Box>
+
+					{!loading && (
+						<Box>
+							<Tooltip title="Mapa">
+								<IconButton component={Link} to="/" color="inherit">
+									<MapIcon />
+								</IconButton>
+							</Tooltip>
+							{!user && (
+								<Button component={Link} to="/login" color="inherit">
+									Přihlášení
+								</Button>
+							)}
+							{user && (
+								<Button
+									component={Link}
+									to="/admin/new"
+									onClick={() => setCurrentEntry(defaultEntry)}
+									color="inherit"
+								>
+									Editor
+								</Button>
+							)}
+						</Box>
+					)}
 				</Toolbar>
 			</AppBar>
 			<Drawer

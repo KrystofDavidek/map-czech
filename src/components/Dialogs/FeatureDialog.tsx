@@ -19,6 +19,7 @@ import { getEntry } from '../../utils/firebase';
 import { defaultEntry } from '../../data';
 import useAsyncFiles from '../../hooks/useAsyncFiles';
 import Image from '../entry/Image';
+import useUserContext from '../../contexts/UserContext';
 
 type Props = DialogPropsType<{
 	feature: Feature;
@@ -27,6 +28,7 @@ type Props = DialogPropsType<{
 const FeatureDialog = ({ feature, close }: Props) => {
 	const { currentEntry, setCurrentEntry } = useEntries();
 	const { urls, setNames } = useAsyncFiles(true);
+	const { user } = useUserContext();
 
 	useEffect(() => {
 		const getData = async () => {
@@ -94,13 +96,15 @@ const FeatureDialog = ({ feature, close }: Props) => {
 						</Grid>
 					</DialogContent>
 					<DialogActions>
-						<Button
-							onClick={close}
-							component={Link}
-							to={`/admin/${currentEntry?.location?.mainLocation}`}
-						>
-							Upravit lokaci
-						</Button>
+						{user && (
+							<Button
+								onClick={close}
+								component={Link}
+								to={`/admin/${currentEntry?.location?.mainLocation}`}
+							>
+								Upravit lokaci
+							</Button>
+						)}
 					</DialogActions>
 					<DialogActions>
 						<Button onClick={handleClose}>Zpátky</Button>
