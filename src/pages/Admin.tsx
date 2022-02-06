@@ -84,7 +84,7 @@ const Admin = () => {
 		<>
 			{page !== -1 && (
 				<>
-					<Box sx={{ mt: 1, width: '100%' }}>
+					<Box sx={{ width: '100%' }}>
 						<LinearProgress variant="determinate" value={(page + 1) * 20} />
 						<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
 							<Button
