@@ -128,6 +128,16 @@ export const getFilePath = (name: string | undefined) => {
 
 export const addNewEntry = async (entry: Entry) => {
 	const feature: Feature = JSON.parse(entry.feature) as Feature;
+	feature.properties.mainLocation = entry.location.mainLocation;
+
+	feature.properties.secondaryLocation =
+		entry.location.secondaryLocation.length > 0
+			? entry.location.secondaryLocation
+			: '';
+
+	feature.properties.introImage =
+		entry.location.introImage.length > 0 ? entry.location.introImage : [];
+
 	const firestoreFeature: FirestoreFeature = serialize(feature);
 	if (entry.id) {
 		firestoreFeature.id = entry.id;

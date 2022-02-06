@@ -3,6 +3,7 @@ import {
 	Button,
 	Drawer,
 	IconButton,
+	Stack,
 	styled,
 	Toolbar,
 	Tooltip,
@@ -12,22 +13,17 @@ import {
 import { Link, useLocation } from 'react-router-dom';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import ListAltIcon from '@mui/icons-material/ListAlt';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MapIcon from '@mui/icons-material/Map';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import { useEffect } from 'react';
 
 import { useEntries } from '../contexts/EntriesContext';
 import { defaultEntry } from '../data';
 
 import { drawerWidth } from './Layout';
+import LocationList from './LocationList';
 
 type AppBarProps = {
 	open?: boolean;
@@ -82,7 +78,7 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 			<AppBar position="static" open={open}>
 				<Toolbar sx={{ justifyContent: 'space-between' }}>
 					<Box>
-						<Tooltip title="Seznam lokací">
+						<Tooltip title="Seznam lokalit">
 							<IconButton
 								color="inherit"
 								aria-label="open drawer"
@@ -129,9 +125,22 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 				open={open}
 			>
 				<DrawerHeader sx={{ display: 'flex', justifyContent: 'space-between' }}>
-					<Typography component="h1" variant="h5">
-						Seznam lokací
-					</Typography>
+					<Stack
+						direction="row"
+						spacing={2}
+						paddingLeft={2}
+						alignItems="center"
+					>
+						<Typography component="h1" variant="h5">
+							Seznam lokalit
+						</Typography>
+						<Tooltip title="Filtrovat lokality">
+							<IconButton color="inherit">
+								<FilterAltOutlinedIcon />
+							</IconButton>
+						</Tooltip>
+					</Stack>
+
 					<IconButton onClick={handleDrawerClose}>
 						{theme.direction === 'ltr' ? (
 							<ChevronLeftIcon />
@@ -140,28 +149,7 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 						)}
 					</IconButton>
 				</DrawerHeader>
-				<Divider />
-				<List>
-					{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
-				<Divider />
-				<List>
-					{['All mail', 'Trash', 'Spam'].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
+				<LocationList />
 			</Drawer>
 		</Box>
 	);

@@ -16,7 +16,9 @@ export type FeatureCollection = {
 export type Properties = {
 	shape: string;
 	radius?: number;
-	name: string;
+	mainLocation: string;
+	secondaryLocation: string;
+	introImage: string[];
 	category: string;
 };
 

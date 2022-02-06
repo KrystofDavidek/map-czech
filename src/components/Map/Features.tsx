@@ -6,7 +6,7 @@ import { Feature, FeatureCollection } from '../../models/feature';
 import { getZoom, getZoomCoords } from '../../utils/map';
 import theme from '../../utils/theme';
 import FeatureDialog from '../dialogs/FeatureDialog';
-import { getAllFeatures } from '../../utils/firebase';
+import { useFeatures } from '../../contexts/FeaturesContext';
 
 import FeatureShape from './FeatureShape';
 
@@ -21,6 +21,7 @@ const Features = () => {
 	const zoom = useCallback(map => getZoom(map), []);
 	const zoomCoords = useCallback(coordinates => getZoomCoords(coordinates), []);
 	const { openDialog } = useDialog();
+	const { allFeatures, setRefresh } = useFeatures();
 
 	const handleOnClick = (feature: Feature) => {
 		openDialog({
@@ -32,14 +33,12 @@ const Features = () => {
 	};
 
 	useEffect(() => {
-		const getData = async () => {
-			const features = await getAllFeatures();
-			if (features?.length > 0) {
-				setFeatureCollection({ ...featureCollection, features });
-			}
-		};
-		getData();
+		setRefresh(true);
 	}, []);
+
+	useEffect(() => {
+		setFeatureCollection({ ...featureCollection, features: allFeatures });
+	}, [allFeatures]);
 
 	// eslint-disable-next-line react/jsx-no-useless-fragment
 	if (featureCollection?.features?.length < 1) return <></>;
