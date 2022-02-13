@@ -42,8 +42,8 @@ const Gallery = ({ dropZone }: GalleryProps) => {
 							<Zoom key={i} zoomMargin={24}>
 								<ImageListItem>
 									<img
-										src={`${url}?w=248&fit=crop&auto=format`}
-										srcSet={`${url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+										src={`${url}`}
+										srcSet={`${url}`}
 										alt={dropZone.names[i]?.name}
 										loading="lazy"
 									/>
