@@ -40,7 +40,7 @@ const SectionNavbar = () => {
 	};
 
 	return (
-		<Box sx={{ width: '100%', mt: 4 }}>
+		<Box sx={{ width: '100%' }}>
 			<IconButton
 				onClick={() => {
 					navigate(`/`);

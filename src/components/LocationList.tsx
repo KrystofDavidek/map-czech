@@ -7,11 +7,15 @@ import {
 	CardMedia,
 	CircularProgress,
 	Divider,
+	IconButton,
 	List,
+	Stack,
+	Tooltip,
 	Typography
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 import { useEntries } from '../contexts/EntriesContext';
 import { useFeatures } from '../contexts/FeaturesContext';
@@ -20,15 +24,31 @@ import useAsyncFiles from '../hooks/useAsyncFiles';
 import { Entry } from '../models/entry';
 import { Feature } from '../models/feature';
 import { getEntry } from '../utils/firebase';
+import useUserContext from '../contexts/UserContext';
 
-const Location = ({ feature }: { feature: Feature }) => {
+const Location = ({
+	feature,
+	setDrawerOpen
+}: {
+	feature: Feature;
+	setDrawerOpen: any;
+}) => {
 	const { setZoomTo } = useFeatures();
 	const { urls, setNames } = useAsyncFiles(true);
 	const { setCurrentEntry } = useEntries();
 	const [loadEntry, setLoadEntry] = useState(false);
 	const [entry, setEntry] = useState<Entry>(defaultEntry);
-
+	const { user } = useUserContext();
+	const location = useLocation();
 	const navigate = useNavigate();
+
+	const toAdmin = async (featureId: string) => {
+		const entry = await getEntry(feature.id);
+		if (entry) {
+			setCurrentEntry(entry);
+			navigate(`/admin/${featureId}`);
+		}
+	};
 
 	useEffect(() => {
 		setNames(feature.properties.introImage);
@@ -74,7 +94,7 @@ const Location = ({ feature }: { feature: Feature }) => {
 					)}
 				</>
 			)}
-			<CardContent>
+			<CardContent sx={{ pb: 0 }}>
 				<Typography gutterBottom variant="h5" component="div">
 					{feature.properties.mainLocation}
 				</Typography>
@@ -82,29 +102,47 @@ const Location = ({ feature }: { feature: Feature }) => {
 					{feature.properties.secondaryLocation}
 				</Typography>
 			</CardContent>
-			<CardActions>
-				<Button
-					onClick={() => {
-						setZoomTo(feature.geometry.coordinates);
-					}}
-					size="small"
-				>
-					Zobrazit na mapě
-				</Button>
-				<Button
-					onClick={() => {
-						setLoadEntry(true);
-					}}
-					size="small"
-				>
-					Zobrazit detaily
-				</Button>
+			<CardActions disableSpacing>
+				<Stack direction="row" spacing={1}>
+					<Button
+						onClick={() => {
+							if (location.pathname !== '/') {
+								setDrawerOpen(false);
+								// Otherwise map is not rendered correctly because of drawer size
+								setTimeout(() => {
+									navigate(`/`);
+									setZoomTo(feature.geometry.coordinates);
+								}, 500);
+							} else {
+								setZoomTo(feature.geometry.coordinates);
+							}
+						}}
+						size="small"
+					>
+						Zobrazit na mapě
+					</Button>
+					<Button
+						onClick={() => {
+							setLoadEntry(true);
+						}}
+						size="small"
+					>
+						Zobrazit detaily
+					</Button>
+				</Stack>
+				{user && (
+					<Tooltip sx={{ ml: 'auto' }} title="Upravit lokaci">
+						<IconButton onClick={() => toAdmin(feature.id)} color="primary">
+							<SettingsIcon />
+						</IconButton>
+					</Tooltip>
+				)}
 			</CardActions>
 		</Card>
 	);
 };
 
-const LocationList = () => {
+const LocationList = ({ setDrawerOpen }: { setDrawerOpen: any }) => {
 	const { features } = useFeatures();
 
 	return (
@@ -112,7 +150,7 @@ const LocationList = () => {
 			<Divider />
 			{features.map((feature: Feature) => (
 				<Box key={feature.id}>
-					<Location feature={feature} />
+					<Location setDrawerOpen={setDrawerOpen} feature={feature} />
 					<Divider />
 				</Box>
 			))}

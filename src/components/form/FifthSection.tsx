@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable unused-imports/no-unused-vars */
 import { Stack, Button, Link } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 

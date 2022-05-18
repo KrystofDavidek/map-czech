@@ -97,6 +97,7 @@ const FormDropzone = (props: Props & any) => {
 						filesLimit={props.filesLimit ? props.filesLimit : 10}
 						onDelete={file => removeFile(file)}
 						showAlerts={['error']}
+						maxFileSize={30000000}
 					/>
 				</>
 			)}
