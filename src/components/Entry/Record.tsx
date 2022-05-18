@@ -1,7 +1,8 @@
 import AudioPlayer from 'react-h5-audio-player';
-import { Stack, Grid, Link, CircularProgress } from '@mui/material';
+import { Stack, Grid, Link } from '@mui/material';
 import { useEffect, useState } from 'react';
 
+import LoadingSpinner from '../LoadingSpinner';
 import { Record as RecordType } from '../../models/entry';
 import Text from '../Text';
 import useAsyncFiles from '../../hooks/useAsyncFiles';
@@ -38,7 +39,7 @@ const Record = ({ record }: RecordProps) => {
 						// eslint-disable-next-line react/jsx-no-useless-fragment
 						<>
 							{!urls || !urls[0] ? (
-								<CircularProgress sx={{ height: '20rem' }} />
+								<LoadingSpinner width="20rem" height="20rem" />
 							) : (
 								<AudioPlayer
 									src={urls?.[0]}

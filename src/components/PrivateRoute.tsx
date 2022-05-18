@@ -1,22 +1,21 @@
-import { Box, CircularProgress } from '@mui/material';
 import { Navigate } from 'react-router';
 
 import useUserContext from '../contexts/UserContext';
+
+import LoadingSpinner from './LoadingSpinner';
 
 const PrivateRoute = ({ children }: any) => {
 	const { user, loading } = useUserContext();
 
 	if (loading)
 		return (
-			<Box
-				sx={{
-					width: '100%',
-					textAlign: 'center',
-					pt: '5rem'
-				}}
-			>
-				<CircularProgress size="5rem" />
-			</Box>
+			<LoadingSpinner
+				boxWidth="100%"
+				width="5rem"
+				height="5rem"
+				textAlign="center"
+				pt="5rem"
+			/>
 		);
 	return user ? children : <Navigate to={{ pathname: '/login' }} />;
 };

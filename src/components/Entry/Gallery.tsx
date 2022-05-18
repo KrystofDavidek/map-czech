@@ -3,8 +3,7 @@ import {
 	ImageList,
 	ImageListItem,
 	ImageListItemBar,
-	Divider,
-	CircularProgress
+	Divider
 } from '@mui/material';
 import { useEffect } from 'react';
 import Zoom from 'react-medium-image-zoom';
@@ -12,6 +11,7 @@ import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import useAsyncFiles from '../../hooks/useAsyncFiles';
 import { DropZone } from '../../models/entry';
+import LoadingSpinner from '../LoadingSpinner';
 import Text from '../Text';
 
 type GalleryProps = {
@@ -34,7 +34,14 @@ const Gallery = ({ dropZone }: GalleryProps) => {
 		<>
 			<Text variant="h3" component="h1" text="Obrázky" />
 			{!urls || !urls[0] ? (
-				<CircularProgress sx={{ height: '20rem' }} />
+				<LoadingSpinner
+					boxWidth="100%"
+					height="5rem"
+					width="5rem"
+					textAlign="center"
+					pt="2rem"
+					pb="10rem"
+				/>
 			) : (
 				<Box sx={{ overflowY: 'scroll', maxHeight: '80vh' }}>
 					<ImageList variant="masonry" cols={2} gap={24}>

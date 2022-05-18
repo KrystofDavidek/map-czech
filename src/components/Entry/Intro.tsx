@@ -1,8 +1,9 @@
-import { Stack, Grid, Divider, CircularProgress } from '@mui/material';
+import { Stack, Grid, Divider } from '@mui/material';
 import { useEffect, useMemo } from 'react';
 
 import { useEntries } from '../../contexts/EntriesContext';
 import useAsyncFiles from '../../hooks/useAsyncFiles';
+import LoadingSpinner from '../LoadingSpinner';
 import Text from '../Text';
 
 import Image from './Image';
@@ -43,7 +44,7 @@ const Intro = () => {
 					}}
 				>
 					{!urls || !urls[0] ? (
-						<CircularProgress sx={{ height: '20rem' }} />
+						<LoadingSpinner />
 					) : (
 						<Image
 							alt="Intro"

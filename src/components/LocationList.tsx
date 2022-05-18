@@ -5,7 +5,6 @@ import {
 	CardActions,
 	CardContent,
 	CardMedia,
-	CircularProgress,
 	Divider,
 	IconButton,
 	List,
@@ -25,6 +24,8 @@ import { Entry } from '../models/entry';
 import { Feature } from '../models/feature';
 import { getEntry } from '../utils/firebase';
 import useUserContext from '../contexts/UserContext';
+
+import LoadingSpinner from './LoadingSpinner';
 
 const Location = ({
 	feature,
@@ -81,9 +82,7 @@ const Location = ({
 				// eslint-disable-next-line react/jsx-no-useless-fragment
 				<>
 					{!urls || urls.length === 0 ? (
-						<Box sx={{ width: '70%', textAlign: 'center', pt: '2rem' }}>
-							<CircularProgress />
-						</Box>
+						<LoadingSpinner boxWidth="100%" textAlign="center" pt="2rem" />
 					) : (
 						<CardMedia
 							component="img"
