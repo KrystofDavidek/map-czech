@@ -43,11 +43,11 @@ const Location = ({
 	const location = useLocation();
 	const navigate = useNavigate();
 
-	const toAdmin = async (featureId: string) => {
+	const toAdmin = async () => {
 		const entry = await getEntry(feature.id);
 		if (entry) {
 			setCurrentEntry(entry);
-			navigate(`/admin/${featureId}`);
+			navigate(`/admin/${entry.location.mainLocation}`);
 		}
 	};
 
@@ -131,7 +131,7 @@ const Location = ({
 				</Stack>
 				{user && (
 					<Tooltip sx={{ ml: 'auto' }} title="Upravit lokaci">
-						<IconButton onClick={() => toAdmin(feature.id)} color="primary">
+						<IconButton onClick={toAdmin} color="primary">
 							<SettingsIcon />
 						</IconButton>
 					</Tooltip>

@@ -2,6 +2,7 @@ import { DropzoneArea } from 'react-mui-dropzone';
 import { useEffect, useState } from 'react';
 import { Box, Chip, Stack } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
+import { useLocation } from 'react-router-dom';
 
 import Text from '../Text';
 import { deleteFile, uploadFile } from '../../utils/firebase';
@@ -23,6 +24,7 @@ const useStyles = makeStyles(() =>
 );
 
 const FormDropzone = (props: Props & any) => {
+	const location = useLocation();
 	const { showSnackbar } = useSnackbar();
 	const [files, setFiles] = useState<string[]>([]);
 	const [initFiles, setInitFiles] = useState<string[]>([]);
@@ -86,12 +88,13 @@ const FormDropzone = (props: Props & any) => {
 		setIsFetched(true);
 	}, [initFiles]);
 
+	// Has to be dep. location.pathname, otherwise component is not rerendered/initialized
 	useEffect(() => {
 		if (props?.data?.length > 0) {
 			setInitFiles(props.data);
 			setFiles(props.data);
 		}
-	}, []);
+	}, [location.pathname]);
 
 	useEffect(() => {
 		props.onChange(files);

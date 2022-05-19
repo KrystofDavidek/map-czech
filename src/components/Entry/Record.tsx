@@ -24,8 +24,8 @@ const Record = ({ record }: RecordProps) => {
 	}, [record]);
 
 	return (
-		<Grid container spacing={2}>
-			<Grid item xs={12}>
+		<Grid container rowSpacing={2}>
+			<Grid item xs={12} spacing={2}>
 				<Text variant="h4" component="h2" text="Nahrávka" />
 			</Grid>
 			<Grid item xs={12} md={6}>
@@ -39,7 +39,12 @@ const Record = ({ record }: RecordProps) => {
 						// eslint-disable-next-line react/jsx-no-useless-fragment
 						<>
 							{!urls || !urls[0] ? (
-								<LoadingSpinner width="20rem" height="20rem" />
+								<LoadingSpinner
+									boxWidth="100%"
+									textAlign="center"
+									width="5rem"
+									height="5rem"
+								/>
 							) : (
 								<AudioPlayer
 									src={urls?.[0]}
@@ -55,25 +60,24 @@ const Record = ({ record }: RecordProps) => {
 							)}
 						</>
 					)}
-					<Link
-						sx={{ cursor: 'pointer' }}
-						onClick={() => {
-							setShowDetails(!showDetails);
-						}}
-					>
-						{showDetails ? 'Zobrazit méně' : 'Zobrazit více'}
-					</Link>
-					{showDetails && (
-						<>
-							<TextSection title="Přepis" texts={[record.transcript]} />
-							<TextSection
-								title="Detailní informace"
-								texts={[record.details]}
-							/>
-						</>
+					{(record.transcript || record.details) && (
+						<Link
+							sx={{ cursor: 'pointer' }}
+							onClick={() => {
+								setShowDetails(!showDetails);
+							}}
+						>
+							{showDetails ? 'Zobrazit méně' : 'Zobrazit více'}
+						</Link>
 					)}
 				</Stack>
 			</Grid>
+			{showDetails && (
+				<Grid item xs={12}>
+					<TextSection title="Přepis" texts={[record.transcript]} />
+					<TextSection title="Detailní informace" texts={[record.details]} />
+				</Grid>
+			)}
 			<Grid item>
 				<Stack spacing={2}>
 					<TextSection

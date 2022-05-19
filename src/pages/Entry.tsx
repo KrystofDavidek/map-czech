@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 
 import SectionNavbar from '../components/Entry/SectionNavbar';
 import Intro from '../components/Entry/Intro';
@@ -10,7 +10,7 @@ import Extra from '../components/Entry/Extra';
 import NotFound from './NotFound';
 
 const Entry = () => (
-	<>
+	<Container>
 		<SectionNavbar />
 		<Box sx={{ m: 4 }}>
 			<Routes>
@@ -22,7 +22,7 @@ const Entry = () => (
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</Box>
-	</>
+	</Container>
 );
 
 export default Entry;
