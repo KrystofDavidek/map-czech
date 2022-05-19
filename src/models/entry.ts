@@ -1,3 +1,5 @@
+import { EntryFilters } from '../contexts/FilterContext';
+
 export type Entry = {
 	id: string;
 	location: Location;
@@ -26,19 +28,6 @@ export type Location = {
 	introImage: string[];
 	demographic: string;
 	filters: EntryFilters;
-};
-
-export type EntryFilters = {
-	arrivalTimes: string[];
-	extinctionPeriod: string[];
-	communitySize: string[];
-	dialectBase: string[];
-	numOfGenerations: string[];
-	motivation: string[];
-	existMedia: string[];
-	religion: string[];
-	reemigration: string[];
-	typeOfEmigration: string[];
 };
 
 export type Record = {

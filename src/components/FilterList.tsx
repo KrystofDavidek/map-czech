@@ -19,18 +19,14 @@ const FilterList = () => {
 		activeFilters[item].includes(filter);
 
 	const handleChange = (item: FilterKeys, filter: string, checked: boolean) => {
-		if (checked) {
-			setActiveFilters({
-				...activeFilters,
-				[item]: [...activeFilters[item], filter]
-			});
-		} else {
-			setActiveFilters({
-				...activeFilters,
-				[item]: activeFilters[item].filter(item => item !== filter)
-			});
-		}
+		setActiveFilters({
+			...activeFilters,
+			[item]: checked
+				? [...activeFilters[item], filter]
+				: activeFilters[item].filter(item => item !== filter)
+		});
 	};
+
 	return (
 		<List sx={{ p: '1rem', pt: 0 }}>
 			<Button

@@ -15,6 +15,7 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MapIcon from '@mui/icons-material/Map';
+import LogoutIcon from '@mui/icons-material/Logout';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -23,6 +24,7 @@ import { useEffect, useState } from 'react';
 import { useEntries } from '../contexts/EntriesContext';
 import { defaultEntry } from '../data';
 import useUserContext from '../contexts/UserContext';
+import { logOut } from '../utils/firebase';
 
 import { drawerWidth } from './Layout';
 import LocationList from './LocationList';
@@ -97,7 +99,7 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 							</IconButton>
 						</Tooltip>
 
-						<Button component={Link} to="/welcome" color="inherit">
+						<Button component={Link} to="/" color="inherit">
 							<Typography variant="h6">Krajanská mapa</Typography>
 						</Button>
 					</Box>
@@ -109,19 +111,31 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 									<MapIcon />
 								</IconButton>
 							</Tooltip>
-							{!user && (
+
+							{user ? (
+								<>
+									<Button
+										component={Link}
+										to="/admin/new"
+										onClick={() => setCurrentEntry(defaultEntry)}
+										color="inherit"
+									>
+										Editor
+									</Button>
+									<Tooltip sx={{ ml: 4 }} title="Odhlášení">
+										<IconButton
+											component={Link}
+											onClick={logOut}
+											to="/login"
+											color="inherit"
+										>
+											<LogoutIcon />
+										</IconButton>
+									</Tooltip>
+								</>
+							) : (
 								<Button component={Link} to="/login" color="inherit">
 									Přihlášení
-								</Button>
-							)}
-							{user && (
-								<Button
-									component={Link}
-									to="/admin/new"
-									onClick={() => setCurrentEntry(defaultEntry)}
-									color="inherit"
-								>
-									Editor
 								</Button>
 							)}
 						</Box>
@@ -195,7 +209,11 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 						)}
 					</IconButton>
 				</DrawerHeader>
-				{toggleFilter ? <FilterList /> : <LocationList />}
+				{toggleFilter ? (
+					<FilterList />
+				) : (
+					<LocationList setDrawerOpen={setOpen} />
+				)}
 			</Drawer>
 		</Box>
 	);

@@ -8,7 +8,7 @@ import {
 	useState
 } from 'react';
 
-type FilterState = {
+export type EntryFilters = {
 	arrivalTimes: string[];
 	extinctionPeriod: string[];
 	communitySize: string[];
@@ -35,8 +35,8 @@ export const defaultFilterState = {
 };
 
 type FilterContextType = {
-	activeFilters: FilterState;
-	setActiveFilters: Dispatch<SetStateAction<FilterState>>;
+	activeFilters: EntryFilters;
+	setActiveFilters: Dispatch<SetStateAction<EntryFilters>>;
 	isDisabled: boolean;
 };
 
@@ -46,7 +46,7 @@ export const useFilter = () => useContext(FilterContext);
 
 export const FilterProvider = ({ children }: { children: JSX.Element }) => {
 	const [activeFilters, setActiveFilters] =
-		useState<FilterState>(defaultFilterState);
+		useState<EntryFilters>(defaultFilterState);
 	const [isDisabled, setDisabled] = useState<boolean>(true);
 
 	useEffect(() => {

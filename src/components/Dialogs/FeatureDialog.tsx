@@ -4,9 +4,7 @@ import {
 	DialogContent,
 	DialogContentText,
 	IconButton,
-	Grid,
-	CircularProgress,
-	Box
+	Grid
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useEffect } from 'react';
@@ -18,8 +16,9 @@ import { useEntries } from '../../contexts/EntriesContext';
 import { getEntry } from '../../utils/firebase';
 import { defaultEntry } from '../../data';
 import useAsyncFiles from '../../hooks/useAsyncFiles';
-import Image from '../entry/Image';
+import Image from '../Entry/Image';
 import useUserContext from '../../contexts/UserContext';
+import LoadingSpinner from '../LoadingSpinner';
 
 type Props = DialogPropsType<{
 	feature: Feature;
@@ -78,11 +77,11 @@ const FeatureDialog = ({ feature, close }: Props) => {
 									// eslint-disable-next-line react/jsx-no-useless-fragment
 									<>
 										{!urls || urls.length === 0 ? (
-											<Box
-												sx={{ width: '70%', textAlign: 'center', pt: '2rem' }}
-											>
-												<CircularProgress />
-											</Box>
+											<LoadingSpinner
+												boxWidth="70%"
+												textAlign="center"
+												pt="2rem"
+											/>
 										) : (
 											<Image
 												alt="Intro"

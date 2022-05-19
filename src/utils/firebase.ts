@@ -4,6 +4,7 @@ import {
 	NextOrObserver,
 	onAuthStateChanged,
 	signInWithEmailAndPassword,
+	signOut,
 	User
 } from 'firebase/auth';
 import {
@@ -57,6 +58,8 @@ export type UserData = {
 
 export const logIn = (email: string, password: string) =>
 	signInWithEmailAndPassword(auth, email, password);
+
+export const logOut = () => signOut(auth);
 
 export const onAuthChanged = (callback: NextOrObserver<User>) =>
 	onAuthStateChanged(auth, callback);

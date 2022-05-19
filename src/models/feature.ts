@@ -1,4 +1,4 @@
-import { EntryFilters } from './entry';
+import { EntryFilters } from '../contexts/FilterContext';
 
 export type Feature = {
 	type: 'Feature';

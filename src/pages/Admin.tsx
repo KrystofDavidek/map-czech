@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable unused-imports/no-unused-vars */
 import {
 	FormControl,
 	Box,
@@ -14,16 +12,16 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { Delete } from '@mui/icons-material';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import FirstSection from '../components/form/FirstSection';
-import SecondSection from '../components/form/SecondSection';
-import ThirdSection from '../components/form/ThirdSection';
-import FourthSection from '../components/form/FourthSection';
-import FifthSection from '../components/form/FifthSection';
+import FirstSection from '../components/Form/FirstSection';
+import SecondSection from '../components/Form/SecondSection';
+import ThirdSection from '../components/Form/ThirdSection';
+import FourthSection from '../components/Form/FourthSection';
+import FifthSection from '../components/Form/FifthSection';
 import { Entry } from '../models/entry';
 import { useEntries } from '../contexts/EntriesContext';
 import { addNewEntry } from '../utils/firebase';
 import { defaultEntry } from '../data';
-import { DeleteDialog } from '../components/dialogs/DeleteDialog';
+import { DeleteDialog } from '../components/Dialogs/DeleteDialog';
 import { useDialog } from '../contexts/DialogContext';
 import { useSnackbar } from '../contexts/SnackbarContext';
 import { defaultFilterState, useFilter } from '../contexts/FilterContext';

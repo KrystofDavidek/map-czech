@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable unused-imports/no-unused-vars */
 import { Button, Stack, TextField } from '@mui/material';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 

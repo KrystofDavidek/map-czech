@@ -1,3 +1,4 @@
+import { defaultFilterState } from '../contexts/FilterContext';
 import { Details, Entry } from '../models/entry';
 
 import { filters } from './filters';
@@ -121,18 +122,7 @@ const defaultEntry: Entry = {
 		secondaryLocation: '',
 		introImage: [],
 		demographic: '',
-		filters: {
-			arrivalTimes: [],
-			extinctionPeriod: [],
-			communitySize: [],
-			dialectBase: [],
-			numOfGenerations: [],
-			motivation: [],
-			existMedia: [],
-			religion: [],
-			reemigration: [],
-			typeOfEmigration: []
-		}
+		filters: defaultFilterState
 	},
 	details: defaultDetails,
 	media: {

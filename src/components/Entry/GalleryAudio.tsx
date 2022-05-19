@@ -1,4 +1,4 @@
-import { Box, Stack, Divider, CircularProgress } from '@mui/material';
+import { Box, Stack, Divider } from '@mui/material';
 import 'react-medium-image-zoom/dist/styles.css';
 import { useEffect } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
@@ -6,6 +6,7 @@ import AudioPlayer from 'react-h5-audio-player';
 import { DropZone } from '../../models/entry';
 import useAsyncFiles from '../../hooks/useAsyncFiles';
 import Text from '../Text';
+import LoadingSpinner from '../LoadingSpinner';
 
 type GalleryProps = {
 	dropZone: DropZone;
@@ -27,7 +28,13 @@ const GalleryAudio = ({ dropZone }: GalleryProps) => {
 		<>
 			<Text variant="h3" component="h1" text="Nahrávky" />
 			{!urls || !urls[0] ? (
-				<CircularProgress sx={{ height: '20rem' }} />
+				<LoadingSpinner
+					boxWidth="100%"
+					height="2.5rem"
+					width="2.5rem"
+					textAlign="center"
+					pt="2rem"
+				/>
 			) : (
 				<Stack sx={{ overflowY: 'scroll', maxHeight: '80vh' }} spacing={2}>
 					{urls.map((url, i) => (
