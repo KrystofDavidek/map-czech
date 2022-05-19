@@ -1,7 +1,8 @@
 import AudioPlayer from 'react-h5-audio-player';
-import { Stack, Grid, Link, CircularProgress } from '@mui/material';
+import { Stack, Grid, Link } from '@mui/material';
 import { useEffect, useState } from 'react';
 
+import LoadingSpinner from '../LoadingSpinner';
 import { Record as RecordType } from '../../models/entry';
 import Text from '../Text';
 import useAsyncFiles from '../../hooks/useAsyncFiles';
@@ -23,7 +24,7 @@ const Record = ({ record }: RecordProps) => {
 	}, [record]);
 
 	return (
-		<Grid container spacing={2}>
+		<Grid container rowSpacing={2}>
 			<Grid item xs={12}>
 				<Text variant="h4" component="h2" text="Nahrávka" />
 			</Grid>
@@ -38,7 +39,12 @@ const Record = ({ record }: RecordProps) => {
 						// eslint-disable-next-line react/jsx-no-useless-fragment
 						<>
 							{!urls || !urls[0] ? (
-								<CircularProgress sx={{ height: '20rem' }} />
+								<LoadingSpinner
+									boxWidth="100%"
+									textAlign="center"
+									width="5rem"
+									height="5rem"
+								/>
 							) : (
 								<AudioPlayer
 									src={urls?.[0]}
@@ -54,25 +60,24 @@ const Record = ({ record }: RecordProps) => {
 							)}
 						</>
 					)}
-					<Link
-						sx={{ cursor: 'pointer' }}
-						onClick={() => {
-							setShowDetails(!showDetails);
-						}}
-					>
-						{showDetails ? 'Zobrazit méně' : 'Zobrazit více'}
-					</Link>
-					{showDetails && (
-						<>
-							<TextSection title="Přepis" texts={[record.transcript]} />
-							<TextSection
-								title="Detailní informace"
-								texts={[record.details]}
-							/>
-						</>
+					{(record.transcript || record.details) && (
+						<Link
+							sx={{ cursor: 'pointer' }}
+							onClick={() => {
+								setShowDetails(!showDetails);
+							}}
+						>
+							{showDetails ? 'Zobrazit méně' : 'Zobrazit více'}
+						</Link>
 					)}
 				</Stack>
 			</Grid>
+			{showDetails && (
+				<Grid item xs={12}>
+					<TextSection title="Přepis" texts={[record.transcript]} />
+					<TextSection title="Detailní informace" texts={[record.details]} />
+				</Grid>
+			)}
 			<Grid item>
 				<Stack spacing={2}>
 					<TextSection

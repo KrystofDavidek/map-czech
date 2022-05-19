@@ -1,9 +1,11 @@
-import { Box, IconButton, Tab, Tabs } from '@mui/material';
+import { Box, IconButton, Stack, Tab, Tabs, Tooltip } from '@mui/material';
 import { useState, SyntheticEvent, useMemo, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ArrowBackSharpIcon from '@mui/icons-material/ArrowBackSharp';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 import { useEntries } from '../../contexts/EntriesContext';
+import useUserContext from '../../contexts/UserContext';
 
 const options = {
 	intro: 0,
@@ -23,6 +25,7 @@ const SectionNavbar = () => {
 		() => `/location/${currentEntry?.location.mainLocation}`,
 		[currentEntry]
 	);
+	const { user } = useUserContext();
 
 	useEffect(() => {
 		entryPath === '/location/' ? navigate(`/`) : navigate(`${entryPath}/intro`);
@@ -40,14 +43,28 @@ const SectionNavbar = () => {
 	};
 
 	return (
-		<Box sx={{ width: '100%', mt: 4 }}>
-			<IconButton
-				onClick={() => {
-					navigate(`/`);
-				}}
-			>
-				<ArrowBackSharpIcon sx={{ color: 'primary.main' }} />
-			</IconButton>
+		<Box sx={{ width: '100%' }}>
+			<Stack direction="row">
+				<IconButton
+					onClick={() => {
+						navigate(`/`);
+					}}
+				>
+					<ArrowBackSharpIcon sx={{ color: 'primary.main' }} />
+				</IconButton>
+				{user && (
+					<Tooltip sx={{ ml: 'auto' }} title="Upravit lokaci">
+						<IconButton
+							onClick={() =>
+								navigate(`/admin/${currentEntry.location.mainLocation}`)
+							}
+							color="primary"
+						>
+							<SettingsIcon />
+						</IconButton>
+					</Tooltip>
+				)}
+			</Stack>
 			<Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
 				<Tab component={Link} label="Úvod" to={`${entryPath}/intro`} />
 				<Tab component={Link} label="Informace" to={`${entryPath}/details`} />
