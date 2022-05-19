@@ -47,6 +47,8 @@ const Location = ({
 		const entry = await getEntry(feature.id);
 		if (entry) {
 			setCurrentEntry(entry);
+			// For some wierd purposes double navigation need to be here
+			navigate(`/`);
 			navigate(`/admin/${entry.location.mainLocation}`);
 		}
 	};

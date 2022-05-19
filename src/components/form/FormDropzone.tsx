@@ -1,12 +1,14 @@
 import { DropzoneArea } from 'react-mui-dropzone';
 import { useEffect, useState } from 'react';
-import { Box, Chip, Stack } from '@mui/material';
+import { Box } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import { useLocation } from 'react-router-dom';
+import { useFormContext } from 'react-hook-form';
 
 import Text from '../Text';
 import { deleteFile, uploadFile } from '../../utils/firebase';
 import { useSnackbar } from '../../contexts/SnackbarContext';
+import { Entry } from '../../models/entry';
 
 type FileType = 'audio/*' | 'video/*' | 'image/*';
 
@@ -24,6 +26,7 @@ const useStyles = makeStyles(() =>
 );
 
 const FormDropzone = (props: Props & any) => {
+	const methods = useFormContext<Entry>();
 	const location = useLocation();
 	const { showSnackbar } = useSnackbar();
 	const [files, setFiles] = useState<string[]>([]);
@@ -36,38 +39,71 @@ const FormDropzone = (props: Props & any) => {
 	const onDropzoneStateChange = (loadedFiles: File[]) => {
 		if (loadedFiles.length > 0 && !isInit) {
 			setIsLoading(true);
-			loadedFiles.forEach(async newFile => {
-				try {
-					if (files.length === props.filesLimit)
-						throw new Error('Files limit reached');
+			try {
+				let newFiles;
+				// dropzone always load all files that were previously inside
+				if (files.length !== props.filesLimit) {
+					newFiles = loadedFiles.slice(files.length);
+				} else {
+					// remove when automatically replace imgs
+					newFiles = loadedFiles;
+					if (files.length === 1) {
+						console.log(files[0]);
+						removeFile(files[0]);
+					}
+				}
+				newFiles.forEach(async newFile => {
 					await uploadFile(newFile);
 					setFiles(files => [...files, newFile.name]);
-
 					showSnackbar({
 						text: 'Úspěšně nahráno',
 						variant: 'success'
 					});
-				} catch (e) {
-					console.error('Error uploading file: ', e);
-					setIsLoading(false);
-					showSnackbar({
-						text: 'Nahrávání se nezdařilo',
-						variant: 'error'
-					});
-				}
-			});
+				});
+			} catch (e: any) {
+				console.error('Error uploading file: ', e);
+				setIsLoading(false);
+				showSnackbar({
+					text: e?.message
+						? e.message
+						: 'Nahrávání se nezdařilo, problém v komunikaci s databází',
+					variant: 'error'
+				});
+			}
 		} else {
 			setIsInit(false);
 		}
 	};
 
+	const checkIfFileExistsInEntry = (file: string) => {
+		if (props.type === 'image/*') {
+			if (props.name === 'location.introImage') {
+				return methods.watch('media.images')?.files?.includes(file);
+			} else {
+				return methods.watch('location.introImage')[0] === file;
+			}
+		} else if (props.type === 'audio/*') {
+			if (props.name === 'details.record.url') {
+				return methods.watch('media.audios')?.files?.includes(file);
+			} else {
+				return methods.watch('details.record.url')[0] === file;
+			}
+		}
+	};
+
 	const removeFile = async (removedFile: string) => {
 		setIsLoading(true);
+		let text = 'Úspěšně smazáno z databáze';
 		try {
-			await deleteFile(removedFile);
+			if (checkIfFileExistsInEntry(removedFile)) {
+				text =
+					'Úspěšně smazáno, soubor ale zůstává v databázi, protože je přítomen v jiné části';
+			} else {
+				await deleteFile(removedFile);
+			}
 			setFiles(files.filter(file => file !== removedFile));
 			showSnackbar({
-				text: 'Úspěšně smazáno',
+				text,
 				variant: 'success'
 			});
 		} catch (e: any) {
@@ -90,6 +126,7 @@ const FormDropzone = (props: Props & any) => {
 
 	// Has to be dep. location.pathname, otherwise component is not rerendered/initialized
 	useEffect(() => {
+		setIsInit(true);
 		if (props?.data?.length > 0) {
 			setInitFiles(props.data);
 			setFiles(props.data);
@@ -113,7 +150,13 @@ const FormDropzone = (props: Props & any) => {
 								isLoading ? classes.dropzoneLoading : classes.dropzone
 							}
 							initialFiles={props.data ? initFiles : []}
+							showPreviews
 							showPreviewsInDropzone={false}
+							useChipsForPreview
+							previewGridProps={{
+								container: { mt: 2, spacing: 1, direction: 'row' }
+							}}
+							onDelete={file => removeFile(file.name)}
 							onChange={loadedFiles => onDropzoneStateChange(loadedFiles)}
 							dropzoneText="Klikněte, nebo sem přetáhněte soubor"
 							acceptedFiles={[props.type ? props.type : 'image/*']}
@@ -123,17 +166,6 @@ const FormDropzone = (props: Props & any) => {
 							maxFileSize={30000000}
 						/>
 					</Box>
-
-					<Stack direction="row" spacing={1}>
-						{files.map((file: string) => (
-							<Chip
-								key={file}
-								label={file}
-								variant="outlined"
-								onDelete={() => removeFile(file)}
-							/>
-						))}
-					</Stack>
 				</>
 			)}
 		</>
