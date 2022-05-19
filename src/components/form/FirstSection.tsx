@@ -13,7 +13,7 @@ const FirstSection = ({ setPage }: SectionProps) => {
 	const methods = useFormContext<Entry>();
 
 	return (
-		<Stack spacing={2} sx={{ mt: 4, mb: 8, width: '100%', maxWidth: '55rem' }}>
+		<Stack spacing={4} sx={{ mt: 4, mb: 8, width: '100%', maxWidth: '55rem' }}>
 			<Text variant="h3" component="h1" text="Úvod" />
 			<Controller
 				rules={{ required: true }}

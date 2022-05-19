@@ -12,7 +12,7 @@ const Extra = () => {
 
 	return (
 		<Stack spacing={2}>
-			<Text variant="h3" component="h1" text="Ostatní" />
+			<Text mb={2} variant="h3" component="h1" text="Ostatní" />
 			{extra?.projects && (
 				<>
 					<Text variant="h4" component="h2" text="Projekty" />
@@ -31,6 +31,13 @@ const Extra = () => {
 				<>
 					<Text variant="h4" component="h2" text="Atrakce" />
 					<TextSection texts={[extra?.attractions]} />
+					<Divider />
+				</>
+			)}
+			{extra?.facts && (
+				<>
+					<Text variant="h4" component="h2" text="Zajímavosti" />
+					<TextSection texts={[extra?.facts]} />
 					<Divider />
 				</>
 			)}

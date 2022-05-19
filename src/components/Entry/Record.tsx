@@ -67,7 +67,9 @@ const Record = ({ record }: RecordProps) => {
 								setShowDetails(!showDetails);
 							}}
 						>
-							{showDetails ? 'Zobrazit méně' : 'Zobrazit více'}
+							{showDetails
+								? 'Skrýt jazykové informace'
+								: 'Zobrazit jazykové informace'}
 						</Link>
 					)}
 				</Stack>
@@ -75,7 +77,10 @@ const Record = ({ record }: RecordProps) => {
 			{showDetails && (
 				<Grid item xs={12}>
 					<TextSection title="Přepis" texts={[record.transcript]} />
-					<TextSection title="Detailní informace" texts={[record.details]} />
+					<TextSection
+						title="Detailní informace k jazyku"
+						texts={[record.details]}
+					/>
 				</Grid>
 			)}
 			<Grid item>

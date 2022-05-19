@@ -47,7 +47,7 @@ const Gallery = ({ dropZone }: GalleryProps) => {
 					<ImageList variant="masonry" cols={2} gap={24}>
 						{urls.map((url, i) => (
 							<Zoom key={i} zoomMargin={24}>
-								<ImageListItem>
+								<ImageListItem sx={{ maxWidth: '30rem' }}>
 									<img
 										src={`${url}`}
 										srcSet={`${url}`}

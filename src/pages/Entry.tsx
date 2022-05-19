@@ -12,7 +12,7 @@ import NotFound from './NotFound';
 const Entry = () => (
 	<Container>
 		<SectionNavbar />
-		<Box sx={{ m: 4 }}>
+		<Box sx={{ m: 4, pb: 10 }}>
 			<Routes>
 				<Route path="intro" element={<Intro />} />
 				<Route path="details" element={<Details />} />

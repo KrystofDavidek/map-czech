@@ -21,7 +21,7 @@ const FormFields = ({ controlName }: Props) => {
 					<TextField
 						{...register(`${controlName}.${index}.name` as const)}
 						variant="outlined"
-						sx={{ mx: 4, width: '100%' }}
+						sx={{ mx: 4, ml: 0, width: '100%' }}
 						margin="dense"
 						label={`Jméno / krátký popisek k ${index + 1}. souboru`}
 						multiline

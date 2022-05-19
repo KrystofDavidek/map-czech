@@ -40,6 +40,8 @@ const mockEntry: Entry = {
 	},
 	details: mockDetails,
 	media: {
+		copyright:
+			'Minim irure ut voluptate fugiat cillum exercitation enim proident quis laboris est. Consectetur sint anim deserunt non irure ex.',
 		images: { files: [], names: [] },
 		texts:
 			'Editované dopisy, In sit in laboris ullamco fugiat deserunt. Fugiat sunt ea sint duis aliqua cupidatat dolore ut pariatur cupidatat cillum sint cillum consectetur. Ut qui id pariatur cupidatat ipsum amet proident deserunt commodo occaecat enim. Veniam nisi incididunt minim minim pariatur excepteur. Eiusmod laborum ea dolore aliquip incididunt.',
@@ -70,6 +72,8 @@ const mockEntry: Entry = {
 		offers:
 			'Minim irure ut voluptate fugiat cillum exercitation enim proident quis laboris est. Consectetur sint anim deserunt non irure ex.',
 		attractions:
+			'Minim irure ut voluptate fugiat cillum exercitation enim proident quis laboris est. Consectetur sint anim deserunt non irure ex.',
+		facts:
 			'Minim irure ut voluptate fugiat cillum exercitation enim proident quis laboris est. Consectetur sint anim deserunt non irure ex.',
 		resources:
 			'ECO, Umberto. Jak napsat diplomovou práci. Přeložil Ivan Seidl. Olomouc: Votobia, 1997. Velká řada, sv. 27. ISBN 80-7198-173-7 KOTLER, Philip a ARMSTRONG, Gary, 1997. Marketing: an introduction. 4th ed. Upper Saddle River: Prentice-Hall International. ISBN 0-13-263120-2.',
@@ -126,6 +130,7 @@ const defaultEntry: Entry = {
 	},
 	details: defaultDetails,
 	media: {
+		copyright: '',
 		images: { files: [], names: [] },
 		texts: '',
 		videos: [],
@@ -139,6 +144,7 @@ const defaultEntry: Entry = {
 		projects: '',
 		offers: '',
 		attractions: '',
+		facts: '',
 		resources: '',
 
 		contact: ''

@@ -12,7 +12,7 @@ const SecondSection = ({ setPage }: SectionProps) => {
 	const methods = useFormContext<Entry>();
 
 	return (
-		<Stack spacing={2} sx={{ mt: 4, mb: 8, width: '100%', maxWidth: '55rem' }}>
+		<Stack spacing={4} sx={{ mt: 4, mb: 8, width: '100%', maxWidth: '55rem' }}>
 			<Text variant="h3" component="h1" text="Detailní informace" />
 			<Text variant="h4" component="h2" text="Nahrávka" />
 			<Controller
@@ -56,7 +56,7 @@ const SecondSection = ({ setPage }: SectionProps) => {
 				render={({ field: { ref, ...rest } }) => (
 					<FormEditor
 						data={methods.watch('details.record.details')}
-						title="Detaily, odkaz na jazykovou normu apod."
+						title="Poznámky k jazyku, odkaz na jazykovou normu apod."
 						{...rest}
 					/>
 				)}

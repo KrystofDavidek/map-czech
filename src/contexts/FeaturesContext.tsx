@@ -18,6 +18,7 @@ type FeaturesContextType = {
 	setRefresh: Dispatch<SetStateAction<boolean>>;
 	zoomTo: number[] | number[][][];
 	setZoomTo: Dispatch<SetStateAction<number[] | number[][][]>>;
+	getFeature: any;
 };
 
 const FeaturesContext = createContext<FeaturesContextType>(undefined as never);
@@ -30,6 +31,9 @@ export const FeaturesProvider = ({ children }: { children: JSX.Element }) => {
 	const [refresh, setRefresh] = useState<boolean>(true);
 	const [zoomTo, setZoomTo] = useState<number[] | number[][][]>([]);
 	const { isDisabled, activeFilters } = useFilter();
+
+	const getFeature = (id: string) =>
+		features.find(feature => feature.id === id);
 
 	useEffect(() => {
 		if (!isDisabled) {
@@ -72,7 +76,8 @@ export const FeaturesProvider = ({ children }: { children: JSX.Element }) => {
 				features,
 				setRefresh,
 				zoomTo,
-				setZoomTo
+				setZoomTo,
+				getFeature
 			}}
 		>
 			{children}

@@ -22,6 +22,7 @@ import { useEntries } from '../contexts/EntriesContext';
 import { addNewEntry } from '../utils/firebase';
 import { defaultEntry } from '../data';
 import { DeleteDialog } from '../components/Dialogs/DeleteDialog';
+import { ToEntryDialog } from '../components/Dialogs/ToEntryDialog';
 import { useDialog } from '../contexts/DialogContext';
 import { useSnackbar } from '../contexts/SnackbarContext';
 import { defaultFilterState, useFilter } from '../contexts/FilterContext';
@@ -95,6 +96,23 @@ const Admin = () => {
 								}}
 							>
 								Na začátek
+							</Button>
+							<Button
+								disabled={!currentEntry.id}
+								onClick={() => {
+									setTimeout(() => {
+										openDialog({
+											Content: ToEntryDialog,
+											props: {
+												location: currentEntry.location.mainLocation
+											}
+										});
+									}, 500);
+								}}
+							>
+								{currentEntry.id
+									? `${currentEntry.location.mainLocation}`
+									: `Nová lokace`}
 							</Button>
 							<Button
 								disabled={location.pathname.endsWith('new')}

@@ -13,8 +13,19 @@ import FormFields from './FormFields';
 const ThirdSection = ({ setPage }: SectionProps) => {
 	const methods = useFormContext<Entry>();
 	return (
-		<Stack spacing={2} sx={{ mt: 4, mb: 8, width: '100%', maxWidth: '55rem' }}>
+		<Stack spacing={4} sx={{ mt: 4, mb: 8, width: '100%', maxWidth: '55rem' }}>
 			<Text variant="h3" component="h1" text="Multimediální obsah" />
+			<Controller
+				name="media.copyright"
+				control={methods.control}
+				render={({ field: { ref, ...rest } }) => (
+					<FormEditor
+						data={methods.watch('media.copyright')}
+						title="Autor fotografií/obrázků (pokud existuje)"
+						{...rest}
+					/>
+				)}
+			/>
 			<Controller
 				name="media.images.files"
 				control={methods.control}

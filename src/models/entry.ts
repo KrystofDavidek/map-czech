@@ -5,6 +5,7 @@ export type Entry = {
 	location: Location;
 	details: Details;
 	media: {
+		copyright: string;
 		images: DropZone;
 		audios: DropZone;
 		videos: Media[];
@@ -48,6 +49,7 @@ export type Extra = {
 	projects: string;
 	offers: string;
 	attractions: string;
+	facts: string;
 	resources: string;
 	contact: string;
 };

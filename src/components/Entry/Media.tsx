@@ -15,6 +15,7 @@ const Media = () => {
 
 	return (
 		<Stack spacing={2}>
+			{media?.copyright && <TextSection texts={[media?.copyright]} />}
 			<Gallery dropZone={media?.images} />
 			{media?.texts?.[0] && (
 				<>

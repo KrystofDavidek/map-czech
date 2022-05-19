@@ -40,7 +40,7 @@ const Intro = () => {
 					sx={{
 						display: 'flex',
 						justifyContent: 'center',
-						alignItems: 'center'
+						alignItems: 'start'
 					}}
 				>
 					{!urls || !urls[0] ? (

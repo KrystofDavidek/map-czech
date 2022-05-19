@@ -21,7 +21,7 @@ const FormDoubleFields = ({ controlName }: Props) => {
 					<TextField
 						{...register(`${controlName}.${index}.name` as const)}
 						variant="outlined"
-						sx={{ mx: 4, width: '100%' }}
+						sx={{ mx: 4, ml: 0, width: '100%' }}
 						margin="dense"
 						label={`Jméno / krátký popisek k ${index + 1}. odkazu`}
 						multiline
@@ -29,7 +29,7 @@ const FormDoubleFields = ({ controlName }: Props) => {
 					<TextField
 						{...register(`${controlName}.${index}.url` as const)}
 						variant="outlined"
-						sx={{ mx: 4, width: '100%' }}
+						sx={{ mx: 4, ml: 0, width: '100%' }}
 						margin="dense"
 						label={`${index + 1}. odkaz`}
 						multiline

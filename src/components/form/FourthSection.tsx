@@ -1,4 +1,4 @@
-import { Stack, Button } from '@mui/material';
+import { Stack, Button, Box } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { Entry } from '../../models/entry';
@@ -9,8 +9,9 @@ import FormEditor from './FormEditor';
 
 const FourthSection = ({ setPage }: SectionProps) => {
 	const methods = useFormContext<Entry>();
+
 	return (
-		<Stack spacing={2} sx={{ mt: 4, mb: 8, width: '100%', maxWidth: '55rem' }}>
+		<Stack spacing={4} sx={{ mt: 4, mb: 8, width: '100%', maxWidth: '55rem' }}>
 			<Text variant="h3" component="h1" text="Ostatní" />
 			<Controller
 				name="extra.projects"
@@ -41,6 +42,17 @@ const FourthSection = ({ setPage }: SectionProps) => {
 					<FormEditor
 						data={methods.watch('extra.attractions')}
 						title="Atrakce"
+						{...rest}
+					/>
+				)}
+			/>
+			<Controller
+				name="extra.facts"
+				control={methods.control}
+				render={({ field: { ref, ...rest } }) => (
+					<FormEditor
+						data={methods.watch('extra.facts')}
+						title="Zajímavosti"
 						{...rest}
 					/>
 				)}
