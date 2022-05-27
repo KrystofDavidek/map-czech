@@ -200,7 +200,7 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 									onClick={() => {
 										setToggle(!toggleFilter);
 									}}
-									color="inherit"
+									color="primary"
 								>
 									<ArrowBackIcon />
 								</IconButton>
@@ -221,7 +221,7 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 									onClick={() => {
 										setToggle(!toggleFilter);
 									}}
-									color="inherit"
+									color="primary"
 								>
 									<FilterAltOutlinedIcon />
 								</IconButton>
@@ -229,7 +229,10 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 						</Stack>
 					)}
 
-					<IconButton onClick={handleDrawerClose}>
+					<IconButton
+						sx={{ color: 'primary.main' }}
+						onClick={handleDrawerClose}
+					>
 						{theme.direction === 'ltr' ? (
 							<ChevronLeftIcon />
 						) : (

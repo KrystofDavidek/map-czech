@@ -28,7 +28,17 @@ const FilterList = () => {
 	};
 
 	return (
-		<List sx={{ p: '1rem', pt: 0 }}>
+		<List
+			sx={{
+				p: '1rem',
+				pt: 0,
+				borderColor: 'primary.main',
+				borderStyle: 'solid',
+				borderWidth: '1px',
+				borderTop: 'none',
+				borderRadius: '5px'
+			}}
+		>
 			<Button
 				sx={{ mt: '1rem' }}
 				onClick={() => {
@@ -43,7 +53,7 @@ const FilterList = () => {
 					<Typography sx={{ my: 2 }} variant="h5" component="div">
 						{filters[item as FilterKeys].name}
 					</Typography>
-					<FormGroup sx={{ ml: 2 }}>
+					<FormGroup sx={{ ml: 2, mb: 2 }}>
 						{filters[item as FilterKeys].values.map(
 							(filter: string, index: number) => (
 								<FormControlLabel
@@ -66,7 +76,7 @@ const FilterList = () => {
 							)
 						)}
 					</FormGroup>
-					<Divider />
+					<Divider sx={{ borderColor: 'primary.main' }} />
 				</Box>
 			))}
 		</List>

@@ -134,7 +134,7 @@ const FormDropzone = (props: Props & any) => {
 	}, [location.pathname]);
 
 	useEffect(() => {
-		props.onChange(files);
+		props.onChange(files.sort());
 		setIsLoading(false);
 	}, [files]);
 

@@ -86,7 +86,11 @@ const FeatureDialog = ({ feature, close }: Props) => {
 											<Image
 												alt="Intro"
 												src={urls?.[0]}
-												sx={{ maxHeight: '20rem', maxWidth: '100%' }}
+												sx={{
+													maxHeight: '20rem',
+													maxWidth: '100%',
+													width: '90%'
+												}}
 											/>
 										)}
 									</>
