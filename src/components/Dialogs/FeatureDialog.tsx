@@ -101,7 +101,7 @@ const FeatureDialog = ({ feature, close }: Props) => {
 								component={Link}
 								to={`/admin/${currentEntry?.location?.mainLocation}`}
 							>
-								Upravit lokaci
+								Upravit lokalitu
 							</Button>
 						)}
 					</DialogActions>
@@ -112,7 +112,7 @@ const FeatureDialog = ({ feature, close }: Props) => {
 							component={Link}
 							to={`/location/${currentEntry?.location?.mainLocation}`}
 						>
-							Přejít na lokaci
+							Přejít na lokalitu
 						</Button>
 					</DialogActions>
 				</>

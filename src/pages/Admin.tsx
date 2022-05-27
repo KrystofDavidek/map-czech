@@ -10,7 +10,8 @@ import {
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Delete } from '@mui/icons-material';
-import { useLocation, useNavigate } from 'react-router-dom';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useNavigate } from 'react-router-dom';
 
 import FirstSection from '../components/Form/FirstSection';
 import SecondSection from '../components/Form/SecondSection';
@@ -22,15 +23,14 @@ import { useEntries } from '../contexts/EntriesContext';
 import { addNewEntry } from '../utils/firebase';
 import { defaultEntry } from '../data';
 import { DeleteDialog } from '../components/Dialogs/DeleteDialog';
-import { ToEntryDialog } from '../components/Dialogs/ToEntryDialog';
 import { useDialog } from '../contexts/DialogContext';
 import { useSnackbar } from '../contexts/SnackbarContext';
 import { defaultFilterState, useFilter } from '../contexts/FilterContext';
+import { ToEntryDialog } from '../components/Dialogs/ToEntryDialog';
 
 export type SectionProps = { setPage: Dispatch<SetStateAction<number>> };
 
 const Admin = () => {
-	const location = useLocation();
 	const { setActiveFilters } = useFilter();
 	const { showSnackbar } = useSnackbar();
 	const navigate = useNavigate();
@@ -62,7 +62,7 @@ const Admin = () => {
 	}, [currentEntry]);
 
 	const handleSubmitOnClick = async (data: Entry) => {
-		if (data) {
+		if (data?.location?.mainLocation?.length > 0) {
 			console.log(data);
 			try {
 				await addNewEntry(data);
@@ -73,12 +73,17 @@ const Admin = () => {
 				});
 			} catch (e) {
 				showSnackbar({
-					text: 'Lokalitu se nepodařilo nahrát',
+					text: 'Lokalitu se nepodařilo nahrát, problém na serveru',
 					variant: 'error'
 				});
 				console.log(`Error when adding/editing${e}`);
 			}
 			navigate('/');
+		} else {
+			showSnackbar({
+				text: 'Lokalitu se nepodařilo nahrát, zkontrolujte, zda máte vyplněný hlavní název lokality.',
+				variant: 'error'
+			});
 		}
 	};
 
@@ -95,36 +100,60 @@ const Admin = () => {
 									setPage(0);
 								}}
 							>
-								Na začátek
+								Úvod
 							</Button>
 							<Button
-								disabled={!currentEntry.id}
 								onClick={() => {
-									setTimeout(() => {
-										openDialog({
-											Content: ToEntryDialog,
-											props: {
-												location: currentEntry.location.mainLocation
-											}
-										});
-									}, 500);
+									setPage(1);
 								}}
 							>
-								{currentEntry.id
-									? `${currentEntry.location.mainLocation}`
-									: `Nová lokace`}
+								Detailní informace
 							</Button>
 							<Button
-								disabled={location.pathname.endsWith('new')}
+								onClick={() => {
+									setPage(2);
+								}}
+							>
+								Multimediální obsah
+							</Button>
+							<Button
+								onClick={() => {
+									setPage(3);
+								}}
+							>
+								Ostatní
+							</Button>
+							<Button
 								onClick={() => {
 									setPage(4);
 								}}
 							>
-								Na konec
+								Geografická data
 							</Button>
 						</Stack>
+
 						{currentEntry.id && (
-							<Stack direction="row" sx={{ justifyContent: 'right' }}>
+							<Stack
+								direction="row"
+								sx={{ mt: 2, justifyContent: 'space-between' }}
+							>
+								<Tooltip title="Přejít na lokalitu" placement="top">
+									<IconButton
+										color="primary"
+										onClick={() => {
+											setTimeout(() => {
+												openDialog({
+													Content: ToEntryDialog,
+													props: {
+														location: currentEntry.location.mainLocation
+													}
+												});
+											}, 500);
+										}}
+									>
+										<VisibilityIcon />
+									</IconButton>
+								</Tooltip>
 								<Tooltip title="Smazat lokalitu" placement="top">
 									<IconButton onClick={handleOnDeleteClick}>
 										<Delete sx={{ color: 'red' }} />

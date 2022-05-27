@@ -132,7 +132,7 @@ const Location = ({
 					</Button>
 				</Stack>
 				{user && (
-					<Tooltip sx={{ ml: 'auto' }} title="Upravit lokaci">
+					<Tooltip sx={{ ml: 'auto' }} title="Upravit lokalitu">
 						<IconButton onClick={toAdmin} color="primary">
 							<SettingsIcon />
 						</IconButton>

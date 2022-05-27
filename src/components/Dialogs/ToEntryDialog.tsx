@@ -16,14 +16,15 @@ export const ToEntryDialog = ({ close, location }: Props) => (
 		<DialogTitle>Potvrzení</DialogTitle>
 		<DialogContent>
 			<DialogContentText>
-				Opravdu chcete přejít na lokaci? Změny <strong>nebudou</strong> uloženy.
+				Opravdu chcete přejít na lokalitu? Změny <strong>nebudou</strong>{' '}
+				uloženy.
 			</DialogContentText>
 		</DialogContent>
 		<DialogActions>
-			<Button onClick={close}>Ne</Button>
 			<Button onClick={close} component={Link} to={`/location/${location}`}>
 				Ano
 			</Button>
+			<Button onClick={close}>Ne</Button>
 		</DialogActions>
 	</>
 );

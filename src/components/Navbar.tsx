@@ -14,7 +14,6 @@ import { Link, useLocation } from 'react-router-dom';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import MapIcon from '@mui/icons-material/Map';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
@@ -83,9 +82,20 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 	};
 
 	return (
-		<Box sx={{ flexGrow: 1 }}>
+		<Box
+			sx={{
+				flexGrow: 1,
+				alignItems: 'center',
+				backgroundColor:
+					'linear-gradient(to right, rgb(9, 109, 215), rgb(87, 121, 236), rgb(33, 11, 226))'
+			}}
+		>
 			<AppBar position="static" open={open}>
-				<Toolbar sx={{ justifyContent: 'space-between' }}>
+				<Toolbar
+					sx={{
+						justifyContent: 'space-between'
+					}}
+				>
 					<Box>
 						<Tooltip title="Seznam lokalit">
 							<IconButton
@@ -99,18 +109,26 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 							</IconButton>
 						</Tooltip>
 
-						<Button component={Link} to="/" color="inherit">
+						<Button
+							sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+							component={Link}
+							to="/"
+							color="inherit"
+						>
 							<Typography variant="h6">Krajanská mapa</Typography>
 						</Button>
 					</Box>
 
 					{!loading && (
-						<Box>
-							<Tooltip title="Mapa">
-								<IconButton component={Link} to="/" color="inherit">
-									<MapIcon />
-								</IconButton>
-							</Tooltip>
+						<Stack direction="row" spacing={2}>
+							<Button
+								component={Link}
+								to="/"
+								onClick={() => setCurrentEntry(defaultEntry)}
+								color="inherit"
+							>
+								Mapa
+							</Button>
 
 							{user ? (
 								<>
@@ -138,7 +156,7 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 									Přihlášení
 								</Button>
 							)}
-						</Box>
+						</Stack>
 					)}
 				</Toolbar>
 			</AppBar>

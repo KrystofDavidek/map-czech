@@ -48,8 +48,8 @@ export const DeleteDialog = ({ close, entry }: Props) => {
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>
-				<Button onClick={close}>Ne</Button>
 				<Button onClick={handleDelete}>Ano</Button>
+				<Button onClick={close}>Ne</Button>
 			</DialogActions>
 		</>
 	);

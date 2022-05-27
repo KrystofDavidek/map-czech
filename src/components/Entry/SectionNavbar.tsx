@@ -53,7 +53,7 @@ const SectionNavbar = () => {
 					<ArrowBackSharpIcon sx={{ color: 'primary.main' }} />
 				</IconButton>
 				{user && (
-					<Tooltip sx={{ ml: 'auto' }} title="Upravit lokaci">
+					<Tooltip sx={{ ml: 'auto' }} title="Upravit lokalitu">
 						<IconButton
 							onClick={() =>
 								navigate(`/admin/${currentEntry.location.mainLocation}`)
