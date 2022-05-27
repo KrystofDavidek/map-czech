@@ -85,14 +85,13 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 		<Box
 			sx={{
 				flexGrow: 1,
-				alignItems: 'center',
-				backgroundColor:
-					'linear-gradient(to right, rgb(9, 109, 215), rgb(87, 121, 236), rgb(33, 11, 226))'
+				alignItems: 'center'
 			}}
 		>
 			<AppBar position="static" open={open}>
 				<Toolbar
 					sx={{
+						background: 'linear-gradient(to right, #096DD7, #5779EC, #8F84F8)',
 						justifyContent: 'space-between'
 					}}
 				>
@@ -173,7 +172,18 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 				anchor="left"
 				open={open}
 			>
-				<DrawerHeader sx={{ display: 'flex', justifyContent: 'space-between' }}>
+				<DrawerHeader
+					sx={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						borderRadius: '0 0 5px',
+						borderColor: 'primary.main',
+						borderStyle: 'solid',
+						borderWidth: '1px',
+						borderTop: 'none',
+						borderRight: 'none'
+					}}
+				>
 					{toggleFilter ? (
 						<Stack
 							direction="row"

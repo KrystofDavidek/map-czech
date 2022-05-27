@@ -24,6 +24,7 @@ const Zoomer = () => {
 
 	useEffect(() => {
 		if (input && isSearching) {
+			console.log(input, isSearching);
 			setAddress(input);
 			setSearching(false);
 		}

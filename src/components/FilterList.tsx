@@ -30,6 +30,7 @@ const FilterList = () => {
 	return (
 		<List sx={{ p: '1rem', pt: 0 }}>
 			<Button
+				sx={{ mt: '1rem' }}
 				onClick={() => {
 					setActiveFilters(defaultFilterState);
 				}}
@@ -37,7 +38,6 @@ const FilterList = () => {
 			>
 				Restartovat filtry
 			</Button>
-			<Divider />
 			{Object.keys(filters).map((item: string, index: number) => (
 				<Box key={index}>
 					<Typography sx={{ my: 2 }} variant="h5" component="div">

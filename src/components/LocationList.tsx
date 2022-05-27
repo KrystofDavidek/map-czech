@@ -15,6 +15,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { border } from '@mui/system';
 
 import { useEntries } from '../contexts/EntriesContext';
 import { useFeatures } from '../contexts/FeaturesContext';
@@ -77,9 +78,17 @@ const Location = ({
 			navigate(`/location/${entry.location.mainLocation}`);
 		}
 	}, [entry]);
-
 	return (
-		<Card sx={{ width: '100%', p: '1rem' }}>
+		<Card
+			sx={{
+				width: '100%',
+				p: '1rem',
+				borderColor: 'primary.main',
+				borderStyle: 'solid',
+				borderWidth: '1px',
+				borderTop: 'none'
+			}}
+		>
 			{feature.properties.introImage.length > 0 && (
 				// eslint-disable-next-line react/jsx-no-useless-fragment
 				<>
@@ -147,14 +156,20 @@ const LocationList = ({ setDrawerOpen }: { setDrawerOpen: any }) => {
 	const { features } = useFeatures();
 
 	return (
-		<List>
-			<Divider />
-			{features.map((feature: Feature) => (
-				<Box key={feature.id}>
-					<Location setDrawerOpen={setDrawerOpen} feature={feature} />
-					<Divider />
-				</Box>
-			))}
+		<List sx={{ pt: 0 }}>
+			{features
+				.sort(
+					(a, b) =>
+						-b.properties.mainLocation[0].localeCompare(
+							a.properties.mainLocation[0]
+						)
+				)
+				.map((feature: Feature) => (
+					<Box key={feature.id}>
+						<Location setDrawerOpen={setDrawerOpen} feature={feature} />
+						<Divider />
+					</Box>
+				))}
 		</List>
 	);
 };

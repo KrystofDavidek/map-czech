@@ -38,7 +38,7 @@ const Login = () => {
 							e.preventDefault();
 							try {
 								await logIn(email, password);
-								showSnackbar({ text: `Welcome, ${email}`, variant: 'success' });
+								showSnackbar({ text: `Vítejte, ${email}`, variant: 'success' });
 								navigate('/');
 							} catch (error) {
 								handleError(
