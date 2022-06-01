@@ -9,8 +9,10 @@ import {
 	IconButton,
 	List,
 	Stack,
+	Theme,
 	Tooltip,
-	Typography
+	Typography,
+	useMediaQuery
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -43,6 +45,7 @@ const Location = ({
 	const { user } = useUserContext();
 	const location = useLocation();
 	const navigate = useNavigate();
+	const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
 
 	const toAdmin = async () => {
 		const entry = await getEntry(feature.id);
@@ -116,7 +119,7 @@ const Location = ({
 				<Stack direction="row" spacing={1}>
 					<Button
 						onClick={() => {
-							if (location.pathname !== '/') {
+							if (location.pathname !== '/' || matches) {
 								setDrawerOpen(false);
 								// Otherwise map is not rendered correctly because of drawer size
 								setTimeout(() => {
