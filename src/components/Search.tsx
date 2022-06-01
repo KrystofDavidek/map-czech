@@ -34,7 +34,7 @@ const search = () => {
 
 	return (
 		<Autocomplete
-			sx={{ width: { xs: '100%', sm: '30rem' }, mb: 2 }}
+			sx={{ width: { xs: '100%', sm: '30rem' }, mb: 2, mt: 2 }}
 			id="searchbar"
 			options={features
 				.map(feature => feature.properties.mainLocation)

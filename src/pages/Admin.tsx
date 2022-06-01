@@ -12,6 +12,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { Delete } from '@mui/icons-material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from 'react-router-dom';
+import { over } from 'lodash';
 
 import FirstSection from '../components/Form/FirstSection';
 import SecondSection from '../components/Form/SecondSection';
@@ -76,7 +77,6 @@ const Admin = () => {
 					text: 'Lokalitu se nepodařilo nahrát, problém na serveru',
 					variant: 'error'
 				});
-				console.log(`Error when adding/editing${e}`);
 			}
 			navigate('/');
 		} else {
@@ -94,7 +94,14 @@ const Admin = () => {
 				<>
 					<Box sx={{ width: '100%' }}>
 						<LinearProgress variant="determinate" value={(page + 1) * 20} />
-						<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
+						<Stack
+							direction="row"
+							sx={{
+								justifyContent: 'space-between',
+								gap: { xs: '3rem', md: 0 },
+								overflow: 'auto'
+							}}
+						>
 							<Button
 								onClick={() => {
 									setPage(0);
@@ -135,7 +142,10 @@ const Admin = () => {
 						{currentEntry.id && (
 							<Stack
 								direction="row"
-								sx={{ mt: 2, justifyContent: 'space-between' }}
+								sx={{
+									mt: 2,
+									justifyContent: 'space-between'
+								}}
 							>
 								<Tooltip title="Přejít na lokalitu" placement="top">
 									<IconButton
@@ -164,7 +174,12 @@ const Admin = () => {
 					</Box>
 					<FormProvider {...methods}>
 						<FormControl
-							sx={{ width: '100%', alignItems: 'center' }}
+							sx={{
+								width: '100%',
+								alignItems: 'center',
+								p: { xs: 2, sm: 4 },
+								pb: 10
+							}}
 							component="form"
 							onSubmit={methods.handleSubmit(handleSubmitOnClick)}
 						>

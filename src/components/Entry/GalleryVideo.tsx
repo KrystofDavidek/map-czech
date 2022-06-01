@@ -32,8 +32,8 @@ const GalleryVideo = ({ videos }: GalleryProps) => {
 						<ImageListItem key={i}>
 							<ReactPlayer
 								url={item.url}
-								width={matchesMin ? '100%' : 520}
-								height={matchesMin ? '100%' : 320}
+								width={matchesMin ? 'fit-content' : 520}
+								height={matchesMin ? 'fit-content' : 320}
 								style={{ margin: '1rem' }}
 								loading="lazy"
 							/>

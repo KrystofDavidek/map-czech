@@ -10,9 +10,9 @@ import Extra from '../components/Entry/Extra';
 import NotFound from './NotFound';
 
 const Entry = () => (
-	<Container>
+	<Container sx={{ p: 0 }}>
 		<SectionNavbar />
-		<Box sx={{ m: 4, pb: 10 }}>
+		<Box sx={{ m: { xs: 2, sm: 4 }, pb: 10 }}>
 			<Routes>
 				<Route path="intro" element={<Intro />} />
 				<Route path="details" element={<Details />} />

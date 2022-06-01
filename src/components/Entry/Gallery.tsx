@@ -3,7 +3,11 @@ import {
 	ImageList,
 	ImageListItem,
 	ImageListItemBar,
-	Divider
+	Divider,
+	useMediaQuery,
+	Theme,
+	Grid,
+	Stack
 } from '@mui/material';
 import { useEffect } from 'react';
 import Zoom from 'react-medium-image-zoom';
@@ -20,6 +24,7 @@ type GalleryProps = {
 
 const Gallery = ({ dropZone }: GalleryProps) => {
 	const { urls, setNames } = useAsyncFiles();
+	const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
 	// eslint-disable-next-line react/jsx-no-useless-fragment
 	if (!dropZone.files[0]) return <></>;
@@ -44,25 +49,42 @@ const Gallery = ({ dropZone }: GalleryProps) => {
 				/>
 			) : (
 				<Box sx={{ overflowY: 'scroll', maxHeight: '80vh' }}>
-					<ImageList variant="masonry" cols={2} gap={24}>
-						{urls.map((url, i) => (
-							<Zoom key={i} zoomMargin={24}>
-								<ImageListItem sx={{ maxWidth: '30rem' }}>
+					{!matches ? (
+						<ImageList variant="masonry" cols={2} gap={24}>
+							{urls.map((url, i) => (
+								<Zoom key={i} zoomMargin={24}>
+									<ImageListItem sx={{ maxWidth: '30rem' }}>
+										<img
+											src={`${url}`}
+											srcSet={`${url}`}
+											alt={dropZone.names[i]?.name}
+											loading="lazy"
+										/>
+										;
+										<ImageListItemBar
+											title={dropZone.names[i]?.name}
+											position="below"
+										/>
+									</ImageListItem>
+								</Zoom>
+							))}
+						</ImageList>
+					) : (
+						<Box>
+							{urls.map((url, i) => (
+								<Stack key={i} direction="column">
 									<img
+										width="100%"
+										height="100%"
 										src={`${url}`}
-										srcSet={`${url}`}
 										alt={dropZone.names[i]?.name}
 										loading="lazy"
 									/>
-									;
-									<ImageListItemBar
-										title={dropZone.names[i]?.name}
-										position="below"
-									/>
-								</ImageListItem>
-							</Zoom>
-						))}
-					</ImageList>
+									<p>{dropZone.names[i]?.name}</p>
+								</Stack>
+							))}
+						</Box>
+					)}
 				</Box>
 			)}
 			<Divider />

@@ -9,7 +9,7 @@ const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })<{
 	open?: boolean;
 }>(({ theme, open }) => ({
 	flexGrow: 1,
-	padding: theme.spacing(3),
+	padding: theme.breakpoints.down('sm') ? theme.spacing(1) : theme.spacing(3),
 	transition: theme.transitions.create('margin', {
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.leavingScreen
@@ -31,7 +31,7 @@ const Layout: FC = ({ children }) => {
 		<Box>
 			<Navbar open={open} setOpen={setOpen} />
 			<Main open={open}>
-				<Box sx={{ height: '86vh', ml: `${drawerWidth}px` }}>{children}</Box>
+				<Box sx={{ height: '89vh', ml: `${drawerWidth}px` }}>{children}</Box>
 			</Main>
 		</Box>
 	);

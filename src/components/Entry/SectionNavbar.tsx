@@ -65,7 +65,12 @@ const SectionNavbar = () => {
 					</Tooltip>
 				)}
 			</Stack>
-			<Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
+			<Tabs
+				variant="scrollable"
+				value={value}
+				onChange={handleChange}
+				aria-label="nav tabs example"
+			>
 				<Tab component={Link} label="Úvod" to={`${entryPath}/intro`} />
 				<Tab component={Link} label="Informace" to={`${entryPath}/details`} />
 				<Tab

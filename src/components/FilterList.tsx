@@ -50,7 +50,11 @@ const FilterList = () => {
 			</Button>
 			{Object.keys(filters).map((item: string, index: number) => (
 				<Box key={index}>
-					<Typography sx={{ my: 2 }} variant="h5" component="div">
+					<Typography
+						sx={{ my: 2, width: { xs: '15rem', md: '100%' } }}
+						variant="h5"
+						component="div"
+					>
 						{filters[item as FilterKeys].name}
 					</Typography>
 					<FormGroup sx={{ ml: 2, mb: 2 }}>

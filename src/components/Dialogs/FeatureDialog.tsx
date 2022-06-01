@@ -63,7 +63,7 @@ const FeatureDialog = ({ feature, close }: Props) => {
 					</IconButton>
 
 					<DialogContent>
-						<Grid container spacing={2} sx={{ m: 2 }}>
+						<Grid container sx={{ m: 2, gap: 2 }}>
 							<Grid item xs={12}>
 								<DialogContentText variant="h3" sx={{ fontWeight: 500 }}>
 									{currentEntry?.location?.mainLocation}
@@ -112,6 +112,7 @@ const FeatureDialog = ({ feature, close }: Props) => {
 					<DialogActions>
 						<Button onClick={handleClose}>Zpátky</Button>
 						<Button
+							sx={{ textAlign: 'right' }}
 							onClick={close}
 							component={Link}
 							to={`/location/${currentEntry?.location?.mainLocation}`}

@@ -5,6 +5,7 @@ import {
 	IconButton,
 	Stack,
 	styled,
+	Theme,
 	Toolbar,
 	Tooltip,
 	Typography,
@@ -19,6 +20,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useEffect, useState } from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { useEntries } from '../contexts/EntriesContext';
 import { defaultEntry } from '../data';
@@ -64,6 +66,8 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 	const location = useLocation();
 	const [toggleFilter, setToggle] = useState<boolean>(false);
 	const { loading, user } = useUserContext();
+	const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+	const currentDrawerWidth = matches ? 'fit-content' : drawerWidth;
 
 	useEffect(() => {
 		setOpen(false);
@@ -161,10 +165,10 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 			</AppBar>
 			<Drawer
 				sx={{
-					'width': drawerWidth,
+					'width': currentDrawerWidth,
 					'flexShrink': 0,
 					'& .MuiDrawer-paper': {
-						width: drawerWidth,
+						width: currentDrawerWidth,
 						boxSizing: 'border-box'
 					}
 				}}

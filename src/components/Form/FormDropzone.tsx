@@ -48,7 +48,6 @@ const FormDropzone = (props: Props & any) => {
 					// remove when automatically replace imgs
 					newFiles = loadedFiles;
 					if (files.length === 1) {
-						console.log(files[0]);
 						removeFile(files[0]);
 					}
 				}
