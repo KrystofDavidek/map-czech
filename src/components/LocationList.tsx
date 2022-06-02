@@ -17,7 +17,6 @@ import {
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { border } from '@mui/system';
 
 import { useEntries } from '../contexts/EntriesContext';
 import { useFeatures } from '../contexts/FeaturesContext';
