@@ -17,10 +17,16 @@ type Props = { type?: FileType; filesLimit?: number; data?: any };
 const useStyles = makeStyles(() =>
 	createStyles({
 		dropzoneLoading: {
-			pointerEvents: 'none'
+			pointerEvents: 'none',
+			border: '1px solid #C6C6C6',
+			padding: '1rem',
+			borderRadius: '4px'
 		},
 		dropzone: {
-			pointerEvents: 'auto'
+			pointerEvents: 'auto',
+			border: '1px solid #C6C6C6',
+			padding: '1rem',
+			borderRadius: '4px'
 		}
 	})
 );

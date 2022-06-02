@@ -1,5 +1,5 @@
 import AudioPlayer from 'react-h5-audio-player';
-import { Stack, Grid, Link } from '@mui/material';
+import { Stack, Grid, Link, Fade } from '@mui/material';
 import { useEffect, useState } from 'react';
 
 import LoadingSpinner from '../LoadingSpinner';
@@ -62,7 +62,7 @@ const Record = ({ record }: RecordProps) => {
 					)}
 					{(record.transcript || record.details) && (
 						<Link
-							sx={{ cursor: 'pointer' }}
+							sx={{ cursor: 'pointer', width: 'fit-content' }}
 							onClick={() => {
 								setShowDetails(!showDetails);
 							}}
@@ -74,7 +74,7 @@ const Record = ({ record }: RecordProps) => {
 					)}
 				</Stack>
 			</Grid>
-			{showDetails && (
+			<Fade in={showDetails} unmountOnExit>
 				<Grid item xs={12}>
 					<TextSection title="Přepis" texts={[record.transcript]} />
 					<TextSection
@@ -82,7 +82,7 @@ const Record = ({ record }: RecordProps) => {
 						texts={[record.details]}
 					/>
 				</Grid>
-			)}
+			</Fade>
 			<Grid item>
 				<Stack spacing={2}>
 					<TextSection

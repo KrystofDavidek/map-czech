@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "map-czech",
+  "name": "Interactive map showing Czech compatriots around the world",
   "icons": [
     {
       "src": "favicon.ico",
