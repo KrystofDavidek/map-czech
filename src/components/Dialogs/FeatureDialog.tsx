@@ -89,7 +89,7 @@ const FeatureDialog = ({ feature, close }: Props) => {
 												sx={{
 													maxHeight: '20rem',
 													maxWidth: '100%',
-													width: '90%'
+													width: '95%'
 												}}
 											/>
 										)}
