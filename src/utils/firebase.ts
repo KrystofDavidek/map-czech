@@ -185,7 +185,7 @@ export const addNewEntry = async (entry: Entry) => {
 	}
 };
 
-export const getEntry = async (id: string) => {
+export const getEntryById = async (id: string) => {
 	const snapshot = (await getDoc(
 		doc(db, 'entries', id)
 	)) as DocumentSnapshot<Entry>;
@@ -194,6 +194,23 @@ export const getEntry = async (id: string) => {
 	} else {
 		return Promise.reject(Error(`No such document: ${id}`));
 	}
+};
+
+export const getEntryByName = async (name: string) => {
+	let entry: any;
+	const querySnapshot = (await getDocs(
+		collection(db, 'entries')
+	)) as QuerySnapshot<Entry>;
+	querySnapshot.forEach(doc => {
+		if (
+			!entry &&
+			compareStrings(doc.data().location.mainLocation, decodeURI(name))
+		) {
+			entry = doc.data();
+			return;
+		}
+	});
+	return entry;
 };
 
 export const getAllFeatures = async () => {
@@ -211,3 +228,13 @@ export const documentExist = async (collection: string, id: string) => {
 	const snapshot = (await getDoc(doc(db, collection, id))) as DocumentSnapshot;
 	return !!snapshot.exists();
 };
+
+const compareStrings = (textA: string, textB: string) =>
+	textA
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase() ===
+	textB
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase();

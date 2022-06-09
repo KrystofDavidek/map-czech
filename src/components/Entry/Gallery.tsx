@@ -6,7 +6,6 @@ import {
 	Divider,
 	useMediaQuery,
 	Theme,
-	Grid,
 	Stack
 } from '@mui/material';
 import { useEffect } from 'react';

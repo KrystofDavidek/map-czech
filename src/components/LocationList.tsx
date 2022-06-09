@@ -24,7 +24,7 @@ import { defaultEntry } from '../data';
 import useAsyncFiles from '../hooks/useAsyncFiles';
 import { Entry } from '../models/entry';
 import { Feature } from '../models/feature';
-import { getEntry } from '../utils/firebase';
+import { getEntryById } from '../utils/firebase';
 import useUserContext from '../contexts/UserContext';
 
 import LoadingSpinner from './LoadingSpinner';
@@ -47,7 +47,7 @@ const Location = ({
 	const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
 
 	const toAdmin = async () => {
-		const entry = await getEntry(feature.id);
+		const entry = await getEntryById(feature.id);
 		if (entry) {
 			setCurrentEntry(entry);
 			// For some wierd purposes double navigation need to be here
@@ -63,7 +63,7 @@ const Location = ({
 	useEffect(() => {
 		if (loadEntry) {
 			const getData = async () => {
-				const entry = await getEntry(feature.id);
+				const entry = await getEntryById(feature.id);
 				if (entry) {
 					setEntry(entry);
 				}

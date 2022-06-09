@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 import { DialogPropsType } from '../../contexts/DialogContext';
 import { Feature } from '../../models/feature';
 import { useEntries } from '../../contexts/EntriesContext';
-import { getEntry } from '../../utils/firebase';
+import { getEntryById } from '../../utils/firebase';
 import { defaultEntry } from '../../data';
 import useAsyncFiles from '../../hooks/useAsyncFiles';
 import Image from '../Entry/Image';
@@ -31,7 +31,7 @@ const FeatureDialog = ({ feature, close }: Props) => {
 
 	useEffect(() => {
 		const getData = async () => {
-			const entry = await getEntry(feature.id);
+			const entry = await getEntryById(feature.id);
 			if (entry) {
 				setCurrentEntry(entry);
 				if (entry.location?.introImage) setNames(entry.location.introImage);
