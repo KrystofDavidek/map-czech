@@ -10,12 +10,17 @@ import {
 	Stack,
 	Tooltip
 } from '@mui/material';
+import { Dispatch, SetStateAction } from 'react';
 
 import { useFeatures } from '../contexts/FeaturesContext';
 import { defaultFilterState, useFilter } from '../contexts/FilterContext';
 import { FilterKeys, filters } from '../data/filters';
 
-const FilterList = () => {
+const FilterList = ({
+	setToggle
+}: {
+	setToggle: Dispatch<SetStateAction<boolean>>;
+}) => {
 	const { features } = useFeatures();
 	const { activeFilters, setActiveFilters } = useFilter();
 
@@ -57,8 +62,13 @@ const FilterList = () => {
 					pb: '1rem'
 				}}
 			>
-				<Tooltip title="Počet nalezených lokalit">
-					<Box
+				<Tooltip title="Zobrazit nalezené lokality">
+					<Button
+						onClick={() => {
+							setToggle((prev: boolean) => !prev);
+						}}
+						disabled={features.length === 0}
+						variant="contained"
 						sx={{
 							backgroundColor: 'primary.main',
 							color: 'white',
@@ -69,11 +79,12 @@ const FilterList = () => {
 							borderRadius: '50%',
 							display: 'flex',
 							alignItems: 'center',
-							justifyContent: 'center'
+							justifyContent: 'center',
+							minWidth: 'auto'
 						}}
 					>
 						{features.length}
-					</Box>
+					</Button>
 				</Tooltip>
 				<Button
 					sx={{ mt: '1rem' }}

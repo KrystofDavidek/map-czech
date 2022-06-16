@@ -245,7 +245,7 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 					</IconButton>
 				</DrawerHeader>
 				{toggleFilter ? (
-					<FilterList />
+					<FilterList setToggle={setToggle} />
 				) : (
 					<LocationList setDrawerOpen={setOpen} />
 				)}

@@ -158,21 +158,29 @@ const LocationList = ({ setDrawerOpen }: { setDrawerOpen: any }) => {
 	const { features } = useFeatures();
 
 	return (
-		<List sx={{ pt: 0 }}>
-			{features
-				.sort(
-					(a, b) =>
-						-b.properties.mainLocation[0].localeCompare(
-							a.properties.mainLocation[0]
+		<Box>
+			{features.length > 0 ? (
+				<List sx={{ pt: 0 }}>
+					{features
+						.sort(
+							(a, b) =>
+								-b.properties.mainLocation[0].localeCompare(
+									a.properties.mainLocation[0]
+								)
 						)
-				)
-				.map((feature: Feature) => (
-					<Box key={feature.id}>
-						<Location setDrawerOpen={setDrawerOpen} feature={feature} />
-						<Divider />
-					</Box>
-				))}
-		</List>
+						.map((feature: Feature) => (
+							<Box key={feature.id}>
+								<Location setDrawerOpen={setDrawerOpen} feature={feature} />
+								<Divider />
+							</Box>
+						))}
+				</List>
+			) : (
+				<Stack sx={{ p: 2, pt: 4 }}>
+					<Typography align="center">Nebyly nalezeny žádné lokality</Typography>
+				</Stack>
+			)}
+		</Box>
 	);
 };
 
