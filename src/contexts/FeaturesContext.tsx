@@ -45,7 +45,8 @@ export const FeaturesProvider = ({ children }: { children: JSX.Element }) => {
 						activeFilters[filterKey].length > 0 &&
 						activeFilters[filterKey].some((filter: string) =>
 							feature.properties.filters[filterKey].includes(filter)
-						)
+						) &&
+						!filteredFeatures.includes(feature)
 					) {
 						filteredFeatures.push(feature);
 					}

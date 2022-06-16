@@ -6,13 +6,17 @@ import {
 	FormGroup,
 	List,
 	Button,
-	Typography
+	Typography,
+	Stack,
+	Tooltip
 } from '@mui/material';
 
+import { useFeatures } from '../contexts/FeaturesContext';
 import { defaultFilterState, useFilter } from '../contexts/FilterContext';
 import { FilterKeys, filters } from '../data/filters';
 
 const FilterList = () => {
+	const { features } = useFeatures();
 	const { activeFilters, setActiveFilters } = useFilter();
 
 	const getValue = (item: FilterKeys, filter: string) =>
@@ -39,17 +43,50 @@ const FilterList = () => {
 				borderRadius: '5px'
 			}}
 		>
-			<Button
-				sx={{ mt: '1rem' }}
-				onClick={() => {
-					setActiveFilters(defaultFilterState);
+			<Stack
+				direction="row"
+				justifyContent="flex-start"
+				alignItems="baseline"
+				gap={2}
+				sx={{
+					position: 'sticky',
+					top: 0,
+					zIndex: 10,
+					backgroundColor: 'white',
+					pt: '0.5rem',
+					pb: '1rem'
 				}}
-				size="small"
 			>
-				Restartovat filtry
-			</Button>
+				<Tooltip title="Počet nalezených lokalit">
+					<Box
+						sx={{
+							backgroundColor: 'primary.main',
+							color: 'white',
+							fontWeight: 500,
+							padding: '0.5rem',
+							height: '1.5rem',
+							width: '1.5rem',
+							borderRadius: '50%',
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center'
+						}}
+					>
+						{features.length}
+					</Box>
+				</Tooltip>
+				<Button
+					sx={{ mt: '1rem' }}
+					onClick={() => {
+						setActiveFilters(defaultFilterState);
+					}}
+					size="small"
+				>
+					Restartovat filtry
+				</Button>
+			</Stack>
 			{Object.keys(filters).map((item: string, index: number) => (
-				<Box key={index}>
+				<Box sx={{ position: 'relative', zIndex: 1 }} key={index}>
 					<Typography
 						sx={{ my: 2, width: { xs: '15rem', md: '100%' } }}
 						variant="h5"
