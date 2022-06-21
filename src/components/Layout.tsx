@@ -1,6 +1,7 @@
 import { Box, styled } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
+import { useDrawer } from '../contexts/DrawerContext';
 import { useEntries } from '../contexts/EntriesContext';
 
 import LoadingSpinner from './LoadingSpinner';
@@ -28,7 +29,7 @@ const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })<{
 }));
 
 const Layout: FC = ({ children }) => {
-	const [open, setOpen] = useState(false);
+	const { open } = useDrawer();
 	const { isLoading } = useEntries();
 
 	return (
@@ -43,7 +44,7 @@ const Layout: FC = ({ children }) => {
 				/>
 			) : (
 				<>
-					<Navbar open={open} setOpen={setOpen} />
+					<Navbar />
 					<Main open={open}>
 						<Box sx={{ height: '89vh', ml: `${drawerWidth}px` }}>
 							{children}

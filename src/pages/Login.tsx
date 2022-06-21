@@ -7,14 +7,22 @@ import {
 	Typography,
 	Box
 } from '@mui/material';
-import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import {
+	ChangeEvent,
+	FormEvent,
+	useCallback,
+	useEffect,
+	useState
+} from 'react';
 import { useNavigate } from 'react-router';
 
 import { useSnackbar } from '../contexts/SnackbarContext';
+import useUserContext from '../contexts/UserContext';
 import { logIn } from '../utils/firebase';
 
 const Login = () => {
 	const navigate = useNavigate();
+	const { user } = useUserContext();
 	const { showSnackbar } = useSnackbar();
 
 	const [email, setEmail] = useState('');
@@ -27,6 +35,12 @@ const Login = () => {
 	}, []);
 
 	const toggleLogin = () => setLogin(value => !value);
+
+	useEffect(() => {
+		if (user) {
+			navigate('/');
+		}
+	}, [user]);
 
 	return (
 		<Fade in timeout={700}>

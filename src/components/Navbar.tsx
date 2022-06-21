@@ -13,7 +13,6 @@ import {
 } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import ListAltIcon from '@mui/icons-material/ListAlt';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -22,10 +21,13 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useEffect, useState } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+import { ReactComponent as Locations } from '../assets/icons/locations.svg';
 import { useEntries } from '../contexts/EntriesContext';
 import { defaultEntry } from '../data';
 import useUserContext from '../contexts/UserContext';
 import { logOut } from '../utils/firebase';
+import { useDrawer } from '../contexts/DrawerContext';
+import logo from '../assets/images/logo.webp';
 
 import { drawerWidth } from './Layout';
 import LocationList from './LocationList';
@@ -61,10 +63,11 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
 	justifyContent: 'flex-end'
 }));
 
-const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
+const Navbar = () => {
 	const { setCurrentEntry } = useEntries();
 	const location = useLocation();
 	const [toggleFilter, setToggle] = useState<boolean>(false);
+	const { open, setOpen } = useDrawer();
 	const { loading, user } = useUserContext();
 	const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
 	const currentDrawerWidth = matches ? 'fit-content' : drawerWidth;
@@ -99,31 +102,36 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 						justifyContent: 'space-between'
 					}}
 				>
-					<Box>
+					<Stack direction="row" alignItems="center">
 						<Tooltip title="Seznam lokalit">
 							<IconButton
 								color="inherit"
 								aria-label="open drawer"
 								onClick={handleDrawerOpen}
 								edge="start"
-								sx={{ mr: 2, ...(open && { display: 'none' }) }}
+								sx={{
+									mr: { sm: 2, md: 8 },
+									...(open && { display: 'none' })
+								}}
 							>
-								<ListAltIcon />
+								<Locations height="30" width="33.75" />
 							</IconButton>
 						</Tooltip>
-
-						<Button
+						<Stack
+							spacing={2}
+							direction="row"
+							alignItems="center"
 							sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
-							component={Link}
-							to="/"
-							color="inherit"
 						>
-							<Typography variant="h6">Krajanská mapa</Typography>
-						</Button>
-					</Box>
+							<img height="20" src={logo} alt="Main logo" />
+							<Button component={Link} to="/" color="inherit">
+								<Typography variant="h6">Krajanská mapa</Typography>
+							</Button>
+						</Stack>
+					</Stack>
 
 					{!loading && (
-						<Stack direction="row" spacing={2}>
+						<Stack direction="row" spacing={{ sm: 0, md: 4 }}>
 							<Button
 								component={Link}
 								to="/"
@@ -131,6 +139,9 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 								color="inherit"
 							>
 								Mapa
+							</Button>
+							<Button component={Link} to="/about" color="inherit">
+								O projektu
 							</Button>
 
 							{user ? (
@@ -143,7 +154,7 @@ const Navbar = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
 									>
 										Editor
 									</Button>
-									<Tooltip sx={{ ml: 4 }} title="Odhlášení">
+									<Tooltip sx={{ ml: { sm: 0, md: 4 } }} title="Odhlášení">
 										<IconButton
 											component={Link}
 											onClick={logOut}
