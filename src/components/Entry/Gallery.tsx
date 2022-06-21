@@ -1,21 +1,13 @@
-import {
-	Box,
-	ImageList,
-	ImageListItem,
-	ImageListItemBar,
-	Divider,
-	useMediaQuery,
-	Theme,
-	Stack
-} from '@mui/material';
-import { useEffect } from 'react';
-import Zoom from 'react-medium-image-zoom';
+import { Box, Divider } from '@mui/material';
+import { useEffect, useState } from 'react';
+import ImageGallery, { ReactImageGalleryItem } from 'react-image-gallery';
 
 import 'react-medium-image-zoom/dist/styles.css';
 import useAsyncFiles from '../../hooks/useAsyncFiles';
 import { DropZone } from '../../models/entry';
 import LoadingSpinner from '../LoadingSpinner';
 import Text from '../Text';
+import 'react-image-gallery/styles/css/image-gallery.css';
 
 type GalleryProps = {
 	dropZone: DropZone;
@@ -23,10 +15,30 @@ type GalleryProps = {
 
 const Gallery = ({ dropZone }: GalleryProps) => {
 	const { urls, setNames } = useAsyncFiles();
-	const matches = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+	const [loading, setLoading] = useState<boolean>(true);
+
+	const [images, setImages] = useState<
+		{
+			original: string | undefined;
+			thumbnail: string | undefined;
+			description: string | undefined;
+		}[]
+	>([]);
 
 	// eslint-disable-next-line react/jsx-no-useless-fragment
 	if (!dropZone.files[0]) return <></>;
+
+	useEffect(() => {
+		if (urls?.[0]) {
+			const newImages = urls.map((url, i) => ({
+				original: url,
+				thumbnail: url,
+				description: dropZone.names[i]?.name
+			}));
+			setImages(newImages);
+			setLoading(false);
+		}
+	}, [urls]);
 
 	useEffect(() => {
 		if (dropZone.files[0]) {
@@ -37,7 +49,7 @@ const Gallery = ({ dropZone }: GalleryProps) => {
 	return (
 		<>
 			<Text variant="h3" component="h1" text="Obrázky" />
-			{!urls || !urls[0] ? (
+			{loading ? (
 				<LoadingSpinner
 					boxWidth="100%"
 					height="5rem"
@@ -47,45 +59,15 @@ const Gallery = ({ dropZone }: GalleryProps) => {
 					pb="10rem"
 				/>
 			) : (
-				<Box sx={{ overflowY: 'scroll', maxHeight: '80vh' }}>
-					{!matches ? (
-						<ImageList variant="masonry" cols={2} gap={24}>
-							{urls.map((url, i) => (
-								<Zoom key={i} zoomMargin={24}>
-									<ImageListItem sx={{ maxWidth: '30rem' }}>
-										<img
-											src={`${url}`}
-											srcSet={`${url}`}
-											alt={dropZone.names[i]?.name}
-											loading="lazy"
-										/>
-										;
-										<ImageListItemBar
-											title={dropZone.names[i]?.name}
-											position="below"
-										/>
-									</ImageListItem>
-								</Zoom>
-							))}
-						</ImageList>
-					) : (
-						<Box>
-							{urls.map((url, i) => (
-								<Stack key={i} direction="column">
-									<img
-										width="100%"
-										height="100%"
-										src={`${url}`}
-										alt={dropZone.names[i]?.name}
-										loading="lazy"
-									/>
-									<p>{dropZone.names[i]?.name}</p>
-								</Stack>
-							))}
-						</Box>
-					)}
+				<Box sx={{ mt: '3rem !important' }}>
+					<ImageGallery
+						lazyLoad
+						showPlayButton={false}
+						items={images as ReactImageGalleryItem[]}
+					/>
 				</Box>
 			)}
+
 			<Divider />
 		</>
 	);

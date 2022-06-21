@@ -1,10 +1,6 @@
 import { LatLngExpression, Map } from 'leaflet';
 
-export const getZoom = (map: Map) => {
-	if (map.getZoom() > 11) return 11;
-	if (map.getZoom() < 10) return 10;
-	return map.getZoom();
-};
+export const getZoom = (map: Map) => 11;
 
 export const getZoomCoords = (coordinates: number[]) => {
 	let coords: LatLngExpression;

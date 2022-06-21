@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { FeatureGroup, useMap } from 'react-leaflet';
+import { FeatureGroup, useMap, useMapEvents } from 'react-leaflet';
 
 import { useDialog } from '../../contexts/DialogContext';
 import { Feature, FeatureCollection } from '../../models/feature';
@@ -11,6 +11,7 @@ import { useFeatures } from '../../contexts/FeaturesContext';
 import FeatureShape from './FeatureShape';
 
 const Features = () => {
+	const [zoomLevel, setZoomLevel] = useState<number>(5);
 	const [featureCollection, setFeatureCollection] = useState<FeatureCollection>(
 		{
 			type: 'FeatureCollection',
@@ -18,6 +19,11 @@ const Features = () => {
 		}
 	);
 	const map = useMap();
+	const mapEvents = useMapEvents({
+		zoomend: () => {
+			setZoomLevel(mapEvents.getZoom());
+		}
+	});
 	const zoom = useCallback(map => getZoom(map), []);
 	const zoomCoords = useCallback(coordinates => getZoomCoords(coordinates), []);
 	const { openDialog } = useDialog();
@@ -70,6 +76,7 @@ const Features = () => {
 							type={feature.geometry.type}
 							coordinates={feature.geometry.coordinates}
 							properties={feature.properties}
+							isMarker={zoomLevel < 8}
 						/>
 					</FeatureGroup>
 				)

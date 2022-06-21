@@ -27,7 +27,7 @@ import { defaultEntry } from '../data';
 import useUserContext from '../contexts/UserContext';
 import { logOut } from '../utils/firebase';
 import { useDrawer } from '../contexts/DrawerContext';
-import logo from '../assets/images/logo.webp';
+import logo from '../assets/icons/locations.png';
 
 import { drawerWidth } from './Layout';
 import LocationList from './LocationList';
@@ -114,7 +114,7 @@ const Navbar = () => {
 									...(open && { display: 'none' })
 								}}
 							>
-								<Locations height="30" width="33.75" />
+								<Locations height="32" width="32" />
 							</IconButton>
 						</Tooltip>
 						<Stack
@@ -123,7 +123,12 @@ const Navbar = () => {
 							alignItems="center"
 							sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
 						>
-							<img height="20" src={logo} alt="Main logo" />
+							<img
+								style={{ marginBottom: 4 }}
+								height="30"
+								src={logo}
+								alt="Main logo"
+							/>
 							<Button component={Link} to="/" color="inherit">
 								<Typography variant="h6">Krajanská mapa</Typography>
 							</Button>

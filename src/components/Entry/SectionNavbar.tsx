@@ -32,10 +32,14 @@ const SectionNavbar = () => {
 	}, []);
 
 	useEffect(() => {
+		let isSet = false;
 		for (const endpoint in options) {
-			if (location.pathname.endsWith(endpoint))
+			if (location.pathname.endsWith(endpoint)) {
+				isSet = true;
 				setValue(options[endpoint as OptionType]);
+			}
 		}
+		if (!isSet) setValue(0);
 	}, [location]);
 
 	const handleChange = (_event: SyntheticEvent, newValue: number) => {

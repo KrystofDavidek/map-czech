@@ -2,7 +2,7 @@ import { Container, Box, Typography, Grid, Button, Stack } from '@mui/material';
 import { useNavigate } from 'react-router';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import logo from '../assets/images/logo.webp';
+import logo from '../assets/icons/locations.png';
 import Text from '../components/Text';
 import { useDrawer } from '../contexts/DrawerContext';
 
@@ -16,19 +16,14 @@ const About = () => {
 		<Container sx={{ p: 0, position: 'relative' }}>
 			<Box
 				sx={{
-					opacity: '5%',
+					opacity: '6%',
 					position: 'absolute',
-					top: '5%',
-					display: matches1 ? 'block' : 'none',
+					left: { xs: '1%', sm: '20%', lg: '30%' },
+					top: { xs: '15%', md: '10%' },
 					zIndex: -1
 				}}
 			>
-				<img
-					height={480}
-					width={matches2 ? 1100 : 'inherit'}
-					src={logo}
-					alt="Main logo"
-				/>
+				<img height={matches1 ? 480 : 300} src={logo} alt="Main logo" />
 			</Box>
 			<Box sx={{ m: { xs: 2, sm: 4 }, pb: 10 }}>
 				<Text variant="h3" component="h1" text="O projektu" mb={4} />
