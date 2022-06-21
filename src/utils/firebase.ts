@@ -72,9 +72,23 @@ export const userDataCollection = collection(
 export const userDataDocument = (email: string) =>
 	doc(db, 'userData', email) as DocumentReference<UserData>;
 
-export const deleteEntry = async (id: string) => {
-	await deleteDoc(doc(db, 'entries', id));
-	await deleteDoc(doc(db, 'features', id));
+export const deleteEntry = async (entry: Entry) => {
+	const filesToDelete: string[] = [];
+
+	if (entry.location?.introImage)
+		entry.location.introImage.forEach(file => filesToDelete.push(file));
+	if (entry.details?.record?.url)
+		entry.details.record.url.forEach(file => filesToDelete.push(file));
+	if (entry.media?.audios?.files)
+		entry.media.audios.files.forEach(file => filesToDelete.push(file));
+	if (entry.media?.images?.files)
+		entry.media.images.files.forEach(file => filesToDelete.push(file));
+
+	for (const file of [...new Set(filesToDelete)]) {
+		await deleteFile(file);
+	}
+	await deleteDoc(doc(db, 'entries', entry.id));
+	await deleteDoc(doc(db, 'features', entry.id));
 };
 
 const getArrayDepth = (obj: any): number => {

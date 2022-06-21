@@ -12,7 +12,6 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { Delete } from '@mui/icons-material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from 'react-router-dom';
-import { over } from 'lodash';
 
 import FirstSection from '../components/Form/FirstSection';
 import SecondSection from '../components/Form/SecondSection';

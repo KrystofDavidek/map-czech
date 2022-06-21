@@ -40,7 +40,7 @@ const Layout: FC = ({ children }) => {
 					height="10rem"
 					width="10rem"
 					textAlign="center"
-					pt="20rem"
+					pt={{ xs: '10rem', sm: '20rem' }}
 				/>
 			) : (
 				<>

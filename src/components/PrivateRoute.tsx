@@ -11,10 +11,10 @@ const PrivateRoute = ({ children }: any) => {
 		return (
 			<LoadingSpinner
 				boxWidth="100%"
-				width="5rem"
-				height="5rem"
+				height="10rem"
+				width="10rem"
 				textAlign="center"
-				pt="5rem"
+				pt={{ xs: '10rem', sm: '20rem' }}
 			/>
 		);
 	return user ? children : <Navigate to={{ pathname: '/login' }} />;
