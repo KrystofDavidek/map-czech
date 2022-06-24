@@ -21,7 +21,7 @@ const SecondSection = ({ setPage }: SectionProps) => {
 				render={({ field: { ref, ...rest } }) => (
 					<FormEditor
 						data={methods.watch('details.record.comments')}
-						title="Popis/komentář nahrávky"
+						title="Název nahrávky a případný komentář ke vzniku"
 						{...rest}
 					/>
 				)}
@@ -56,7 +56,7 @@ const SecondSection = ({ setPage }: SectionProps) => {
 				render={({ field: { ref, ...rest } }) => (
 					<FormEditor
 						data={methods.watch('details.record.details')}
-						title="Poznámky k jazyku, odkaz na jazykovou normu apod."
+						title="Poznámky k jazyku a jazyková charakteristika"
 						{...rest}
 					/>
 				)}

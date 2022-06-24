@@ -71,10 +71,10 @@ export const filters: Filters = {
 			'městská mluva',
 			'severovýchodočeská skupina',
 			'středočeská',
-			'jzč.',
-			'střmor.',
-			'výchmor.',
-			'laš.',
+			'jihozápadněčeská skupina',
+			'středomoravská',
+			'východomoravská',
+			'lašská',
 			'českomoravská'
 		]
 	},
@@ -96,10 +96,10 @@ export const filters: Filters = {
 	},
 	religion: {
 		name: 'Převládající náboženství ',
-		values: ['protestantská komunita', 'katolická', 'bez vyznání', 'nezjištěno']
+		values: ['protestantské', 'katolické', 'bez vyznání', 'nezjištěno']
 	},
 	reemigration: {
-		name: 'Komunity, odkud je zaznamenána reemigrace',
+		name: 'Proběhla reemigrace?',
 		values: ['po 1. světové válce', 'po 2. světové válce']
 	},
 	typeOfEmigration: {
