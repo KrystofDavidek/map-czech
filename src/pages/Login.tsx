@@ -31,7 +31,7 @@ const Login = () => {
 	const [isLogin, setLogin] = useState(true);
 
 	const handleError = useCallback((text: string) => {
-		showSnackbar({ text, variant: 'error' });
+		showSnackbar({ text: 'Přihlášení se nezdařilo', variant: 'error' });
 	}, []);
 
 	const toggleLogin = () => setLogin(value => !value);

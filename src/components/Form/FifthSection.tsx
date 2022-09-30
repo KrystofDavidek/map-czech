@@ -1,4 +1,4 @@
-import { Stack, Button, Link } from '@mui/material';
+import { Stack, Button, Link, Typography } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { filters } from '../../data';
@@ -55,9 +55,13 @@ const FifthSection = ({ setPage }: SectionProps) => {
 					)}
 				/>
 			))}
-			<Button variant="contained" size="large" type="submit">
+			<Typography sx={{ fontSize: '0.8rem', color: 'red' }} color="initial">
+				Editace/tvorba lokalit je pro demo účely v tuto chvíli vypnutá.
+			</Typography>
+			<Button variant="contained" size="large" type="submit" disabled>
 				Odeslat data
 			</Button>
+
 			<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
 				<Button
 					onClick={() => {
